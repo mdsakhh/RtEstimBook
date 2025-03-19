@@ -3,6 +3,10 @@
 
 ### Brief description
 
+The paper by Judge et al. (2024) introduces EpiFusion, a novel method that integrates phylodynamic (genomic) and epidemiological (case incidence) data to jointly estimate the effective reproduction number (Rt) using particle filtering within a particle Markov Chain Monte Carlo (pMCMC) framework. The key goal of EpiFusion is to address limitations in Rt estimation when relying solely on epidemiological or genomic data—especially in poorly sampled epidemics such as arboviral and respiratory virus outbreaks.
+
+EpiFusion leverages the complementary strengths of both data types to improve accuracy and certainty in real-time and retrospective outbreak analyses. The method is validated through simulation studies, benchmarking against existing tools (EpiNow2, BDSky, TimTam), and real-world application to the 2014 Ebola outbreak in Sierra Leone.
+
 | [EpiFusion](package_EpiFusion.qmd#sec-top) | @Judge2024EpiFusion | [🔗](https://github.com/ciarajudge/EpiFusion) | Nov 30, 2024|
 
 ### Methods
