@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -55,10 +55,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-bc11f644e0fd71aaf667f8c23dea1f98.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -397,7 +397,7 @@ window.Quarto = {
 
 <section id="overview" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="overview">Overview</h2>
-<p>When an infectious disease outbreak begins, a time-sensitive question arises: “are things getting better or worse?” A great deal of research has gone into how to answer this question, and making sense of the findings is the purpose of this website.</p>
+<p>When an infectious disease outbreak begins, a time-sensitive question arises: “are things getting better or worse?” A great deal of research has gone into how to answer this question, including the development of forecasting tools to attempt to predict what might be coming, as well as data streams and metrics to summarize and understand that data. Here we focus more on the latter approach.</p>
 <p>Suppose you work at a public health agency, and you have the following reported case data in blue:</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -409,13 +409,13 @@ window.Quarto = {
 </div>
 </div>
 <p>You may want to know, are cases tomorrow going to be a) higher than today or b) lower than today. Just looking visually, either seems plausible: in case a) perhaps today’s cases are a outlier, and the true trend will continue upwards, and in case b) perhaps today’s cases are not an outlier, and tomorrow’s cases will be lower.</p>
-<p>To make a more informed decision, there are <strong>two critical questions</strong> we need to answer:</p>
-<p><strong>1. How long does it take for an infected person to infect others?</strong> If you knew that it took at least 2 days for an infected person to infect others, you might be more inclined to think that tomorrow’s cases may be higher than today’s, as they are in a). However, if you knew that it only took 1 day at most for each infected person to infect others, you might think it more likely that tomorrow’s cases will be lower than today’s, as they are in b).</p>
-<p>Therefore, this quantity, known as the <a class="definition" href="./glossary.html#genInt">generation interval</a>, can help you make an informed decision about whether you think cases tomorrow will be higher or lower than today. The generation interval can estimated by a number of methods, including analyzing data of <a href="https://journals.lww.com/epidem/FullText/2009/05000/Estimation_of_the_Serial_Interval_of_Influenza.7.aspx?casa_token=ryVMHOD5AEgAAAAA:dTLXhhBPGA_sFo1yyON5_GDSwqV7cvMxb7p7FJAfHlO3OnpLfbTDLdgiWKNNz3_P4rQm18po9HSte9PtG_Sa0MQKRL0">infector-infectee pairs</a>.</p>
-<p><strong>2. How many previous days of information do you want to look at when deciding what tomorrow’s cases will be?</strong> Again looking at the figure above, if you want to use the previous 4 days to make your decision, you will probably guess that tomorrow’s cases will be higher than today’s. However, if you choose a smaller window of time, you may be inclined to think that tomorrow’s cases will be lower.</p>
-<p>The question of how many days to consider in your estimation (and how much weight each previous day recieves in estimating what the next day of cases will be) is characterized in a parameter known as the <a class="definition" href="./glossary.html#effectiveRt">effective reproductive number</a>, or <span class="math inline">\(R(t)\)</span>.</p>
-<p><span class="math inline">\(R(t)\)</span> provides a link between reported cases of a disease and many additional dynamic processes, including disease characteristics (e.g., infectiousness under various conditions, mode of transport) and extrinsic factors (e.g., lockdowns that reduce person-to-person contact). It represents “… the expected number of new infections caused by an infectious individual in a population where some individuals may no longer be susceptible” (<span class="citation" data-cites="Gostic2020Practical">Gostic et al. (<a href="references.html#ref-Gostic2020Practical" role="doc-biblioref">2020</a>)</span>).</p>
-<p>Knowing <span class="math inline">\(R(t)\)</span> can help you begin to make an informed guess as to the current state of a disease outbreak, as it has the following values and interpretations <em>at a specific point in time</em>:</p>
+
+<p>However the process that generates these new cases, i.e.&nbsp;infection, has already occurred in most cases. A more helpful question might be: Are people still infecting other people in sufficient numbers that we can expect cases to generally keep increasing? Reported cases are a lagging indicator of the current state of disease transmission. If we understand this dynamic, then we will be able to predict how many cases we expect to be coming in the near future and if control measures are effectively slowing transmission.</p>
+<p>This is what the <strong>effective reproductive number</strong>, <span class="math inline">\(R(t)\)</span>, aims to estimate. The reproductive number estimates the average number of people an infectious individual will infect at time <span class="math inline">\(t\)</span>. This is typically done daily. The reproductive number is estimated from case count data like that shown in the plots above. But there is another critical piece of information to indicate when reported cases might have been infected. This is:</p>
+<p><strong>How long does it take for an infected person to infect others?</strong> This is described by the <a class="definition" href="./glossary.html#genInt">generation interval</a>. This can be summarized by a mean which would give the average amount of time between an infector and their infectee. But more often it is described by a statistical distribution. For example, the infector of an infected individual would have been infected 1 day prior with 30% probability, 2 days prior with 40% probability, or 3 days prior with probability.</p>
+<p>The generation interval is central to estimating the reproductive number. The generation interval can estimated by a number of methods, including analyzing data of <a href="https://journals.lww.com/epidem/FullText/2009/05000/Estimation_of_the_Serial_Interval_of_Influenza.7.aspx?casa_token=ryVMHOD5AEgAAAAA:dTLXhhBPGA_sFo1yyON5_GDSwqV7cvMxb7p7FJAfHlO3OnpLfbTDLdgiWKNNz3_P4rQm18po9HSte9PtG_Sa0MQKRL0">infector-infectee pairs</a>.</p>
+<p>Knowing <span class="math inline">\(R(t)\)</span> can help you begin to make an informed guess as to the current state of a disease outbreak and near term forecasts, as it has the following values and interpretations <em>at a specific point in time</em>:</p>
+
 <table class="caption-top table" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd" style="border-top: none; line-height: 1; padding: 2;">
@@ -561,6 +561,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -671,6 +673,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
