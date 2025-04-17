@@ -20,7 +20,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -381,13 +400,39 @@ window.Quarto = {
 <section id="other-methods-not-discussed-here-include" class="level3">
 <h3 class="anchored" data-anchor-id="other-methods-not-discussed-here-include">Other methods not discussed here include:</h3>
 <ul>
-<li>inference of <span class="math inline">\(R(t)\)</span> exclusively from alternative data sources (e.g., genetic data,2 behavioral data,3 or viral loads in waste-water4),</li>
-<li>calculations from compartmental, agent-based models, or network.5–7</li>
+<li>inference of <span class="math inline">\(R(t)\)</span> exclusively from alternative data sources (e.g., genetic data <span class="citation" data-cites="Walker2013Whole">(<a href="references.html#ref-Walker2013Whole" role="doc-biblioref">Walker et al. 2013</a>)</span>, behavioral data <span class="citation" data-cites="Bokanyi2023Real">(<a href="references.html#ref-Bokanyi2023Real" role="doc-biblioref">Bokányi et al. 2023</a>)</span>, or viral loads in waste-water <span class="citation" data-cites="Huisman2022Wastewater">(<a href="references.html#ref-Huisman2022Wastewater" role="doc-biblioref">Huisman et al. 2022</a>)</span>),</li>
+<li>calculations from compartmental, agent-based models, or network <span class="citation" data-cites="Driessche2002Reproduction">Bettencourt and Ribeiro (<a href="references.html#ref-Bettencourt2008Real" role="doc-biblioref">2008</a>)</span>.</li>
 </ul>
-<p>We also limit the discussion to packages in the statistical software R,8 which may exclude some packages in other software programs that combine many of the methodological considerations discussed below.9</p>
+<p>We also limit the discussion to packages in the statistical software R <span class="citation" data-cites="R2022R">(<a href="references.html#ref-R2022R" role="doc-biblioref">R Core Team 2022</a>)</span>, which may exclude some packages in other software programs that combine many of the methodological considerations discussed below <span class="citation" data-cites="Yang2022Bayesian">(<a href="references.html#ref-Yang2022Bayesian" role="doc-biblioref">Yang et al. 2022</a>)</span>.</p>
 <p>The methods discussed below and references to specific R packages are current as of December 1, 2024. We attempt to harmonize the mathematical choices between each package using terminology from each.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-Almutiry2021Continuous" class="csl-entry" role="listitem">
+Almutiry W, V VWK, Deardon R. 2021. Continuous <span>Time</span> <span>Individual</span>-<span>Level</span> <span>Models</span> of <span>Infectious</span> <span>Disease</span>: Package <span>EpiILMCT</span>. Journal of Statistical Software 98:1–44; doi:<a href="https://doi.org/10.18637/jss.v098.i10">10.18637/jss.v098.i10</a>.
+</div>
+<div id="ref-Bettencourt2008Real" class="csl-entry" role="listitem">
+Bettencourt LMA, Ribeiro RM. 2008. Real <span>Time</span> <span>Bayesian</span> <span>Estimation</span> of the <span>Epidemic</span> <span>Potential</span> of <span>Emerging</span> <span>Infectious</span> <span>Diseases</span>. PLOS ONE 3:e2185; doi:<a href="https://doi.org/10.1371/journal.pone.0002185">10.1371/journal.pone.0002185</a>.
+</div>
+<div id="ref-Bokanyi2023Real" class="csl-entry" role="listitem">
+Bokányi E, Vizi Z, Koltai J, Röst G, Karsai M. 2023. Real-time estimation of the effective reproduction number of <span>COVID</span>-19 from behavioral data. Scientific Reports 13:21452; doi:<a href="https://doi.org/10.1038/s41598-023-46418-z">10.1038/s41598-023-46418-z</a>.
+</div>
+<div id="ref-Driessche2002Reproduction" class="csl-entry" role="listitem">
+Driessche P van den, Watmough J. 2002. Reproduction numbers and sub-threshold endemic equilibria for compartmental models of disease transmission. Mathematical Biosciences 180:29–48; doi:<a href="https://doi.org/10.1016/S0025-5564(02)00108-6">10.1016/S0025-5564(02)00108-6</a>.
+</div>
+<div id="ref-Huisman2022Wastewater" class="csl-entry" role="listitem">
+Huisman JS, Scire J, Caduff L, Fernandez-Cassi X, Ganesanandamoorthy P, Kull A, et al. 2022. Wastewater-<span>Based</span> <span>Estimation</span> of the <span>Effective</span> <span>Reproductive</span> <span>Number</span> of <span>SARS</span>-<span>CoV</span>-2. Environmental Health Perspectives 130:057011; doi:<a href="https://doi.org/10.1289/EHP10050">10.1289/EHP10050</a>.
+</div>
+<div id="ref-R2022R" class="csl-entry" role="listitem">
+R Core Team. 2022. R-4.1.3.
+</div>
+<div id="ref-Walker2013Whole" class="csl-entry" role="listitem">
+Walker TM, Ip CL, Harrell RH, Evans JT, Kapatai G, Dedicoat MJ, et al. 2013. Whole-genome sequencing to delineate <span>Mycobacterium</span> tuberculosis outbreaks: A retrospective observational study. The Lancet Infectious Diseases 13:137–146; doi:<a href="https://doi.org/10.1016/S1473-3099(12)70277-3">10.1016/S1473-3099(12)70277-3</a>.
+</div>
+<div id="ref-Yang2022Bayesian" class="csl-entry" role="listitem">
+Yang X, Wang S, Xing Y, Li L, Xu RYD, Friston KJ, et al. 2022. Bayesian data assimilation for estimating instantaneous reproduction numbers during epidemics: Applications to <span>COVID</span>-19. PLoS Computational Biology 18:e1009807; doi:<a href="https://doi.org/10.1371/journal.pcbi.1009807">10.1371/journal.pcbi.1009807</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

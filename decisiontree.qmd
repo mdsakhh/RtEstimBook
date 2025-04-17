@@ -1,6 +1,6 @@
 # Decision matrix {.unnumbered}
 
-$R(t)$ provides a link between reported cases of a disease and many additional dynamic processes, including disease characteristics (e.g., infectiousness under various conditions, mode of transport) and extrinsic factors (e.g., lockdowns that reduce person-to-person contact). It represents "... the expected number of new infections caused by an infectious individual in a population where some individuals may no longer be susceptible" (@Gostic2020Practical), and has two main uses:
+$R(t)$ has two main uses:
 
 1. **Retrospective** understanding of the dynamics of historical outbreaks, and
 2. **Real time tracking** ongoing infectious diseases. 
@@ -9,7 +9,7 @@ For 1, one might wish to understand the impact on transmission of vaccines or no
 
 For real time tracking of ongoing infectious diseases, there is often interest in determining if the current outbreak is getting worse, better or staying the same. In this case, live dashboards are often used to track $R(t)$ as new data on diagnosed cases emerges. This is currently done for COVID-19 and Influenza by the CDC and CA (add refs).
 
-You can use the decision tool below to help choose which R packages may be right for your application:
+In either application, **delay distributions play a key role in estimating $R(t)$ for new infections.**  You can use the decision tool below to help choose which software package(s) may be right for your application:
 
 1. Look first for the desired output that you want to produce
 1. Then make a decision about whether you want to incorporate delay distributions. 
@@ -21,7 +21,7 @@ You can use the decision tool below to help choose which R packages may be right
 ## Focus of this matrix
 The table below focuses on **R packages** that esimate $R(t)$ using **reported cases**. 
 
-Future efforts include expanding this table to include **alternative data sources** (e.g., wastewater) and packages in **other coding languages** (e.g., Python).
+Future efforts include expanding this table to include **alternative data sources** (e.g., wastewater) and packages in **other coding languages** (e.g., Python). See the [packages list](packages.qmd) for an index of currently reviewed packages.
 :::
 
 ```{=html}

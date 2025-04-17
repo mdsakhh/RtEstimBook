@@ -2,16 +2,20 @@
 
 ## Distributions for key variables
 
-A primary component of constraining R(t) is how distributions are used to constrain key variables in R(t) estimation: for I(t), ω, and for R(t) itself. 
+A primary component of constraining $R(t)$ is how distributions are used to constrain key variables in $R(t)$ estimation: for $I(t)$, $ω$, and for $R(t)$ itself. 
 
-Assuming some prior distributions for R(t) and the generation interval permit an analytical solution for the posterior distribution of R(t), as in Cori et. al. (2013) and the R package EpiEstim.18 
+Assuming some prior distributions for $R(t)$ and the generation interval permit an analytical solution for the posterior distribution of $R(t)$, as in [EpiEstim](package_EpiEstim.qmd). These simplifying assumptions greatly constrain the space of potential $R(t)$ and thus calculation times are relatively fast. 
 
-These simplifying assumptions greatly constrain the space of potential R(t) and thus calculation times are relatively fast. Other software packages, such as EpiNow2,19 do not assume any distributional structure for R(t) or ω; this increases model flexibility at the cost of computational runtime and resources.
+Other software packages, such as [EpiNow2](package_EpiNow2.qmd), have more flexibility at the cost of somewhat higher computational runtime and resources.
 
 ## Distributions used to define new offspring from cases
 
-Another primary component of constraining R(t) is how distributions are used to define the next generation of infections, or I(t) from I(t-1). 
+Another primary component of constraining $R(t)$ is how distributions are used to define the next generation of infections, or $I(t)$ from $I(t-1)$. 
 
-The renewal equation provides a mechanism for estimating the next batch of infectees that occur due to transmission from the current round of infectors, a branching process. For time = t-1 the I(t)  calculated in the renewal equation provides the expected value for a draw from a discrete distribution, the value of which represents the next generation of infectees. The discrete distribution chosen is commonly a Poisson distribution (in which the mean and variance parameter λ(t)=I(t)). Thus, using this constraint, the time-series of I(t) represents draws from a series of Poisson distributions with means of λ(t). Alternatively, a Negative Binomial distribution can be used (with a mean parameter again equal to I(t)), although this requires additionally fitting the size parameter (roughly, the spread of the distribution) to account the infectee distribution being “over-dispersed”.20 
+The renewal equation provides a mechanism for estimating the next batch of infectees that occur due to transmission from the current round of infectors, a branching process. For $time = t-1$ the $I(t)$ calculated in the renewal equation provides the expected value for a draw from a discrete distribution, the value of which represents the next generation of infectees. 
 
-Importantly, if additional delay distributions are included in the process of estimating R(t), the parameter that distributions are being used to estimate for the next generation may change (e.g., from I(t) to D(t), the mean value for daily reported cases calculated after applying delay distributions to I(t)).
+The discrete distribution chosen is commonly a **Poisson distribution** (in which the mean and variance parameter $λ(t)=I(t)$). Thus, using this constraint, the time-series of $I(t)$ represents draws from a series of Poisson distributions with means of $λ(t)$.
+
+Alternatively, a **Negative Binomial distribution** can be used (with a mean parameter again equal to $I(t)$), although this requires additionally fitting the size parameter (roughly, the spread of the distribution) to account the infectee distribution being “over-dispersed”. 
+
+Importantly, if additional delay distributions are included in the process of estimating $R(t)$, the parameter that distributions are being used to estimate for the next generation may change, see reference for [EpiNow2](package_EpiNow2.qmd) for more details.

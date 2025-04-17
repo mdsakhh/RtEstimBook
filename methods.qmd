@@ -17,10 +17,10 @@ We limit the methods discussed here to those for estimating historical to presen
 
 ### Other methods not discussed here include:
 
-- inference of $R(t)$ exclusively from alternative data sources (e.g., genetic data,2 behavioral data,3 or viral loads in waste-water4), 
-- calculations from compartmental, agent-based models, or network.5–7 
+- inference of $R(t)$ exclusively from alternative data sources (e.g., genetic data [@Walker2013Whole], behavioral data [@Bokanyi2023Real], or viral loads in waste-water [@Huisman2022Wastewater]), 
+- calculations from compartmental, agent-based models, or network [@Driessche2002Reproduction, @Almutiry2021Continuous, @Bettencourt2008Real].
 
-We also limit the discussion to packages in the statistical software R,8 which may exclude some packages in other software programs that combine many of the methodological considerations discussed below.9 
+We also limit the discussion to packages in the statistical software R [@R2022R], which may exclude some packages in other software programs that combine many of the methodological considerations discussed below [@Yang2022Bayesian]. 
 
 The methods discussed below and references to specific R packages are current as of December 1, 2024. We attempt to harmonize the mathematical choices between each package using terminology from each.
 

@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -392,14 +373,14 @@ window.Quarto = {
 </header>
 
 
-<p><span class="math inline">\(R(t)\)</span> provides a link between reported cases of a disease and many additional dynamic processes, including disease characteristics (e.g., infectiousness under various conditions, mode of transport) and extrinsic factors (e.g., lockdowns that reduce person-to-person contact). It represents “… the expected number of new infections caused by an infectious individual in a population where some individuals may no longer be susceptible” (<span class="citation" data-cites="Gostic2020Practical">Gostic et al. (<a href="references.html#ref-Gostic2020Practical" role="doc-biblioref">2020</a>)</span>), and has two main uses:</p>
+<p><span class="math inline">\(R(t)\)</span> has two main uses:</p>
 <ol type="1">
 <li><strong>Retrospective</strong> understanding of the dynamics of historical outbreaks, and</li>
 <li><strong>Real time tracking</strong> ongoing infectious diseases.</li>
 </ol>
 <p>For 1, one might wish to understand the impact on transmission of vaccines or non pharmaceutical interventions, such as masking or physical distancing.</p>
 <p>For real time tracking of ongoing infectious diseases, there is often interest in determining if the current outbreak is getting worse, better or staying the same. In this case, live dashboards are often used to track <span class="math inline">\(R(t)\)</span> as new data on diagnosed cases emerges. This is currently done for COVID-19 and Influenza by the CDC and CA (add refs).</p>
-<p>You can use the decision tool below to help choose which R packages may be right for your application:</p>
+<p>In either application, <strong>delay distributions play a key role in estimating <span class="math inline">\(R(t)\)</span> for new infections.</strong> You can use the decision tool below to help choose which software package(s) may be right for your application:</p>
 <ol type="1">
 <li>Look first for the desired output that you want to produce</li>
 <li>Then make a decision about whether you want to incorporate delay distributions.</li>
@@ -417,7 +398,7 @@ Focus of this matrix
 </div>
 <div class="callout-body-container callout-body">
 <p>The table below focuses on <strong>R packages</strong> that esimate <span class="math inline">\(R(t)\)</span> using <strong>reported cases</strong>.</p>
-<p>Future efforts include expanding this table to include <strong>alternative data sources</strong> (e.g., wastewater) and packages in <strong>other coding languages</strong> (e.g., Python).</p>
+<p>Future efforts include expanding this table to include <strong>alternative data sources</strong> (e.g., wastewater) and packages in <strong>other coding languages</strong> (e.g., Python). See the <a href="./packages.html">packages list</a> for an index of currently reviewed packages.</p>
 </div>
 </div>
 <style>
@@ -535,11 +516,6 @@ Focus of this matrix
 
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-Gostic2020Practical" class="csl-entry" role="listitem">
-Gostic KM, McGough L, Baskerville EB, Abbott S, Joshi K, Tedijanto C, et al. 2020. Practical considerations for measuring the effective reproductive number, <span>Rt</span>. PLOS Computational Biology 16:e1008409; doi:<a href="https://doi.org/10.1371/journal.pcbi.1008409">10.1371/journal.pcbi.1008409</a>.
-</div>
-</div>
 </section>
 
 </main> <!-- /main -->
