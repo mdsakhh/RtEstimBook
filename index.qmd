@@ -1,6 +1,6 @@
 ## Overview {.unnumbered}
 
-When an infectious disease outbreak begins, a time-sensitive question arises: "are things getting better or worse?" A great deal of research has gone into how to answer this question, and making sense of the findings is the purpose of this website.
+When an infectious disease outbreak begins, a time-sensitive question arises: "are things getting better or worse?" A great deal of research has gone into how to answer this question, including the development of forecasting tools to attempt to predict what might be coming, as well as data streams and metrics to summarize and understand that data. Here we focus more on the latter approach.
 
 Suppose you work at a public health agency, and you have the following reported case data in blue:
 
@@ -10,19 +10,15 @@ knitr::include_graphics("img/Tomorrow.png")
 
 You may want to know, are cases tomorrow going to be a) higher than today or b) lower than today. Just looking visually, either seems plausible: in case a) perhaps today's cases are a outlier, and the true trend will continue upwards, and in case b) perhaps today's cases are not an outlier, and tomorrow's cases will be lower. 
 
-To make a more informed decision, there are **two critical questions** we need to answer:
+However the process that generates these new cases, i.e. infection, has already occurred in most cases. A more helpful question might be: Are people still infecting other people in sufficient numbers that we can expect cases to generally keep increasing? Reported cases are a lagging indicator of the current state of disease transmission. If we understand this dynamic, then we will be able to predict how many cases we expect to be coming in the near future and if control measures are effectively slowing transmission.
 
-**1. How long does it take for an infected person to infect others?** If you knew that it took at least 2 days for an infected person to infect others, you might be more inclined to think that tomorrow's cases may be higher than today's, as they are in a). However, if you knew that it only took 1 day at most for each infected person to infect others, you might think it more likely that tomorrow's cases will be lower than today's, as they are in b).
+This is what the **effective reproductive number**, $R(t)$, aims to estimate. The reproductive number estimates the average number of people an infectious individual will infect at time $t$. This is typically done daily. The reproductive number is estimated from case count data like that shown in the plots above. But there is another  critical piece of information to indicate when reported cases might have been infected. This is: 
 
-Therefore, this quantity, known as the <a class="definition" href="glossary.qmd#genInt">generation interval</a>, can help you make an informed decision about whether you think cases tomorrow will be higher or lower than today. The generation interval can estimated by a number of methods, including analyzing data of [infector-infectee pairs](https://journals.lww.com/epidem/FullText/2009/05000/Estimation_of_the_Serial_Interval_of_Influenza.7.aspx?casa_token=ryVMHOD5AEgAAAAA:dTLXhhBPGA_sFo1yyON5_GDSwqV7cvMxb7p7FJAfHlO3OnpLfbTDLdgiWKNNz3_P4rQm18po9HSte9PtG_Sa0MQKRL0).
+**How long does it take for an infected person to infect others?** This is described by the <a class="definition" href="glossary.qmd#genInt">generation interval</a>. This can be summarized by a mean which would give the average amount of time between an infector and their infectee. But more often it is described by a statistical distribution. For example, the infector of an infected individual would have been infected 1 day prior with 30% probability, 2 days prior with 40% probability, or 3 days prior with probability. 
 
-**2. How many previous days of information do you want to look at when deciding what tomorrow's cases will be?** Again looking at the figure above, if you want to use the previous 4 days to make your decision, you will probably guess that tomorrow's cases will be higher than today's. However, if you choose a smaller window of time, you may be inclined to think that tomorrow's cases will be lower. 
+The generation interval is central to estimating the reproductive number. The generation interval can estimated by a number of methods, including analyzing data of [infector-infectee pairs](https://journals.lww.com/epidem/FullText/2009/05000/Estimation_of_the_Serial_Interval_of_Influenza.7.aspx?casa_token=ryVMHOD5AEgAAAAA:dTLXhhBPGA_sFo1yyON5_GDSwqV7cvMxb7p7FJAfHlO3OnpLfbTDLdgiWKNNz3_P4rQm18po9HSte9PtG_Sa0MQKRL0).
 
-The question of how many days to consider in your estimation (and how much weight each previous day recieves in estimating what the next day of cases will be) is characterized in a parameter known as the <a class="definition" href="glossary.qmd#effectiveRt">effective reproductive number</a>, or $R(t)$. 
-
-$R(t)$ provides a link between reported cases of a disease and many additional dynamic processes, including disease characteristics (e.g., infectiousness under various conditions, mode of transport) and extrinsic factors (e.g., lockdowns that reduce person-to-person contact). It represents "... the expected number of new infections caused by an infectious individual in a population where some individuals may no longer be susceptible" (@Gostic2020Practical).
-
-Knowing $R(t)$ can help you begin to make an informed guess as to the current state of a disease outbreak, as it has the following values and interpretations *at a specific point in time*: 
+Knowing $R(t)$ can help you begin to make an informed guess as to the current state of a disease outbreak and near term forecasts, as it has the following values and interpretations *at a specific point in time*: 
 
 ```{=html}
 <table>
