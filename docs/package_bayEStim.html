@@ -348,6 +348,8 @@ window.Quarto = {
    
   <ul>
   <li><a href="#brief-description" id="toc-brief-description" class="nav-link active" data-scroll-target="#brief-description">Brief description</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
+  <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_bayEStim.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -381,7 +383,7 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">REF</td>
-<td style="text-align: left;"><a href="https://www.medrxiv.org/content/10.1101/2020.09.19.20198028v1">medrxiv.org/content/10.1101/2020.09.19.20198028v1</a></td>
+<td style="text-align: left;"><a href="https://www.medrxiv.org/content/10.1101/2020.09.19.20198028v1">Lytras et al.&nbsp;preprint</a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Docs</td>
@@ -404,6 +406,57 @@ window.Quarto = {
 <section id="brief-description" class="level3">
 <h3 class="anchored" data-anchor-id="brief-description">Brief description</h3>
 <p>Package never submitted to CRAN, no further action taken</p>
+<p>This package extends the method of Cori et al (2013), adding Bayesian imputation of missing symptom onset dates, imputation of infection times using an external estimate of the incubation period, and an adjustment for reporting delay.</p>
+</section>
+<section id="methods" class="level3">
+<h3 class="anchored" data-anchor-id="methods">Methods</h3>
+<p>This package contains the following methods:</p>
+<ul>
+<li><a href="./methods_time.html#sec-fixedwindow">fixed sliding windows</a></li>
+</ul>
+</section>
+<section id="assessment" class="level3">
+<h3 class="anchored" data-anchor-id="assessment">Assessment</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 60%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Features</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ability to nowcast/forecast</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Incorporates delay distributions</td>
+<td style="text-align: left;">No, although some right-censoring is included</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Estimates expected cases</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Communicates uncertainty</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Validation</strong></td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Documentation of package methods</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Documentation of package implementation</td>
+<td style="text-align: left;">No</td>
+</tr>
+</tbody>
+</table>
 
 
 </section>

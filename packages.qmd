@@ -19,7 +19,7 @@
     <li><a href="package_RtEstim.qmd">RtEstim</a></li>
     <li><a href="package_EpiInvert.qmd">EpiInvert</a></li>
     <li><a href="package_WhiteLabRt.qmd">WhiteLabRt</a></li>
-    <li><a href="package_bayEStim.qmd">bayEStim</a></li>
+    <li><a href="package_bayEstim.qmd">bayEstim</a></li>
     <li><a href="package_earlyR.qmd">earlyR</a></li>
     <li><a href="package_EpiNow2.qmd">EpiNow2</a></li>
     <li><a href="package_epinowcast.qmd">epinowcast</a></li>
