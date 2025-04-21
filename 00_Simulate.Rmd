@@ -37,10 +37,10 @@ library(shinyWidgets)
 options(shiny.plot.res=96)
 
 SIZE_LOOKUP = c(
-  "Least" = -10,
-  "Less"  = -1,
-  "Average" = 0,
-  "More"   = 1,
+  "Least" = -1,
+  "Less"  = 0,
+  "Average" = 1,
+  "More"   = 5,
   "Most" = 10
 )
 
@@ -48,19 +48,19 @@ SIZE_LOOKUP = c(
 
 <p><span class="bold-text" style="font-size: 1.5em;">This document helps visualize the various steps occurring in an infectious disease outbreak.</span></p>
 
-We take several steps to simulate how cases spread from one person to another: 
+We take several steps to simulate how cases spread in a population: 
 
-1. We simulate each of the distributions above
-4. Then, we simulate the population-level infectivity dynamics, i.e., $R(t)$ which include things at the population level (like mask mandates or lockdowns).
+1. We simulate individual-level infectious disease dynamics
+4. We then simulate the population-level infectious disease dynamics, via $R(t)$.
 
 <div style="border: 2px dotted black; border-radius: 15px;padding: 5px; background-color: lightyellow;">
-<h3 style="margin-top: 5px; font-size: 1.25em;">Modeling $R(t)$</h3>
-With all of these factors together, we can see how a disease outbreak gets reported to administrative databases that then can be used to calculate $R(t)$ that informs public health decision making.
+<h3 style="margin-top: 5px; font-size: 1.25em;">Goal of this simulation:</h3>
+With these factors together, we can see how a disease outbreak gets reported to administrative databases, and see how $R(t)$ can be used to inform public health decision making.
 </div>
 
-### Overview of infectious disease dynamics
+### Overview of individual-level disease dynamics
 
-This figure describes various key terms in a infectious disease outbreak:
+This figure describes individual-level infectious disease dynamics:
 
 ```{r schema1, echo=FALSE, out.width = '100%'}
 knitr::include_graphics("img/Schema1.png")
@@ -72,7 +72,7 @@ knitr::include_graphics("img/Schema1.png")
 
 * The **generation interval** , the time between infections from one person to the next. 
 
-* The **serial interval**, the time between symptom onsets from one person to the next. Note that when transmission time and incubation time are assumed to be independent, the **generation interval** and the **serial interval** are equivalent.
+* The **serial interval**, the time between symptom onsets from one person to the next. Note that when transmission time and incubation time are assumed to be independent, the generation interval and the serial interval are equivalent.
 
 * The **time-to-test delay**, the time between symptom onset for an individual and taking a diagnostic test 
 
@@ -377,7 +377,7 @@ inputPanel(
 )
 ```
 
-With these number of initial cases, and the distributions defined above, we can observe the timing of the first generation of daily infections, disease onsets, and administrative reports. Notice the differences in the distributions!
+With these number of initial cases, and the distributions defined above, we can observe the timing of the first generation of daily infections, disease onsets, and administrative reports. Notice the differences in the distributions: the daily infections reflects the transmission time, the daily onsets reflects the incubation time, and the daily reports reflects the administrative delay.
 
 ```{r get_curves2, echo=FALSE}
 
@@ -637,7 +637,7 @@ observe({
 ```
 </div>
 
-Now, create the all subsequent generations within the modeling window (generation # is indicated by fill color in the graph below, with lighter being later generations. The first generation is outlined in red). The offspring of each generation are based on the $R(t)$ value given by the **generation time** of the previous generation. This means that if you are infected, but then there is a lockdown, the $R(t)$ value that determines how many people you infect will decrease to reflect this change. 
+Now, create the all subsequent generations within the modeling window (generation # is indicated by fill color in the graph below, with lighter being later generations. The first generation is outlined in <span style="color: red;"><strong>red</strong></span>). 
 
 
 ```{r echo=FALSE}
@@ -961,10 +961,10 @@ renderPlot({
 
 <div style="border: 2px dotted black; border-radius: 15px;padding: 5px; background-color: lightyellow;">
 <h3 style="margin-top: 5px; font-size: 1.25em;">Right truncation:</h3>
-Importantly, you may look at the daily reports and notice that the end of the graph and notice that the daily reports trail off as you approach “present day”. This is a phenomena known as **right-truncation**, and is due to the reporting delay distribution. At any point in time, due to the administrative delay in reporting, not all recent reports have been entered into the database. After sufficient time has passed these reports will come in but at the present time there is always a lag. The purple line represents reports that will eventually be captured.  
+Importantly, you may look at the daily reports and notice that the end of the graph and notice that the daily reports trail off as you approach “present day”. This is a phenomena known as **right-truncation**, and is due to the reporting delay distribution. At any point in time, due to the administrative delay in reporting, not all recent reports have been entered into the database. After sufficient time has passed these reports will come in but at the present time there is always a lag. The <span style="color: purple;"><strong>purple line</strong></span> represents reports that will eventually be captured.  
 </div>
 <br>
-Here is another way to visualize right truncation: you can change the present day and view the reports that will have come in on that day as a function of the reporting delay. The red line represents the reports that are actually captured as a function of time, and the grey line represents reports that will eventually be captured. 
+Here is another way to visualize right truncation: you can change the present day and view the reports that will have come in on that day as a function of the reporting delay. The <span style="color: red;"><strong>red line</strong></span> represents the reports that are actually captured as a function of time, and the <span style="color: grey;"><strong>grey line</strong></span> represents reports that will eventually be captured. 
 
 ```{r, echo = FALSE}
 
@@ -1006,7 +1006,9 @@ get_vintage_data <- function(data_x, vintage_limit) {
     # i suppose you could sample as well, but this probably does it well enough
     return(data_x_vintage)
 }
+```
 
+```{r vintage, echo = F}
 renderPlot({
     
     if(is.null(input$vintage_limit)) return()
@@ -1045,7 +1047,7 @@ renderPlot({
             axis.title = element_text(size = 14),
             strip.text = element_text(size = 14))
   
-}, height = 200, width = 250)
+}, height = 200, width = 750)
 
 ```
 
@@ -1243,4 +1245,4 @@ output$dist_rt <- downloadHandler(
 
 #### Acknowledgements
 
-This page was developed in preparation for the InsightNet Collabathon, Sept 24-26 in Boston, MA, USA. We would like to acknowledge the funding from EpiStorm (CDC NU38FT000013), as well as contributions of code and thoughts from Tenglong Li, PhD^[Boston University, School of Public Health, Department of Biostatistics], Zhenwei Zhou, PhD^[Boston University, School of Public Health, Department of Biostatistics], Christine Sangphet, BA^[Boston University], and Anne Cori, PhD^[Imperial College, London]. The code for this page is available on [Github](https://github.com/cmilando/RtEval).
+This page was developed in preparation for the InsightNet Collabathon, Sept 24-26 in Boston, MA, USA. We would like to acknowledge the funding from EpiStorm (CDC NU38FT000013), as well as contributions of code and thoughts from Tenglong Li, PhD^[Boston University, School of Public Health, Department of Biostatistics], Zhenwei Zhou, PhD^[Boston University, School of Public Health, Department of Biostatistics], Christine Sangphet, BA^[Boston University], and Anne Cori, PhD^[Imperial College, London]. 
