@@ -1,0 +1,32 @@
+---
+title: "Slider with Custom Min/Max Labels"
+output: 
+  html_document:
+    theme: default
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(shiny)
+library(shinyWidgets)
+```
+
+```{r}
+inputPanel(
+  
+  sliderTextInput(grid = T,width = '100%',
+  inputId = "likert_slider",
+  label = "How much do you agree?",
+  choices = c("Least", "Less", "Average", "More", "Most"),
+  selected = "Average"
+)
+  
+)
+
+verbatimTextOutput("slider_val")
+output$slider <- renderText(input$slider)
+output$slider_val <- renderPrint({
+  input$custom_slider
+})
+```
+

@@ -4,7 +4,6 @@ runtime: shiny
 ---
 
 ```{=html}
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
 <style type="text/css">
 .main-container {
   max-width: 750px;
@@ -14,6 +13,9 @@ runtime: shiny
   body {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 1.5em; /* Slightly bigger than default (1em) */
+  }
+   .bold-text {
+    font-weight: bold;
   }
 </style>
 ```
@@ -31,39 +33,70 @@ library(shiny)
 library(splines)
 library(tidyverse)
 library(shiny.blueprint)
+library(shinyWidgets)
 options(shiny.plot.res=96)
+
+SIZE_LOOKUP = c(
+  "Least" = -10,
+  "Less"  = -1,
+  "Average" = 0,
+  "More"   = 1,
+  "Most" = 10
+)
+
 ```
 
-This document helps visualize the various steps occurring in an infectious disease outbreak.
+<p><span class="bold-text" style="font-size: 1.5em;">This document helps visualize the various steps occurring in an infectious disease outbreak.</span></p>
 
-```{r pressure, echo=FALSE, fig.cap="Figure 1 from Lehtinen et. al. (2021)", out.width = '60%'}
-knitr::include_graphics("img/Lehtinen_fig1.jpg")
-```
+We take several steps to simulate how cases spread from one person to another: 
 
-For this simulation, we take several steps to simulate how cases spread from one person to another: 
+1. We simulate each of the distributions above
+4. Then, we simulate the population-level infectivity dynamics, i.e., $R(t)$ which include things at the population level (like mask mandates or lockdowns).
 
-1. First, we simulate the **incubation time** distribution, $I_i$, the time between between infection and sympton onset (/when one person can infect another)
-2. Next, we simulate the **transmission time** distribution, $P_{ij}$. This is the defined as the time between symptom onset in one person and infection in another. When transmission time and incubation time are assumed to be independent, the generation interval $G_{ij}$ (the time between infections), and the serial interval, $S_{ij}$ (the time between disease onsets) are equivalent.
-3. Third, we simulate the the individual-level **administrative delay** in reporting, the time between **symptom onset** and **case reporting** to a public health agency (not shown above).
-4. Finally, we simulate the population-level infectivity dynamics, i.e., $R(t)$ (not shown above).
-
+<div style="border: 2px dotted black; border-radius: 15px;padding: 5px; background-color: lightyellow;">
+<h3 style="margin-top: 5px; font-size: 1.25em;">Modeling $R(t)$</h3>
 With all of these factors together, we can see how a disease outbreak gets reported to administrative databases that then can be used to calculate $R(t)$ that informs public health decision making.
+</div>
+
+### Overview of infectious disease dynamics
+
+This figure describes various key terms in a infectious disease outbreak:
+
+```{r schema1, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("img/Schema1.png")
+```
+
+* The **incubation time** distribution, the time between between infection and sympton onset (/when one person can infect another)
+
+* The **transmission time** distribution, defined as the time between symptom onset in one person and infection in another.
+
+* The **generation interval** , the time between infections from one person to the next. 
+
+* The **serial interval**, the time between symptom onsets from one person to the next. Note that when transmission time and incubation time are assumed to be independent, the **generation interval** and the **serial interval** are equivalent.
+
+* The **time-to-test delay**, the time between symptom onset for an individual and taking a diagnostic test 
+
+* The **administrative delay**, the time it takes a positive test to appear in surveillance data
 
 ```{r seed_set, echo = F,include=F}
 inputPanel(shiny::helpText("set.seed(123)"))
 set.seed(123)
 ```
 
-
-<div style="border: 2px dotted black; border-radius: 15px;padding: 5px; background-color: lightyellow;">
+<div style="border: 2px dotted black; border-radius: 15px;padding: 5px; background-color: lightyellow;"> 
 <h3 style="margin-top: 5px; font-size: 1.25em;">How to read the distribution graphs below</h3>
 
-In each of the distribution graphs below, the y-axis says P(x). This is the probability of an individual having a incubation time (or other distribution) on that specific day. So the most number of people will have a incubation time where P(x) is the highest
+In each of the distribution graphs below, the y-axis says Probability. This is the probability of an individual having a incubation time (or other distribution) on that specific day. So the most number of people will have a incubation time where Probability is the highest
 </div>
 
-
 ### Incubation time distribution
-Incubation time is defined as the time between **infection** and **symptom onset** for an individual. We used a minimum incubation time (1 day) and a maximum incubation time (user defined). The "spread" of the distribution is controlled by the "size" parameter. The Incubation of exactly 1 day can be achieved by setting Size = 1e-10. 
+Incubation time is defined as the time between **infection** and **symptom onset** for an individual. 
+
+```{r incb, echo=FALSE, out.width = '40%'}
+knitr::include_graphics("img/Incubation.png")
+```
+
+The input panel below defines the parameters for the incubation time distribution. You can vary the average incubation time, the maximum incubation time, and the "spread" of the distribution, which controls the shape of the distribution around the mean. 
 
 ```{r inc_interval, echo=FALSE}
 INC_MIN = 1
@@ -71,17 +104,21 @@ INC_MIN = 1
 ## INPUTS
 inputPanel(
   # row 1
-  sliderInput("inc_i_mean", label = "Mean (days)", value = 2, min = 1, max = 15),
-  sliderInput("inc_i_size", label = "Size", pre = '1e', value = 2, min = -10, max = 10),
-  sliderInput("maxinc", label = "Max. incubation time (days)", value = 11,
-              min = 5, max = 15, step = 1)
+  sliderInput("inc_i_mean", label = "Average (days)", value = 2, min = 1, max = 15),
+    sliderInput("maxinc", label = "Maximum (days)", value = 11,
+              min = 5, max = 15, step = 1),
+  sliderTextInput("inc_i_size", label = "Distribution spread", selected = "More", choices = names(SIZE_LOOKUP), grid = T)
+
 )
 
 inc_data <- reactive({
+  
+  INC_I_SIZE_num = SIZE_LOOKUP[input$inc_i_size]
+  
   data.frame(x = sample(0:input$maxinc, 
                           size = 5000, 
                           prob = dnbinom(0:input$maxinc, 
-                                         size = 1*10^input$inc_i_size, 
+                                         size = 1*10^INC_I_SIZE_num, 
                                          mu = input$inc_i_mean), 
                           replace = TRUE) + INC_MIN ) %>%
       group_by(x) %>% tally() %>%
@@ -98,13 +135,9 @@ renderPlot({
       geom_col(fill = 'white', color = 'black',
            width = 0.4) +
   geom_density(stat = 'identity', fill = '#FF6666', alpha = 0.2) +
-    # geom_density(data = data.frame(x = rpois(5000, input$inc_i_mean)) %>%
-    #                group_by(x) %>% tally() %>% mutate(n = n / sum(n)) ,
-    #              aes(x = x + INC_MIN, y= n),
-    #              stat = 'identity', fill = NA, color = 'blue', alpha = 0.2) +
     coord_cartesian(xlim = c(0, 15), ylim = c(0, as_vector(inc_max()))) +
     scale_x_continuous(minor_breaks = 1:15) +
-    xlab('Days') + ylab('P(x)') +
+    xlab('Days') + ylab('Probability') +
     theme(
       axis.text = element_text(size = 10),
           axis.title = element_text(size = 14)
@@ -114,7 +147,13 @@ renderPlot({
 ```
 
 ### Transmission time distribution
-Transmission time is defined as the time beteween between **symptom onset** in **infector** and **infection** in **infectee** for an individual. In this simulation we assume that the transmission time distribution is **independent** from the incubation time distribution. The "spread" of the distribution is controlled by the "size" parameter. Transmission of exactly 0 days can be achieved by setting Mean = 0, or Size = 1e-10. 
+Transmission time is defined as the time beteween between **symptom onset** in **infector** and **infection** in **infectee** for an individual. 
+
+```{r trans, echo=FALSE, out.width = '40%'}
+knitr::include_graphics("img/Transmission.png")
+```
+
+The input panel below defines the parameters for the transmission time distribution. You can vary the average transmission time, the maximum transmission time, and the "spread" of the distribution, which controls the shape of the distribution around the mean. In this simulation we assume that the transmission time distribution is **independent** from the incubation time distribution. 
 
 ```{r trans_interval, echo=FALSE}
 TRANS_MIN = 0
@@ -123,16 +162,21 @@ TRANS_MIN = 0
 inputPanel(
   # row 1
   sliderInput("trans_i_mean", label = "Mean (days)", value = 1, min = 0, max = 15),
-  sliderInput("trans_i_size", label = "Size", pre = '1e', value = 2, min = -10, max = 10),
-  sliderInput("maxtrans", label = "Max. transmission time (days)", value = 10,
+    sliderInput("maxtrans", label = "Maximum (days)", value = 10,
               min = 5, max = 15, step = 1),
+  sliderTextInput("trans_i_size", label = "Distribution spread", 
+                  choices = names(SIZE_LOOKUP), grid = T,
+                  selected = "More", width = "90%")
+
 )
 
 trans_data <- reactive({
+    TRANS_I_SIZE_num = SIZE_LOOKUP[input$trans_i_size]
+  
       data.frame(x = sample(0:input$maxtrans, 
                           size = 5000, 
                           prob = dnbinom(0:input$maxtrans, 
-                                         size = 1*10^input$trans_i_size, 
+                                         size = 1*10^TRANS_I_SIZE_num, 
                                          mu = input$trans_i_mean), 
                           replace = TRUE) + TRANS_MIN ) %>%
       group_by(x) %>% tally() %>%
@@ -153,7 +197,7 @@ renderPlot({
         #          stat = 'identity', fill = NA, color = 'blue', alpha = 0.2) +
     coord_cartesian(xlim = c(0, 15), ylim = c(0, as_vector(trans_max()))) +
     scale_x_continuous(minor_breaks = 1:15) +
-    xlab('Days') + ylab('P(x)') +
+    xlab('Days') + ylab('Probability') +
     theme(
       axis.text = element_text(size = 10),
           axis.title = element_text(size = 14)
@@ -164,21 +208,31 @@ renderPlot({
 
 
 ### Generation time distribution
-Generation time is the time between **infection** in the **infector** and **infection** in the **infectee**, dervied as $G_{ij} = I_{i} + P_{ij}$ (Eq. 2.1b from [Lehtinen et. al. (2021)](https://royalsocietypublishing.org/doi/10.1098/rsif.2020.0756)). Changes above to the incubation time or transmission time will affect this distribution. In this simulation we assume that the transmission time distribution is **independent** from the incubation time distribution, so the generation time distribution and serial interval distribution (below) are the same.
+Generation time is the time between **infection** in the **infector** and **infection** in the **infectee**, 
+
+```{r gen, echo=FALSE, out.width = '60%'}
+knitr::include_graphics("img/Generation.png")
+```
+
+Changes above to the incubation time or transmission time will affect this distribution. In this simulation we assume that the transmission time distribution is **independent** from the incubation time distribution, so the generation time distribution and serial interval distribution (below) are the same.
 
 ```{r gen_interval, echo=FALSE}
 
 gen_data <- reactive({
+  
+    INC_I_SIZE_num = SIZE_LOOKUP[input$inc_i_size]
+    TRANS_I_SIZE_num = SIZE_LOOKUP[input$trans_i_size]
+  
       data.frame(x1 = sample(0:input$maxinc, 
                           size = 5000, 
                           prob = dnbinom(0:input$maxinc, 
-                                         size = 1*10^input$inc_i_size, 
+                                         size = 1*10^INC_I_SIZE_num, 
                                          mu = input$inc_i_mean), 
                           replace = TRUE) + INC_MIN,
                x2 = sample(0:input$maxtrans, 
                           size = 5000, 
                           prob = dnbinom(0:input$maxtrans, 
-                                         size = 1*10^input$trans_i_size, 
+                                         size = 1*10^TRANS_I_SIZE_num, 
                                          mu = input$trans_i_mean), 
                           replace = TRUE) + TRANS_MIN)     %>%
     mutate(x = x1 + x2) %>%
@@ -196,7 +250,7 @@ renderPlot({
   geom_density(aes(x = x, y = n), stat = 'identity', fill = '#FF6666', alpha = 0.2) +
     coord_cartesian(xlim = c(0, 15), ylim = c(0, as_vector(gen_max()))) +
     scale_x_continuous(minor_breaks = 1:15) +
-    xlab('Days') + ylab('P(x)') +
+    xlab('Days') + ylab('Probability') +
     theme(
       axis.text = element_text(size = 10),
           axis.title = element_text(size = 14)
@@ -207,21 +261,31 @@ renderPlot({
 
 
 ### Serial interval distribution
-The serial interval is derived from the generation time distribution and the incubation time distribution: $S_{ij} = P_{ij} + I_j$ (Eq. 2.1a from [Lehtinen et. al. (2021)](https://royalsocietypublishing.org/doi/10.1098/rsif.2020.0756)). Changes above to the incubation time or transmission time will affect this distribution. In this simulation we assume that the transmission time distribution is **independent** from the incubation time distribution, so the serial interval distribution and generation time distribution (above) are the same.
+Serial interval is the time between **symptom onset** in the **infector** and **symptom onset** in the **infectee**
+
+```{r serial, echo=FALSE, out.width = '60%'}
+knitr::include_graphics("img/Serial.png")
+```
+
+Changes above to the incubation time or transmission time will affect this distribution. In this simulation we assume that the transmission time distribution is **independent** from the incubation time distribution, so the generation time distribution (above) and serial interval distribution are the same.
 
 ```{r serial_interval, echo=FALSE}
 
 serial_data <- reactive({
+  
+      INC_I_SIZE_num = SIZE_LOOKUP[input$inc_i_size]
+    TRANS_I_SIZE_num = SIZE_LOOKUP[input$trans_i_size]
+  
       data.frame(x1 = sample(0:input$maxinc, 
                           size = 5000, 
                           prob = dnbinom(0:input$maxinc, 
-                                         size = 1*10^input$inc_i_size, 
+                                         size = 1*10^INC_I_SIZE_num, 
                                          mu = input$inc_i_mean), 
                           replace = TRUE) + INC_MIN,
                x2 = sample(0:input$maxtrans, 
                           size = 5000, 
                           prob = dnbinom(0:input$maxtrans, 
-                                         size = 1*10^input$trans_i_size, 
+                                         size = 1*10^TRANS_I_SIZE_num, 
                                          mu = input$trans_i_mean), 
                           replace = TRUE) + TRANS_MIN)     %>%
     mutate(x = x1 + x2) %>%
@@ -239,7 +303,7 @@ renderPlot({
   geom_density(aes(x = x, y = n), stat = 'identity', fill = '#FF6666', alpha = 0.2) +
     coord_cartesian(xlim = c(0, 15), ylim = c(0, as_vector(serial_max()))) +
     scale_x_continuous(minor_breaks = 1:15) +
-    xlab('Days') + ylab('P(x)') +
+    xlab('Days') + ylab('Probability') +
     theme(
       axis.text = element_text(size = 10),
           axis.title = element_text(size = 14)
@@ -250,23 +314,35 @@ renderPlot({
 
 
 ### Reporting delay distribution
-Finally, we model a reporting delay distribution, the time between **symptom onset** and **case reporting** to a public health agency. **In real-world settings this is likely two separate distributions**: one for how long it takes someone to get a positive test once their symptoms show, and the other for how long that positive test takes to be recorded in an administrative dataset. For the purpose of demonstration, we lump these together. Perfect (i.e., instantaneous) reporting can be modeled with NB mean of 0. 
+Finally, we model a reporting delay distribution, the time between **symptom onset** and **case reporting** to a public health agency. **In real-world settings this is likely two separate distributions**: one for how long it takes someone to get a positive test once their symptoms show, and the other for how long that positive test takes to be recorded in an administrative dataset.
+
+```{r admin, echo=FALSE, out.width = '60%'}
+knitr::include_graphics("img/Admin.png")
+```
+
+For the purpose of demonstration, we lump these together. You can vary the average reporting delay time, the maximum reporting delay time, and the "spread" of the distribution, which controls the shape of the distribution around the mean.
 
 ```{r, echo=FALSE}
+
 ## INPUTS
 inputPanel(
   # row 1
   sliderInput("NB_m", label = "Mean (days)", value = 5, min = 0., max = 20),
-  sliderInput("NB_r", label = "Size", pre = '1e', value = 2, min = -1, max = 20),
-  sliderInput("maxdelay", label = "Max. reporting delay (days)", value = 11,
+  sliderInput("maxdelay", label = "Maximum (days)", value = 11,
               min = 10, max = 15, step = 1),
+    sliderTextInput("NB_r", label = "Distribution spread", 
+                  choices = names(SIZE_LOOKUP), grid = T,
+                  selected = "More", width = "90%")
 )
 
 reporting_dist <- reactive({
+  
+      REPORT_I_SIZE_num = SIZE_LOOKUP[input$NB_r]
+  
       data.frame(x = sample(0:input$maxdelay, 
                           size = 5000, 
                           prob = dnbinom(0:input$maxdelay, 
-                                         size = 1*10^input$NB_r, 
+                                         size = 1*10^REPORT_I_SIZE_num, 
                                          mu = input$NB_m), 
                           replace = TRUE) ) %>%
       group_by(x) %>% tally() %>%
@@ -283,7 +359,7 @@ renderPlot({
   geom_density(aes(x = x, y = n), stat = 'identity', fill = '#FF6666', alpha = 0.2) +
     coord_cartesian(xlim = c(0, 15), ylim = c(0, as_vector(reporting_max()))) +
     scale_x_continuous(minor_breaks = 1:15) +
-    xlab('Days') + ylab('P(x)') +
+    xlab('Days') + ylab('Probability') +
     theme(
       axis.text = element_text(size = 10),
           axis.title = element_text(size = 14)
@@ -293,41 +369,54 @@ renderPlot({
 ```
 ### R(t) simulation
 
-We first describe the daily infections, onsets, and reporting days of the first generation, i.e. the first round of infectees in the data. For example, this could be people that were exposed at a conference out of state that then traveled home and are now reporting in their home state. The number of initial cases (infectors) is set below, and the distributions defined above. Take a minute here to look at the graph below and compare to your distributions for incubation and transmission (and reporting delay, if you included that) - do they make sense?
+We first describe the daily infections, onsets, and reporting days of the first generation, i.e. the first round of infectees in the data. For example, this could be people that were exposed at a conference out of state that then traveled home and are now reporting in their home state. 
+
+```{r init1, echo=FALSE}
+inputPanel(
+    sliderInput("n0", label = "Initial cases:", width = '90%',min = 100, max = 1000, value = 500, step = 100)
+)
+```
+
+With these number of initial cases, and the distributions defined above, we can observe the timing of the first generation of daily infections, disease onsets, and administrative reports. Notice the differences in the distributions!
 
 ```{r get_curves2, echo=FALSE}
 
 plot_dat <- reactive({
+  
+      INC_I_SIZE_num = SIZE_LOOKUP[input$inc_i_size]
+    TRANS_I_SIZE_num = SIZE_LOOKUP[input$trans_i_size]
+    REPORT_I_SIZE_num = SIZE_LOOKUP[input$NB_r]
+  
   # ----------
   # one draw from poisson given by lambda = initial cases * initial reproductive number
   # this gives the first timestep of infectees from the initial cases
-  # n1 <- rpois(1, 10^input$n0 * input$r0) 
+  # n1 <- rpois(1, input$n0 * input$r0) 
   
   # so first is the date of infection, 
   # which is a draw from the transmission distribution
   # NOTE: WHY
   i1 = sample(0:input$maxtrans, 
-                        size = 10^input$n0, 
+                        size = input$n0, 
                         prob = dnbinom(0:input$maxtrans, 
-                                       size = 1*10^input$trans_i_size, 
+                                       size = 1*10^TRANS_I_SIZE_num, 
                                        mu = input$trans_i_mean), 
                         replace = TRUE) + TRANS_MIN
   
 
   # next is onset times, which is transmission + incubation
   o1 = sample(0:input$maxinc, 
-                          size = 10^input$n0, 
+                          size = input$n0, 
                           prob = dnbinom(0:input$maxinc, 
-                                         size = 1*10^input$inc_i_size, 
+                                         size = 1*10^INC_I_SIZE_num, 
                                          mu = input$inc_i_mean), 
                           replace = TRUE) + INC_MIN
   o1 = o1 + i1
 
   # Finally, reporting, which is transmission + incubation + reporting delay
   d1 = sample(0:input$maxdelay, 
-                          size = 10^input$n0, 
+                          size = input$n0, 
                           prob = dnbinom(0:input$maxdelay, 
-                                         size = 1*10^input$NB_r, 
+                                         size = 1*10^REPORT_I_SIZE_num, 
                                          mu = input$NB_m), 
                           replace = TRUE)
   d1 <- o1 + d1
@@ -340,9 +429,9 @@ plot_dat <- reactive({
   ## to the sum to scale up the counts
   gi1 <- data.frame(x1 = o1,
                x2 = sample(0:input$maxtrans, 
-                          size = 10^input$n0, 
+                          size = input$n0, 
                           prob = dnbinom(0:input$maxtrans, 
-                                         size = 1*10^input$trans_i_size, 
+                                         size = 1*10^TRANS_I_SIZE_num, 
                                          mu = input$trans_i_mean), 
                           replace = TRUE) + TRANS_MIN) %>%
     mutate(x = x1 + x2)
@@ -376,7 +465,7 @@ renderPlot({
              position = 'stack', stat = 'identity', color = 'black',
              lwd = 0.1, fill = '#6495ED') +
     facet_wrap(~name, nrow = 1) +
-    ylab('N') + xlab('Day') +
+    ylab('Number (#)') + xlab('Day') +
     scale_fill_brewer(name = 'Gen.#', type = 'seq',
                       direction = 1, palette = 3) +
     theme_gray() + 
@@ -395,23 +484,11 @@ Now, create your $R(t)$ curve so you can simulate the next generation(s) of case
 ```{r bsdeg, echo=FALSE}
 RTINF = 1
 
-  div(
-    style = "background-color: #f9f9f9; padding: 20px; border: 0.5px solid #ccc; 
-             border-radius: 2px; 
-             margin-bottom: 20px;",
-  splitLayout(cellWidths = c('18%', '22%', '18%', '18%', '24%'),
-  sliderInput("n0", label = "Initial cases:", width = '90%',
-              pre = '1e',min = 1, max = 3, value = 3, step = 1),
-  sliderInput("ld", label = "Model time (days):", value = 60,min = 20, 
+inputPanel(
+      sliderInput("ld", label = "Model time (days):", value = 60,min = 20, 
               max = 100, step = 20, width = '90%'),
-  sliderInput('BSDEG', 'Spline Degree:', value = 1, width = '90%',
-              min = 1, max = 4, step = 1),
-  radioButtons('GenType', 'Offspring dist:', choices = c('Poisson', 'NegBinom')),
-  conditionalPanel(condition = "input.GenType == 'NegBinom'", 
-                     sliderInput("NB_off", label = "NB size", pre = '1e', width = '90%',
-              value = 10, min = 1, max = 10))
-  ) #split
-) #div
+      radioButtons('CurveType', 'Curve type', choices = c('Linear', 'Smooth'))
+)
 
 ```
 
@@ -440,10 +517,15 @@ observeEvent(input$ld, {
 ## so this is a two-step process. first you make the linear data
 ## then you predict the spline based on BSDEG
 rt_grid <- reactive({
+    if(input$CurveType == 'Linear') {
+    BSDEG = 1
+  } else {
+    BSDEG = 3
+  }
   this.x <- seq(XSTART, input$ld, by = 1)
   suppressWarnings(this.y <- predict(linear.model(), data.frame(x = this.x)))
   linear_data = data.frame(x = this.x, y = this.y)
-  X_mat <- bs(x = this.x, knots = rv$x, degree = input$BSDEG)
+  X_mat <- bs(x = this.x, knots = rv$x, degree = BSDEG)
   m2 <- lm(this.y ~ X_mat)
   yspline <- predict(m2)
   data.frame(x = this.x, y = as.vector(yspline))
@@ -557,10 +639,14 @@ observe({
 
 Now, create the all subsequent generations within the modeling window (generation # is indicated by fill color in the graph below, with lighter being later generations. The first generation is outlined in red). The offspring of each generation are based on the $R(t)$ value given by the **generation time** of the previous generation. This means that if you are infected, but then there is a lockdown, the $R(t)$ value that determines how many people you infect will decrease to reflect this change. 
 
-Importantly, you may look at the daily reports and notice that the end of the graph and notice that the daily reports trail off as you approach "present day". This is a phenomena known as **right-truncation**, and is due to the reporting delay distribution. At any point in time, due to the administrative delay in reporting, not all recent reports have been entered into the database. After sufficient time has passed these reports will come in but at the present time there is always a lag. The purple line represents reports that will eventually be captured. 
 
 ```{r echo=FALSE}
 dat_all <- reactive({
+  
+  #
+  INC_I_SIZE_num = SIZE_LOOKUP[input$inc_i_size]
+  TRANS_I_SIZE_num = SIZE_LOOKUP[input$trans_i_size]
+  REPORT_I_SIZE_num = SIZE_LOOKUP[input$NB_r]
   
   dat <- as_tibble(plot_dat())
   
@@ -639,13 +725,13 @@ dat_all <- reactive({
     ## simulate the next generation of infectees
     ## so on the date of symptom onset for current infectees
     # this is the number of people that will be infected
-    if(input$GenType == 'Poisson') {
+    # if(input$GenType == 'Poisson') {
       n1   <- sapply(mu, function(mx) rpois(1, mx))
-    } else if(input$GenType == 'NegBinom') {
-      n1   <- sapply(mu, function(mx) rnbinom(1, mu = mx, size = input$NB_off))
-    } else {
-      stop()
-    }
+    # } else if(input$GenType == 'NegBinom') {
+    #   n1   <- sapply(mu, function(mx) rnbinom(1, mu = mx, size = input$NB_off))
+    # } else {
+    #   stop()
+    # }
     # print('next gen')
     # print(n1)
     # print(sum(n1))
@@ -671,7 +757,7 @@ dat_all <- reactive({
     # trans1 <- sample(0:input$maxtrans, 
     #                     size = sum(n1), 
     #                     prob = dnbinom(0:input$maxtrans, 
-    #                                    size = 1*10^input$trans_i_size, 
+    #                                    size = 1*10^TRANS_I_SIZE_num, 
     #                                    mu = input$trans_i_mean), 
     #                     replace = TRUE) + TRANS_MIN
     # 
@@ -683,7 +769,7 @@ dat_all <- reactive({
     inc1 <- sample(0:input$maxinc, 
                           size = sum(n1), 
                           prob = dnbinom(0:input$maxinc, 
-                                         size = 1*10^input$inc_i_size, 
+                                         size = 1*10^INC_I_SIZE_num, 
                                          mu = input$inc_i_mean), 
                           replace = TRUE) + INC_MIN
       
@@ -693,7 +779,7 @@ dat_all <- reactive({
     d1   <- o1 + sample(0:input$maxdelay, 
                           size = sum(n1), 
                           prob = dnbinom(0:input$maxdelay, 
-                                         size = 1*10^input$NB_r, 
+                                         size = 1*10^REPORT_I_SIZE_num, 
                                          mu = input$NB_m), 
                           replace = TRUE)
     
@@ -704,7 +790,7 @@ dat_all <- reactive({
              x2 = sample(0:input$maxtrans, 
                         size = sum(n1), 
                         prob = dnbinom(0:input$maxtrans, 
-                                       size = 1*10^input$trans_i_size, 
+                                       size = 1*10^TRANS_I_SIZE_num, 
                                        mu = input$trans_i_mean), 
                         replace = TRUE) + TRANS_MIN) %>% mutate(x = x1 + x2)
     gi1 <- unname(gi1$x)
@@ -857,7 +943,7 @@ renderPlot({
              position = 'stack', stat = 'identity', width = 1) +
     # geom_path(aes(x = value, y = n), stat = 'identity', fill = '#FF6666', alpha = 0.2) +
     facet_wrap(~name, nrow = 1) + 
-    ylab('N') + xlab('Day') +
+    ylab('Number (#)') + xlab('Day') +
     scale_fill_continuous(name = 'Gen. #') +
     scale_color_manual(name = "", values = c("transparent", "red")) +
     scale_linewidth_manual(name = "", values = c(0, 1)) +
@@ -873,6 +959,11 @@ renderPlot({
 }, height = 200 )
 ```
 
+<div style="border: 2px dotted black; border-radius: 15px;padding: 5px; background-color: lightyellow;">
+<h3 style="margin-top: 5px; font-size: 1.25em;">Right truncation:</h3>
+Importantly, you may look at the daily reports and notice that the end of the graph and notice that the daily reports trail off as you approach “present day”. This is a phenomena known as **right-truncation**, and is due to the reporting delay distribution. At any point in time, due to the administrative delay in reporting, not all recent reports have been entered into the database. After sufficient time has passed these reports will come in but at the present time there is always a lag. The purple line represents reports that will eventually be captured.  
+</div>
+<br>
 Here is another way to visualize right truncation: you can change the present day and view the reports that will have come in on that day as a function of the reporting delay. The red line represents the reports that are actually captured as a function of time, and the grey line represents reports that will eventually be captured. 
 
 ```{r, echo = FALSE}
@@ -929,7 +1020,8 @@ renderPlot({
       pivot_longer(cols = c("Daily Infections", "Daily Onsets", 
                             "Daily Reports")) %>%
       group_by(name, value) %>% tally() %>%
-      filter(name == 'Daily Reports')
+      filter(name == 'Daily Reports',
+             value <= input$ld)
 
     # first, remove anything after vintage day
     data_x_vintage <- get_vintage_data(data_x, vintage_limit = input$vintage_limit)
@@ -940,8 +1032,7 @@ renderPlot({
       geom_path(aes(x = value, y = n), color = 'grey') +
       geom_path(data = data_x_vintage,
                 mapping = aes(x = value, y = n_vintage), color = 'red', size = 2) +
-      facet_wrap(~vintage_limit, nrow = 1) + 
-      ylab('N') + xlab('Day') +
+      ylab('Number (#)') + xlab('Day') +
       scale_fill_continuous(name = 'Gen. #') +
       scale_color_manual(name = "", values = c("transparent", "red")) +
       scale_linewidth_manual(name = "", values = c(0, 1)) +

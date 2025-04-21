@@ -5,7 +5,7 @@ account: mobslab
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 12745756
-bundleId: 10119299
+bundleId: 10151729
 url: https://mobslab.shinyapps.io/simulate_infection_data/
 version: 1
 asMultiple: FALSE
