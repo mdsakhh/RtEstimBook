@@ -10,11 +10,7 @@ There are two primary classes methods of estimating $R(t)$ from case count data 
 
 ## Renewal equation estimates of R(t)
 
-The renewal equation relates $R(t)$ and infections on day $t$, $I(t)$, using a third parameter known as the <a class="definition" href="glossary.qmd#genInt">generation interval</a>. The generation interval, $ω$, is the time between infection in the infector and infection in the infectee, and assuming independence is the linear combination of incubation time, the time between infection and symptom onset in an individual, and transmission time, the time between symptom onset in the infector and infection of the infectee [@Lehtinen2021On]. 
-
-A similar parameter to the generation interval is the <a class="definition" href="glossary.qmd#serialInt">serial interval</a>, which is the time between symptom onset in the infector and symptom onset in the infectee. The serial interval and generation interval are interchangeable if the incubation time is independent from the transmission time, and some formulations of the renewal equation use generation interval. 
-
-In this paper we use the generation interval $ω$ described by a probability mass function with non-zero values from day 1 (assuming that disease incubation takes at least 1 day) to a maximum day $s$, i.e., the longest interval between symptom onset in infector and infectee. 
+The renewal equation relates $R(t)$ and infections on day $t$, $I(t)$, using a third parameter known as the <a class="definition" href="glossary.qmd#genInt">generation interval</a>. The generation interval, $ω$, is the time between infection in the infector and infection in the infectee, and assuming independence is the linear combination of incubation time, the time between infection and symptom onset in an individual, and transmission time, the time between symptom onset in the infector and infection of the infectee [@Lehtinen2021On]. In this document we use the generation interval $ω$ described by a probability mass function with non-zero values from day 1 (assuming that disease incubation takes at least 1 day) to a maximum day $s$, i.e., the longest interval between symptom onset in infector and infectee. 
 
 Taking care to note that $R(t)$ is undefined on day 0 since there has been no transmission yet (and assuming the initial infections are $I(0)$), the formulation of the renewal equation is thus:
 
@@ -29,6 +25,12 @@ $$
 $$
 
 The assumptions of this formulation, as per @Green2022Inferring, are that incident infections can be described deterministically within each window of $[t-s+1,t]$ and that the generation interval distribution does not change over the modeling time. 
+
+### Serial interval
+
+A similar parameter to the generation interval is the <a class="definition" href="glossary.qmd#serialInt">serial interval</a>, which is the time between symptom onset in the infector and symptom onset in the infectee. The serial interval and generation interval are interchangeable if the incubation time is independent from the transmission time, and some formulations of the renewal equation use generation interval. 
+
+### Exponential growth rate
 
 A common reframing of the renewal equation is to equate $R(t)$ with an exponential growth rate, $r$. Under specific conditions and within a small time window ($[t-s+1,t]$), infections can be assumed to grow exponentially at a constant rate $r$ [@Green2022Inferring, @Ma2020Estimating, @Wallinga2006How]. Using the time window $[t- s+1,t]$ and assuming some initial infections $k$, $R(t)$ for $[t- s+1,t]$ can be inferred from only $r$ and $ω$:
 

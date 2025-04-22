@@ -59,7 +59,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-890e3be52525b589f2fefdd4a4f6410d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-bc11f644e0fd71aaf667f8c23dea1f98.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -223,12 +223,6 @@ window.Quarto = {
  <span class="menu-text">Inference frameworks</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./methods_research.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Open research questions</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -368,9 +362,8 @@ window.Quarto = {
   <ul>
   <li><a href="#sec-fixedwindow" id="toc-sec-fixedwindow" class="nav-link active" data-scroll-target="#sec-fixedwindow">Fixed sliding windows</a>
   <ul class="collapse">
-  <li><a href="#sec-ape" id="toc-sec-ape" class="nav-link" data-scroll-target="#sec-ape">Accumulated Prediction Error (APE) framework</a></li>
-  <li><a href="#sec-var" id="toc-sec-var" class="nav-link" data-scroll-target="#sec-var">Modification via variational method</a></li>
-  <li><a href="#sec-disagg" id="toc-sec-disagg" class="nav-link" data-scroll-target="#sec-disagg">Disaggregation</a></li>
+  <li><a href="#drawbacks-of-fixed-sliding-windows" id="toc-drawbacks-of-fixed-sliding-windows" class="nav-link" data-scroll-target="#drawbacks-of-fixed-sliding-windows">Drawbacks of fixed sliding windows</a></li>
+  <li><a href="#modifications-of-epiestim" id="toc-modifications-of-epiestim" class="nav-link" data-scroll-target="#modifications-of-epiestim">Modifications of EpiEstim</a></li>
   </ul></li>
   <li><a href="#sec-randomwalk" id="toc-sec-randomwalk" class="nav-link" data-scroll-target="#sec-randomwalk">Random walk</a></li>
   <li><a href="#sec-filtering" id="toc-sec-filtering" class="nav-link" data-scroll-target="#sec-filtering">Filtering</a></li>
@@ -408,42 +401,67 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="sec-fixedwindow">Fixed sliding windows</h2>
 <p>A straightforward method of imposing structure on <span class="math inline">\(R(t)\)</span> over time involves constraining <span class="math inline">\(R(t)\)</span> to be drawn from the same distribution within moving time subsets, called sliding windows.</p>
 <p>We add the prefix of “fixed-size” to distinguish from methods that may adapt the size of the sliding window over time.</p>
-<p>Consider the scenario where I(t) are drawn from a series of Poisson distributions and where R(t) are drawn from a series of Gamma distributions. Using a sliding window size, τ, of 5 days: * R(t) on days 2 to 6 are assumed to be drawn from the Gamma distribution with parameters <span class="math inline">\(a_1\)</span> and <span class="math inline">\(b_1\)</span>, * R(t) on days 3 to 7 are drawn from a Gamma distribution with parameters a_2 and b_2, and so on.</p>
-<p>In the above scenario, days 3 through 6 are in both windows and thus will be values that could be reasonably drawn from Gamma distributions with either <span class="math inline">\(a_1\)</span> and <span class="math inline">\(b_1\)</span> or <span class="math inline">\(a_2\)</span> and <span class="math inline">\(b_2\)</span>.</p>
-<p>Using an assumption of Gamma distributions for the prior distribution of ω and R(t), Cori et. al.&nbsp;(2013)18 analytically derived a posterior distribution R(t) using fixed-size sliding windows, which has the following directly calculated (rather than inferred) mean and coefficient of variation of <span class="math inline">\(R(t)\)</span>:</p>
-<p><span class="math display">\[
-E[R(t)]=[a+ ∑_(i=max⁡(1,   t-τ))^t▒I(i) ]/[1/b+∑_(i=max⁡(1,   t-τ))^t▒Λ(i) ]  
-\]</span></p>
-<p><span class="math display">\[
-C.V.[R(t)]=[a+ ∑_(i=max⁡(1,   t-τ))^t▒I(i) ]^(-1)               (Eq.7)
-\]</span></p>
-<p>Thus, sliding windows with larger τ improve the stability of the estimate of R(t) over smaller τ because the coefficient of variation of R(t) decreases as number of infections increases (see Web Appendix 1 of Cori et. al., 2013).18 Sliding windows are a key feature of EpiEstim.21</p>
-<p>There are limitations of this derived sliding window approach, articulated well in Gostic et. al., (2020)1 and summarized here:</p>
+<p>Consider the scenario where <span class="math inline">\(I(t)\)</span> are drawn from a series of Poisson distributions and where <span class="math inline">\(R(t)\)</span> are drawn from a series of Gamma distributions. Using a sliding window size, <span class="math inline">\(τ\)</span>, of 5 days:</p>
 <ul>
-<li><p>There is no posterior distribution for the expected value of incidence In the fixed size sliding window approach, τ must be explicitly defined prior to inference.</p></li>
-<li><p>Shorter τ will lead to quicker response but more variable estimates of R(t), which increases the risk of over-fitting. At the extreme, if the τ is set to 1 day, the resulting R(t) will recover exactly the infection data.</p></li>
-<li><p>In addition, there is debate in the literature about where in time the estimate of R(t) for each window should go: Gostic et. al., (2020)1 recommends using the midpoint of each sliding window rather than time t.</p></li>
-<li><p>The choice of both τ and the location of the estimate of R(t) within each window results in gaps in predictions for R(t), barring other modifications: at the end of the modeling period to account for reporting delays or time between the midpoint of τ and the end of τ, and at the beginning of the time period to allow for enough cases to materialize. Web Appendix 4 of Cori. et. al (2013) gives the following recommendation for when to calculate R(t): “Overall, we suggest starting estimating once those three criteria are fulfilled: at least after , at least after one mean serial interval, and when at least 12 cases have been observed since the beginning of the epidemic.” The default recommendation for τ is one week (7 days);18</p></li>
+<li><p><span class="math inline">\(R(t)\)</span> on days 2 to 6 are assumed to be drawn from the Gamma distribution with parameters <span class="math inline">\(a_1\)</span> and <span class="math inline">\(b_1\)</span></p></li>
+<li><p><span class="math inline">\(R(t)\)</span> on days 3 to 7 are drawn from a Gamma distribution with parameters <span class="math inline">\(a_2\)</span> and <span class="math inline">\(b_2\)</span></p></li>
 </ul>
-<section id="sec-ape" class="level3">
-<h3 class="anchored" data-anchor-id="sec-ape">Accumulated Prediction Error (APE) framework</h3>
+<p>In the above scenario, days 3 through 6 are in both windows and thus will be values that could be reasonably drawn from Gamma distributions with either <span class="math inline">\(a_1\)</span> and <span class="math inline">\(b_1\)</span> or <span class="math inline">\(a_2\)</span> and <span class="math inline">\(b_2\)</span>.</p>
+<p>Using an assumption of Gamma distributions for the prior distribution of <span class="math inline">\(ω\)</span> and <span class="math inline">\(R(t)\)</span>, <span class="citation" data-cites="Cori2013New">Cori et al. (<a href="references.html#ref-Cori2013New" role="doc-biblioref">2013</a>)</span> analytically derived a posterior distribution <span class="math inline">\(R(t)\)</span> using fixed-size sliding windows. This distribution has the following directly calculated (rather than inferred) mean and coefficient of variation of <span class="math inline">\(R(t)\)</span>:</p>
+<p><span class="math display">\[
+E[R(t)]= \frac{a + \sum_{i = \max(1, t - τ)}^{t} I(t)}  { 1/b + \sum_{i = \max(1, t - τ)}^{t} Λ(t)}
+\]</span></p>
+<p><span class="math display">\[
+C.V. [R(t)]=\frac{1}{a + \sum_{i = \max(1, t - τ)}^{t} I(t)}
+\]</span></p>
+<p>Thus, sliding windows with larger <span class="math inline">\(τ\)</span> improve the stability of the estimate of <span class="math inline">\(R(t)\)</span> (as compared to smaller <span class="math inline">\(τ\)</span> because the coefficient of variation of <span class="math inline">\(R(t)\)</span> decreases as number of infections increases (see Web Appendix 1 of <span class="citation" data-cites="Cori2013New">Cori et al. (<a href="references.html#ref-Cori2013New" role="doc-biblioref">2013</a>)</span>). Fixed sliding windows are a key feature of the <a href="./package_EpiEstim.html">EpiEstim</a> package.</p>
+<section id="drawbacks-of-fixed-sliding-windows" class="level3">
+<h3 class="anchored" data-anchor-id="drawbacks-of-fixed-sliding-windows">Drawbacks of fixed sliding windows</h3>
+<p>There are limitations of the fixed sliding window approach, articulated well in <span class="citation" data-cites="Gostic2020Practical">Gostic et al. (<a href="references.html#ref-Gostic2020Practical" role="doc-biblioref">2020</a>)</span> and summarized here:</p>
+<ul>
+<li><p>There is no posterior distribution for the expected value of incidence.</p></li>
+<li><p>In the fixed size sliding window approach, <span class="math inline">\(τ\)</span> must be explicitly defined prior to inference. Shorter <span class="math inline">\(τ\)</span> will lead to quicker response but more variable estimates of <span class="math inline">\(R(t)\)</span>, which increases the risk of over-fitting. At the extreme, if the <span class="math inline">\(τ\)</span> is set to 1 day, the resulting <span class="math inline">\(R(t)\)</span> will recover exactly the infection data. The default recommendation for <span class="math inline">\(τ\)</span> is one week (7 days)</p></li>
+<li><p>In addition, there is debate in the literature about where in time the estimate of <span class="math inline">\(R(t)\)</span> for each window should go: <span class="citation" data-cites="Gostic2020Practical">Gostic et al. (<a href="references.html#ref-Gostic2020Practical" role="doc-biblioref">2020</a>)</span> recommends using the midpoint of each sliding window rather than time <span class="math inline">\(t\)</span>.</p></li>
+<li><p>The choice of both <span class="math inline">\(τ\)</span> and the location of the estimate of <span class="math inline">\(R(t)\)</span> within each window results in gaps in predictions for <span class="math inline">\(R(t)\)</span>, barring other modifications:</p>
+<ul>
+<li>at the beginning of the modeling period, if not enough cases have occurred (Web Index 4 of <span class="citation" data-cites="Cori2013New">Cori et al. (<a href="references.html#ref-Cori2013New" role="doc-biblioref">2013</a>)</span> suggests a minimum of 12 cases need to be recorded before calculation of <span class="math inline">\(R(t)\)</span>, and waiting at least 1 serial interval)</li>
+<li>at the end of the modeling period to account for reporting delays or time between the midpoint of τ and the end of τ, and</li>
+<li>at the beginning of the time period to allow for enough cases to materialize.</li>
+</ul></li>
+</ul>
+</section>
+<section id="modifications-of-epiestim" class="level3">
+<h3 class="anchored" data-anchor-id="modifications-of-epiestim">Modifications of EpiEstim</h3>
+<p>Several packages modify the functionality of EpiEstim. These modifications include fitting <span class="math inline">\(τ\)</span> to minimize the <a href="./methods_time.html#sec-ape">Accumulated Prediction Error</a>, fitting <span class="math inline">\(R(t)\)</span> via harmonizing the EpiEstim method and methods from the case reproduction number in a <a href="./methods_time.html#sec-var">variational method</a>, and <a href="./methods_time.html#sec-disagg">dissaggregation</a> of data into smaller time units.</p>
+<section id="sec-ape" class="level4">
+<h4 class="anchored" data-anchor-id="sec-ape">Accumulated Prediction Error (APE) framework</h4>
 <p>Alternatively the package <a href="./package_APEestim.html">APEestim</a> integrates with <a href="./package_EpiEstim.html">EpiEstim</a> to propose a non-default choice of τ that minimizes one-step-ahead prediction errors (<span class="citation" data-cites="Parag2020Using">Parag and Donnelly (<a href="references.html#ref-Parag2020Using" role="doc-biblioref">2020</a>)</span>).</p>
 <p>In APEestim, Parag et al.&nbsp;adapt an approximation known as the accumulated prediction error (APE) to identify the window length best justified by the available epi-curve, k*, to opitmizing the window length k.</p>
 </section>
-<section id="sec-var" class="level3">
-<h3 class="anchored" data-anchor-id="sec-var">Modification via variational method</h3>
+<section id="sec-var" class="level4">
+<h4 class="anchored" data-anchor-id="sec-var">Modification via variational method</h4>
 <p>In <a href="./package_EpiInvert.html">EpiInvert</a></p>
 </section>
-<section id="sec-disagg" class="level3">
-<h3 class="anchored" data-anchor-id="sec-disagg">Disaggregation</h3>
+<section id="sec-disagg" class="level4">
+<h4 class="anchored" data-anchor-id="sec-disagg">Disaggregation</h4>
 <p>Package <a href="./package_ern.html">ern</a></p>
+</section>
 </section>
 </section>
 <section id="sec-randomwalk" class="level2">
 <h2 class="anchored" data-anchor-id="sec-randomwalk">Random walk</h2>
-<p>Another method of constraining how $R(t)4 evolves in time is to define the relationship between R(t), infections, and time in a random walk or auto-regressive framework. In this framework, there are latent or unobserved variables, e.g., R(t), that depend on observed variables, e.g., I(t) via the renewal equation, and the evolution of the unobserved variables through time can be parameterized. The auto-regressive component means that the current value of R(t) is correlated via some mechanism with R(t-1) (and potentially other past values). The packages epidemia23 and EpiNow2 contain an implementations of a random walk procedure that look generally as follows:</p>
-<p>f(R(t))=f(R(t-1))+N(0,σ_R) (Eq.8) σ_R ~ HalfNormal(ρ,φ) (Eq.9)</p>
-<p>The random walk implies that adjacent R(t) values may be drawn from similar or even the same distribution, and would be correlated in time based on previous values. The variables ρ and φ are hyperparameters. The function f can be a transformation of R(t), e.g.&nbsp;in log space as in EpiNow2 to correct for the skewness of R(t), provide a variable that is more Gaussian, provide a variable that obeys the properties that we expect from R(t) (i.e., is non-negative), and aid in interpretability. The function f in epidemia contains more layers for pooled effects and group-level variables.</p>
+<p>Another method of constraining how <span class="math inline">\(R(t)\)</span> evolves in time is to define the relationship between <span class="math inline">\(R(t)\)</span>, infections, and time in a random walk or auto-regressive framework.</p>
+<p>In this framework, there are latent or unobserved variables, e.g., <span class="math inline">\(R(t)\)</span>, that depend on observed variables, e.g., <span class="math inline">\(I(t)\)</span> via the renewal equation, and the evolution of the unobserved variables through time can be parameterized.</p>
+<p>The auto-regressive component means that the current value of <span class="math inline">\(R(t)\)</span> is correlated via some mechanism with <span class="math inline">\(R(t-1)\)</span> (and potentially other past values).</p>
+<p>The packages <a href="./package_EpiNow2.html">EpiNow2</a>, <a href="./package_epinowcast.html">epinowcast</a>, and <a href="./package_WhiteLabRt.html">WhiteLabRt</a> contain an implementations of a random walk procedure that look generally as follows:</p>
+<p><span class="math display">\[
+f(R(t))=f(R(t-1))+N(0,σ_R)  
+\]</span></p>
+<p><span class="math display">\[
+σ_R \sim HalfNormal(ρ,φ)        
+\]</span></p>
+<p>The random walk implies that adjacent <span class="math inline">\(R(t)\)</span> values may be drawn from similar or even the same distribution, and would be correlated in time based on previous values.</p>
+<p>The variables <span class="math inline">\(ρ\)</span> and <span class="math inline">\(φ\)</span> are hyperparameters. The function f can be a transformation of R(t), e.g.&nbsp;in log space as in EpiNow2 to correct for the skewness of R(t), provide a variable that is more Gaussian, provide a variable that obeys the properties that we expect from R(t) (i.e., is non-negative), and aid in interpretability. The function f in epidemia contains more layers for pooled effects and group-level variables.</p>
 </section>
 <section id="sec-filtering" class="level2">
 <h2 class="anchored" data-anchor-id="sec-filtering">Filtering</h2>
@@ -468,6 +486,12 @@ EpiLPS:29</code></pre>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-Cori2013New" class="csl-entry" role="listitem">
+Cori A, Ferguson NM, Fraser C, Cauchemez S. 2013. A <span>New</span> <span>Framework</span> and <span>Software</span> to <span>Estimate</span> <span>Time</span>-<span>Varying</span> <span>Reproduction</span> <span>Numbers</span> <span>During</span> <span>Epidemics</span>. American Journal of Epidemiology 178:1505–1512; doi:<a href="https://doi.org/10.1093/aje/kwt133">10.1093/aje/kwt133</a>.
+</div>
+<div id="ref-Gostic2020Practical" class="csl-entry" role="listitem">
+Gostic KM, McGough L, Baskerville EB, Abbott S, Joshi K, Tedijanto C, et al. 2020. Practical considerations for measuring the effective reproductive number, <span>Rt</span>. PLOS Computational Biology 16:e1008409; doi:<a href="https://doi.org/10.1371/journal.pcbi.1008409">10.1371/journal.pcbi.1008409</a>.
+</div>
 <div id="ref-Parag2020Using" class="csl-entry" role="listitem">
 Parag KV, Donnelly CA. 2020. Using information theory to optimise epidemic models for real-time prediction and estimation. PLoS Computational Biology 16:e1007990; doi:<a href="https://doi.org/10.1371/journal.pcbi.1007990">10.1371/journal.pcbi.1007990</a>.
 </div>

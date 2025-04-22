@@ -10,58 +10,82 @@ A straightforward method of imposing structure on $R(t)$ over time involves cons
 
 We add the prefix of “fixed-size” to distinguish from methods that may adapt the size of the sliding window over time.
 
-Consider the scenario where I(t) are drawn from a series of Poisson distributions and where R(t) are drawn from a series of Gamma distributions. Using a sliding window size, τ, of 5 days:
-* R(t) on days 2 to 6 are assumed to be drawn from the Gamma distribution with parameters $a_1$ and $b_1$, 
-* R(t) on days 3 to 7 are drawn from a Gamma distribution with parameters a_2 and b_2, and so on. 
+Consider the scenario where $I(t)$ are drawn from a series of Poisson distributions and where $R(t)$ are drawn from a series of Gamma distributions. Using a sliding window size, $τ$, of 5 days:
+
+* $R(t)$ on days 2 to 6 are assumed to be drawn from the Gamma distribution with parameters $a_1$ and $b_1$ 
+
+* $R(t)$ on days 3 to 7 are drawn from a Gamma distribution with parameters $a_2$ and $b_2$ 
 
 In the above scenario, days 3 through 6 are in both windows and thus will be values that could be reasonably drawn from Gamma distributions with either $a_1$ and $b_1$ or $a_2$ and $b_2$. 
 
-Using an assumption of Gamma distributions for the prior distribution of ω and R(t), Cori et. al. (2013)18 analytically derived a posterior distribution R(t) using fixed-size sliding windows, which has the following directly calculated (rather than inferred) mean and coefficient of variation of $R(t)$:
+Using an assumption of Gamma distributions for the prior distribution of $ω$ and $R(t)$, @Cori2013New analytically derived a posterior distribution $R(t)$ using fixed-size sliding windows. This distribution has the following directly calculated (rather than inferred) mean and coefficient of variation of $R(t)$:
 
 $$
-E[R(t)]=[a+ ∑_(i=max⁡(1,   t-τ))^t▒I(i) ]/[1/b+∑_(i=max⁡(1,   t-τ))^t▒Λ(i) ]  
+E[R(t)]= \frac{a + \sum_{i = \max(1, t - τ)}^{t} I(t)}  { 1/b + \sum_{i = \max(1, t - τ)}^{t} Λ(t)}
 $$
 
 $$
-C.V.[R(t)]=[a+ ∑_(i=max⁡(1,   t-τ))^t▒I(i) ]^(-1)    			(Eq.7)
+C.V. [R(t)]=\frac{1}{a + \sum_{i = \max(1, t - τ)}^{t} I(t)}
 $$
 
-Thus, sliding windows with larger τ improve the stability of the estimate of R(t) over smaller τ because the coefficient of variation of R(t) decreases as number of infections increases (see Web Appendix 1 of Cori et. al., 2013).18 Sliding windows are a key feature of EpiEstim.21 
+Thus, sliding windows with larger $τ$ improve the stability of the estimate of $R(t)$ (as compared to smaller $τ$ because the coefficient of variation of $R(t)$ decreases as number of infections increases (see Web Appendix 1 of @Cori2013New). Fixed sliding windows are a key feature of the [EpiEstim](package_EpiEstim.qmd) package. 
 
-There are limitations of this derived sliding window approach, articulated well in Gostic et. al., (2020)1 and summarized here:
+### Drawbacks of fixed sliding windows
 
-* There is no posterior distribution for the expected value of incidence In the fixed size sliding window approach, τ must be explicitly defined prior to inference. 
+There are limitations of the fixed sliding window approach, articulated well in @Gostic2020Practical and summarized here:
 
-* Shorter τ will lead to quicker response but more variable estimates of R(t), which increases the risk of over-fitting. At the extreme, if the τ is set to 1 day, the resulting R(t) will recover exactly the infection data. 
+* There is no posterior distribution for the expected value of incidence.
 
-* In addition, there is debate in the literature about where in time the estimate of R(t) for each window should go: Gostic et. al., (2020)1 recommends using the midpoint of each sliding window rather than time t. 
+* In the fixed size sliding window approach, $τ$ must be explicitly defined prior to inference. Shorter $τ$ will lead to quicker response but more variable estimates of $R(t)$, which increases the risk of over-fitting. At the extreme, if the $τ$ is set to 1 day, the resulting $R(t)$ will recover exactly the infection data. The default recommendation for $τ$ is one week (7 days)
 
-* The choice of both τ and the location of the estimate of R(t) within each window results in gaps in predictions for R(t), barring other modifications: at the end of the modeling period to account for reporting delays or time between the midpoint of τ and the end of τ, and at the beginning of the time period to allow for enough cases to materialize. Web Appendix 4 of Cori. et. al (2013) gives the following recommendation for when to calculate R(t): “Overall, we suggest starting estimating   once those three criteria are fulfilled: at least after  , at least after one mean serial interval, and when at least 12 cases have been observed since the beginning of the epidemic.” The default recommendation for τ is one week (7 days);18 
+* In addition, there is debate in the literature about where in time the estimate of $R(t)$ for each window should go: @Gostic2020Practical recommends using the midpoint of each sliding window rather than time $t$. 
 
-### Accumulated Prediction Error (APE) framework {#sec-ape}
+* The choice of both $τ$ and the location of the estimate of $R(t)$ within each window results in gaps in predictions for $R(t)$, barring other modifications: 
+  * at the beginning of the modeling period, if not enough cases have occurred (Web Index 4 of @Cori2013New suggests a minimum of 12 cases need to be recorded before calculation of $R(t)$, and waiting at least 1 serial interval)
+  * at the end of the modeling period to account for reporting delays or time between the midpoint of τ and the end of τ, and
+  * at the beginning of the time period to allow for enough cases to materialize. 
+  
+### Modifications of EpiEstim
+
+Several packages modify the functionality of EpiEstim. These modifications include fitting $τ$ to minimize the [Accumulated Prediction Error](methods_time.qmd#sec-ape), fitting $R(t)$ via harmonizing the EpiEstim method and methods from the case reproduction number in a [variational method](methods_time.qmd#sec-var), and [dissaggregation](methods_time.qmd#sec-disagg) of data into smaller time units.
+
+#### Accumulated Prediction Error (APE) framework {#sec-ape}
 
 Alternatively the package [APEestim](package_APEestim.qmd) integrates with [EpiEstim](package_EpiEstim.qmd) to propose a non-default choice of τ that minimizes one-step-ahead prediction errors (@Parag2020Using).
 
 In APEestim, Parag et al. adapt an approximation known as the accumulated prediction error (APE) to identify the window length best justified by the available epi-curve, k*, to opitmizing the window length k. 
 
-### Modification via variational method {#sec-var}
+#### Modification via variational method {#sec-var}
 
 In [EpiInvert](package_EpiInvert.qmd)
 
 
-### Disaggregation {#sec-disagg}
+#### Disaggregation {#sec-disagg}
 
 Package [ern](package_ern.qmd)
 
 
 ## Random walk {#sec-randomwalk}
 
-Another method of constraining how $R(t)4  evolves in time is to define the relationship between R(t), infections, and time in a random walk or auto-regressive framework. In this framework, there are latent or unobserved variables, e.g., R(t), that depend on observed variables, e.g., I(t)  via the renewal equation, and the evolution of the unobserved variables through time can be parameterized. The auto-regressive component means that the current value of R(t) is correlated via some mechanism with R(t-1) (and potentially other past values). The packages epidemia23 and EpiNow2 contain an implementations of a random walk procedure that look generally as follows:
+Another method of constraining how $R(t)$ evolves in time is to define the relationship between $R(t)$, infections, and time in a random walk or auto-regressive framework. 
 
-f(R(t))=f(R(t-1))+N(0,σ_R) 		(Eq.8)
-σ_R  ~ HalfNormal(ρ,φ)			(Eq.9)
+In this framework, there are latent or unobserved variables, e.g., $R(t)$, that depend on observed variables, e.g., $I(t)$  via the renewal equation, and the evolution of the unobserved variables through time can be parameterized. 
 
-The random walk implies that adjacent R(t) values may be drawn from similar or even the same distribution, and would be correlated in time based on previous values. The variables ρ and φ are hyperparameters. The function f can be a transformation of R(t), e.g. in log space as in EpiNow2 to correct for the skewness of R(t), provide a variable that is more Gaussian, provide a variable that obeys the properties that we expect from R(t) (i.e., is non-negative), and aid in interpretability. The function f in epidemia contains more layers for pooled effects and group-level variables. 
+The auto-regressive component means that the current value of $R(t)$ is correlated via some mechanism with $R(t-1)$ (and potentially other past values). 
+
+The packages [EpiNow2](package_EpiNow2.qmd), [epinowcast](package_epinowcast.qmd), and [WhiteLabRt](package_WhiteLabRt.qmd) contain an implementations of a random walk procedure that look generally as follows:
+
+$$
+f(R(t))=f(R(t-1))+N(0,σ_R) 	
+$$
+
+$$
+σ_R \sim HalfNormal(ρ,φ)		
+$$
+
+The random walk implies that adjacent $R(t)$ values may be drawn from similar or even the same distribution, and would be correlated in time based on previous values. 
+
+The variables $ρ$ and $φ$ are hyperparameters. The function f can be a transformation of R(t), e.g. in log space as in EpiNow2 to correct for the skewness of R(t), provide a variable that is more Gaussian, provide a variable that obeys the properties that we expect from R(t) (i.e., is non-negative), and aid in interpretability. The function f in epidemia contains more layers for pooled effects and group-level variables. 
 
 ## Filtering {#sec-filtering}
 

@@ -23,7 +23,6 @@ book:
         - methods_time.qmd
         - methods_additionaldata.qmd
         - methods_inference.qmd
-        - methods_research.qmd
     - part: packages.qmd
       chapters:
       - package_APEestim.qmd

@@ -19,3 +19,12 @@ We also limit the discussion to packages in the statistical software R [@R2022R]
 
  We attempt to harmonize the mathematical choices between each package using terminology from each.
 
+### Open research questions { .unnumbered}
+
+Several open research questions remain, and are not disucssed here further. These include:
+
+* the ability to deal with very low case counts in sub-regions of geographic areas of interest
+* how to deal with data drop-out
+
+  
+

@@ -59,7 +59,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-890e3be52525b589f2fefdd4a4f6410d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-bc11f644e0fd71aaf667f8c23dea1f98.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -223,12 +223,6 @@ window.Quarto = {
  <span class="menu-text">Inference frameworks</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./methods_research.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Open research questions</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -368,6 +362,8 @@ window.Quarto = {
   <ul>
   <li><a href="#renewal-equation-estimates-of-rt" id="toc-renewal-equation-estimates-of-rt" class="nav-link active" data-scroll-target="#renewal-equation-estimates-of-rt">Renewal equation estimates of R(t)</a>
   <ul class="collapse">
+  <li><a href="#serial-interval" id="toc-serial-interval" class="nav-link" data-scroll-target="#serial-interval">Serial interval</a></li>
+  <li><a href="#exponential-growth-rate" id="toc-exponential-growth-rate" class="nav-link" data-scroll-target="#exponential-growth-rate">Exponential growth rate</a></li>
   <li><a href="#solving-for-rt" id="toc-solving-for-rt" class="nav-link" data-scroll-target="#solving-for-rt">Solving for <span class="math inline">\(R(t)\)</span></a></li>
   </ul></li>
   <li><a href="#empirical-estimates-of-rt" id="toc-empirical-estimates-of-rt" class="nav-link" data-scroll-target="#empirical-estimates-of-rt">Empirical estimates of <span class="math inline">\(R(t)\)</span></a></li>
@@ -406,9 +402,7 @@ window.Quarto = {
 </section>
 <section id="renewal-equation-estimates-of-rt" class="level2">
 <h2 class="anchored" data-anchor-id="renewal-equation-estimates-of-rt">Renewal equation estimates of R(t)</h2>
-<p>The renewal equation relates <span class="math inline">\(R(t)\)</span> and infections on day <span class="math inline">\(t\)</span>, <span class="math inline">\(I(t)\)</span>, using a third parameter known as the <a class="definition" href="./glossary.html#genInt">generation interval</a>. The generation interval, <span class="math inline">\(ω\)</span>, is the time between infection in the infector and infection in the infectee, and assuming independence is the linear combination of incubation time, the time between infection and symptom onset in an individual, and transmission time, the time between symptom onset in the infector and infection of the infectee <span class="citation" data-cites="Lehtinen2021On">(<a href="references.html#ref-Lehtinen2021On" role="doc-biblioref">Lehtinen et al. 2021</a>)</span>.</p>
-<p>A similar parameter to the generation interval is the <a class="definition" href="./glossary.html#serialInt">serial interval</a>, which is the time between symptom onset in the infector and symptom onset in the infectee. The serial interval and generation interval are interchangeable if the incubation time is independent from the transmission time, and some formulations of the renewal equation use generation interval.</p>
-<p>In this paper we use the generation interval <span class="math inline">\(ω\)</span> described by a probability mass function with non-zero values from day 1 (assuming that disease incubation takes at least 1 day) to a maximum day <span class="math inline">\(s\)</span>, i.e., the longest interval between symptom onset in infector and infectee.</p>
+<p>The renewal equation relates <span class="math inline">\(R(t)\)</span> and infections on day <span class="math inline">\(t\)</span>, <span class="math inline">\(I(t)\)</span>, using a third parameter known as the <a class="definition" href="./glossary.html#genInt">generation interval</a>. The generation interval, <span class="math inline">\(ω\)</span>, is the time between infection in the infector and infection in the infectee, and assuming independence is the linear combination of incubation time, the time between infection and symptom onset in an individual, and transmission time, the time between symptom onset in the infector and infection of the infectee <span class="citation" data-cites="Lehtinen2021On">(<a href="references.html#ref-Lehtinen2021On" role="doc-biblioref">Lehtinen et al. 2021</a>)</span>. In this document we use the generation interval <span class="math inline">\(ω\)</span> described by a probability mass function with non-zero values from day 1 (assuming that disease incubation takes at least 1 day) to a maximum day <span class="math inline">\(s\)</span>, i.e., the longest interval between symptom onset in infector and infectee.</p>
 <p>Taking care to note that <span class="math inline">\(R(t)\)</span> is undefined on day 0 since there has been no transmission yet (and assuming the initial infections are <span class="math inline">\(I(0)\)</span>), the formulation of the renewal equation is thus:</p>
 <p><span class="math display">\[
 I(t) = R(t) \sum_{i = \max(1, t - s + 1)}^{t} \omega(i) \, I(t - i)
@@ -418,6 +412,12 @@ I(t) = R(t) \sum_{i = \max(1, t - s + 1)}^{t} \omega(i) \, I(t - i)
 Λ(t) =  \sum_{i = \max(1, t - s + 1)}^{t} \omega(i) \, I(t - i)
 \]</span></p>
 <p>The assumptions of this formulation, as per <span class="citation" data-cites="Green2022Inferring">Green et al. (<a href="references.html#ref-Green2022Inferring" role="doc-biblioref">2022</a>)</span>, are that incident infections can be described deterministically within each window of <span class="math inline">\([t-s+1,t]\)</span> and that the generation interval distribution does not change over the modeling time.</p>
+<section id="serial-interval" class="level3">
+<h3 class="anchored" data-anchor-id="serial-interval">Serial interval</h3>
+<p>A similar parameter to the generation interval is the <a class="definition" href="./glossary.html#serialInt">serial interval</a>, which is the time between symptom onset in the infector and symptom onset in the infectee. The serial interval and generation interval are interchangeable if the incubation time is independent from the transmission time, and some formulations of the renewal equation use generation interval.</p>
+</section>
+<section id="exponential-growth-rate" class="level3">
+<h3 class="anchored" data-anchor-id="exponential-growth-rate">Exponential growth rate</h3>
 <p>A common reframing of the renewal equation is to equate <span class="math inline">\(R(t)\)</span> with an exponential growth rate, <span class="math inline">\(r\)</span>. Under specific conditions and within a small time window (<span class="math inline">\([t-s+1,t]\)</span>), infections can be assumed to grow exponentially at a constant rate <span class="math inline">\(r\)</span> <span class="citation" data-cites="Green2022Inferring">Wallinga and Lipsitch (<a href="references.html#ref-Wallinga2006How" role="doc-biblioref">2006</a>)</span>. Using the time window <span class="math inline">\([t- s+1,t]\)</span> and assuming some initial infections <span class="math inline">\(k\)</span>, <span class="math inline">\(R(t)\)</span> for <span class="math inline">\([t- s+1,t]\)</span> can be inferred from only <span class="math inline">\(r\)</span> and <span class="math inline">\(ω\)</span>:</p>
 <p><span class="math display">\[
 I(t)=ke^rt
@@ -429,6 +429,7 @@ R(t)= [\sum_{i = \max(1, t - s + 1)}^{t} \omega(i) \, e^{-ri}]^{-1}
 z=1-exp⁡(-R_0  z)                   
 \]</span></p>
 <p>The attack rate function and others are implemented in the package <a href="./package_epigrowthfit.html">epigrowthfit</a>. The major difference between calculating <span class="math inline">\(R(t)\)</span> from a renewal equation or an exponential growth rate equation is whether <span class="math inline">\(I(t)\)</span> is used. If for a given time window both r and ω can be estimated independently, then <span class="math inline">\(R(t)\)</span> can be inferred without infection data. Otherwise, infection data are needed to estimate <span class="math inline">\(R(t)\)</span>.</p>
+</section>
 <section id="solving-for-rt" class="level3">
 <h3 class="anchored" data-anchor-id="solving-for-rt">Solving for <span class="math inline">\(R(t)\)</span></h3>
 <div class="callout callout-style-default callout-warning callout-titled">
