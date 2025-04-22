@@ -85,13 +85,19 @@ $$
 
 The random walk implies that adjacent $R(t)$ values may be drawn from similar or even the same distribution, and would be correlated in time based on previous values. 
 
-The variables $ρ$ and $φ$ are hyperparameters. The function f can be a transformation of R(t), e.g. in log space as in EpiNow2 to correct for the skewness of R(t), provide a variable that is more Gaussian, provide a variable that obeys the properties that we expect from R(t) (i.e., is non-negative), and aid in interpretability. The function f in epidemia contains more layers for pooled effects and group-level variables. 
+The variables $ρ$ and $φ$ are hyperparameters. 
+
+The function $f$ can be a transformation of $R(t)$, e.g. in log space to correct for the skewness of $R(t)$. This can help provide a variable that is more Gaussian, provide a variable that obeys the properties that we expect from $R(t)$ (i.e., is non-negative), and aid in interpretability. 
 
 ## Filtering {#sec-filtering}
 
-Filtering is another way that R(t) is constrained in common packages. Filtering means […]. One way that a filter could be implemented is in a Hidden Markov Model.24 A simple forward-looking linear filter for R(t)  in an Hidden Markov Model might look as follows, with a tuning parameter (η) to influence the amount that R(t) can vary between time-steps and a standard white noise component (ϵ): 
+Filtering is another way that $R(t)$ is constrained in time: a factor controls the amount of difference between $R(t)$ in adjacent time-steps is constrained. 
 
-R(t)=R(t-1)+(η√(R(t-1) ))ϵ(t-1)		(Eq.10)
+One way that a filter could be implemented is in a Hidden Markov Model.24 A simple forward-looking linear filter for R(t) in an Hidden Markov Model might look as follows, with a tuning parameter (η) to influence the amount that R(t) can vary between time-steps and a standard white noise component (ϵ): 
+
+$$
+R(t)=R(t-1)+(η√(R(t-1) ))ϵ(t-1)	
+$$
 
 The package EpiFilter25 implements a two-stage filtering and smoothing method for estimating R(t). A key innovation of EpiFilter is that the states of historical R(t) are constrained to a predefined set of values; this dramatically reduces calculation time. The smoothing stage refines estimates of R(t) by incorporating future incidence, in this way using all available data in estimates of historical R(t). These modeling steps help avoid R(t) instability when infections are low and instability at the beginning and (more importantly) the end of the modeling period. 
 
