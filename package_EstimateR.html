@@ -403,23 +403,23 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">REF</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;"><span class="citation" data-cites="Scire2023estimateR">Scire et al. (<a href="#ref-Scire2023estimateR" role="doc-biblioref">2023</a>)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Docs</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;"><a href="https://covid-19-re.github.io/estimateR/index.html">covid-19-re.github.io/estimateR/index.html</a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Github</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;"><a href="https://github.com/covid-19-Re/estimateR">https://github.com/covid-19-Re/estimateR</a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Last commit</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">Sep 10, 2024</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Installation</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;"><a href="https://github.com/covid-19-Re/estimateR">via devtools</a></td>
 </tr>
 </tbody>
 </table>
@@ -434,7 +434,6 @@ window.Quarto = {
 </ul>
 <p>Each of these tasks can be done separately and the users is not required to perform all tasks.</p>
 <p>There is apparently an option to nowcast data described and implemented in the package, though provided mathematical details are limited.</p>
-<div class="line-block"><a href="./package_EstimateR.html">EstimateR</a> | <span class="citation" data-cites="Scire2023estimateR">Scire et al. (<a href="references.html#ref-Scire2023estimateR" role="doc-biblioref">2023</a>)</span> | <a href="https://github.com/covid-19-Re/estimateR">🔗</a> | Sep 10, 2024|</div>
 </section>
 <section id="methods" class="level3">
 <h3 class="anchored" data-anchor-id="methods">Methods</h3>
@@ -442,79 +441,60 @@ window.Quarto = {
 <ul>
 <li>Data is smoothed using LOESS with a first order polynomial. Users should adapt the smoothing parameter consistent with the noise in the input data.</li>
 <li>Deconvolution with an Expectation-Maximization (EM) algorithm is used to create an estimate of the time series of infection events.</li>
-<li>EpiEstim is used to estimate <span class="math inline">\(R_t\)</span> with a Bayesian framework.</li>
+<li>EpiEstim is used to estimate <span class="math inline">\(R_t\)</span> with a Bayesian framework, which uses <a href="./methods_time.html#sec-fixedwindow">fixed sliding windows</a>.</li>
 <li>Block bootstrapping is used to estimate 95% confidence intervals.</li>
 </ul>
-<p>Details of the methods used are provided in the supplement of <a href="https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-023-05428-4"><code>Scire et al. (2023)</code></a>.</p>
+<p>Details of the methods used are provided in the supplement of <span class="citation" data-cites="Scire2023estimateR">Scire et al. (<a href="#ref-Scire2023estimateR" role="doc-biblioref">2023</a>)</span></p>
 </section>
 <section id="assessment" class="level3">
 <h3 class="anchored" data-anchor-id="assessment">Assessment</h3>
-<table class="caption-top table" data-quarto-postprocess="true">
-<caption>Assessment rubric</caption>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 60%">
+</colgroup>
 <tbody>
-<tr class="odd" style="border-top: none;">
-<td data-quarto-table-cell-role="th" style="font-weight: bold; width: 40%">Category</td>
-<td data-quarto-table-cell-role="th" style="font-weight: bold; width: 40%">Notes</td>
-<td data-quarto-table-cell-role="th" style="font-weight: bold; width: 20%">Scales</td>
-</tr>
-<tr class="even" data-columnspan="3" data-,="" style="background-color: lightgrey;border-top: 2px solid;margin-top: 1;margin-bottom: 1; line-height: 1;font-size: 0.8em;">
-<td>Usage</td>
-<td></td>
-<td></td>
-</tr>
 <tr class="odd">
-<td>Runtime length</td>
-<td>Comparison of Estimate R with epidemia and EpiNow2 on simulated data.</td>
-<td>EstimateR: 9s; epidemia: 14 min; EpiNow2: 25 min</td>
-</tr>
-<tr class="even" data-columnspan="3" data-,="" style="background-color: lightgrey;border-top: 2px solid;margin-top: 1;margin-bottom: 1; line-height: 1;font-size: 0.8em;">
-<td>Features</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>Ability to nowcast/forecast</td>
-<td>Appears possible; limited details provided.</td>
-<td>Yes</td>
+<td style="text-align: left;"><strong>Features</strong></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td>Incorporates delay distributions</td>
-<td>Uses deconvolution.</td>
-<td>Yes</td>
+<td style="text-align: left;">Ability to nowcast/forecast</td>
+<td style="text-align: left;">Nowcasting, but details are limited</td>
 </tr>
 <tr class="odd">
-<td>Estimates expected cases</td>
-<td>This is a separate module that is calculated.</td>
-<td>Yes</td>
+<td style="text-align: left;">Incorporates delay distributions</td>
+<td style="text-align: left;">Includes incubation period and reporting delay for clinical data</td>
 </tr>
 <tr class="even">
-<td>Communicates uncertainty</td>
-<td>Uses Block boostrapping to create 95% CIs.</td>
-<td>Yes</td>
-</tr>
-<tr class="odd" data-columnspan="3" data-,="" style="background-color: lightgrey;border-top: 2px solid;margin-top: 1;margin-bottom: 1; line-height: 1;font-size: 0.8em;">
-<td>Validation</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Documentation of package methods</td>
-<td>Peer reviewed publication.</td>
-<td>Yes</td>
+<td style="text-align: left;">Estimates expected cases</td>
+<td style="text-align: left;">Doing this from wastewater or aggregated clincal case data</td>
 </tr>
 <tr class="odd">
-<td>Documentation of package implementation</td>
-<td>GitHub site and R package.</td>
-<td>Yes</td>
+<td style="text-align: left;">Communicates uncertainty</td>
+<td style="text-align: left;">Uncertainty from both EpiEstim approach, as well as assumptions made in estimating incident cases through resampling approach</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Validation</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Documentation of package methods</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Documentation of package implementation</td>
+<td style="text-align: left;">Yes</td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="sample-code" class="level3">
 <h3 class="anchored" data-anchor-id="sample-code">Sample code</h3>
+<p>See <a href="https://covid-19-re.github.io/estimateR/articles/incidence_data_workflow_example.html">here</a> for an example of calculating R(t) from aggregated incidence data, as well as other examples.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-Scire2023estimateR" class="csl-entry" role="listitem">
 Scire J, Huisman JS, Grosu A, Angst DC, Lison A, Li J, et al. 2023. estimateR: An <span>R</span> package to estimate and monitor the effective reproductive number. BMC Bioinformatics 24:310; doi:<a href="https://doi.org/10.1186/s12859-023-05428-4">10.1186/s12859-023-05428-4</a>.
 </div>

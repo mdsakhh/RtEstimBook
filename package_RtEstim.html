@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>earlyR – Disease outbreaks and metrics</title>
+<title>RtEstim – Disease outbreaks and metrics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -49,8 +49,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./package_Epidemia.html" rel="next">
-<link href="./package_bayEStim.html" rel="prev">
+<link href="./package_WhiteLabRt.html" rel="next">
+<link href="./package_R0.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -138,7 +138,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_earlyR.html">earlyR</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_RtEstim.html">RtEstim</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -254,7 +254,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package_earlyR.html" class="sidebar-item-text sidebar-link active">
+  <a href="./package_earlyR.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">earlyR</span></a>
   </div>
 </li>
@@ -332,7 +332,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package_RtEstim.html" class="sidebar-item-text sidebar-link">
+  <a href="./package_RtEstim.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">RtEstim</span></a>
   </div>
 </li>
@@ -369,16 +369,16 @@ window.Quarto = {
   <li><a href="#brief-description" id="toc-brief-description" class="nav-link active" data-scroll-target="#brief-description">Brief description</a></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
   <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a></li>
-  <li><a href="#sample-code" id="toc-sample-code" class="nav-link" data-scroll-target="#sample-code">Sample Code</a></li>
+  <li><a href="#sample-code" id="toc-sample-code" class="nav-link" data-scroll-target="#sample-code">Sample code</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_earlyR.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_RtEstim.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_earlyR.html">earlyR</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_RtEstim.html">RtEstim</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">earlyR</h1>
+<h1 class="title">RtEstim</h1>
 </div>
 
 
@@ -403,36 +403,40 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">REF</td>
-<td style="text-align: left;">None</td>
+<td style="text-align: left;"><span class="citation" data-cites="Liu2024rtestim">Liu et al. (<a href="#ref-Liu2024rtestim" role="doc-biblioref">2024</a>)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Docs</td>
-<td style="text-align: left;"><a href="https://www.repidemicsconsortium.org/earlyR/articles/earlyR.html">repidemicsconsortium.org/earlyR/articles/earlyR.html</a></td>
+<td style="text-align: left;"><a href="https://dajmcdon.github.io/rtestim/">https://dajmcdon.github.io/rtestim/</a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Github</td>
-<td style="text-align: left;"><a href="https://github.com/reconhub/earlyR">github.com/reconhub/earlyR</a></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Last commit</td>
-<td style="text-align: left;">October 27, 2020</td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Installation</td>
-<td style="text-align: left;"><a href="https://cran.r-project.org/web/packages/earlyR/index.html">CRAN</a></td>
+<td style="text-align: left;"><a href="https://dajmcdon.github.io/rtestim/">via devtools</a></td>
 </tr>
 </tbody>
 </table>
 <section id="brief-description" class="level3">
 <h3 class="anchored" data-anchor-id="brief-description">Brief description</h3>
-<div style="font-size:0.8em">
-Copied from the developer site<br><br>
-</div>
-<p>Implements a simple, likelihood-based estimation of the reproduction number (R0) using a branching process with a Poisson likelihood. This model requires knowledge of the serial interval distribution, and dates of symptom onsets. Infectiousness is determined by weighting R0 by the probability mass function of the serial interval on the corresponding day. It is a simplified version of the model introduced by <span class="citation" data-cites="Cori2013New">Cori et al. (<a href="references.html#ref-Cori2013New" role="doc-biblioref">2013</a>)</span>.</p>
+<p>Rtestim is a method that uses the renewal equation and a provided serial interval distribution to estimate <span class="math inline">\(R_t\)</span>. Distinct from other methods, it uses a frequentist approach with an L1 smoothing penalty which decreases computation time and allows for locally adaptive estimates. The method estimates confidence bands for <span class="math inline">\(R_t\)</span> and incidence.</p>
+<div class="line-block"><a href="./package_RtEstim.html">RtEstim</a> | | <a href="https://github.com/dajmcdon/rtestim">🔗</a> | Sep 25, 2024|</div>
 </section>
 <section id="methods" class="level3">
 <h3 class="anchored" data-anchor-id="methods">Methods</h3>
-<p>This package does not constrain R in time, instead this is meant to predict a single R value (R0) and then uses this to nowcast and forecast cases.</p>
+<p>This package contains the following methods:</p>
+<ul>
+<li>Locally adaptive estimator using Poisson trend filtering</li>
+<li>L1 smoothing</li>
+<li>Cross validation to select tuning parameters for the smoother</li>
+</ul>
+<p>This approach is similar to <a href="./methods_time.html#sec-filtering">filtering</a></p>
 </section>
 <section id="assessment" class="level3">
 <h3 class="anchored" data-anchor-id="assessment">Assessment</h3>
@@ -448,7 +452,7 @@ Copied from the developer site<br><br>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Ability to nowcast/forecast</td>
-<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Incorporates delay distributions</td>
@@ -456,7 +460,7 @@ Copied from the developer site<br><br>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Estimates expected cases</td>
-<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Predicts based on estimated <span class="math inline">\(R_t\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Communicates uncertainty</td>
@@ -468,7 +472,7 @@ Copied from the developer site<br><br>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Documentation of package methods</td>
-<td style="text-align: left;">No</td>
+<td style="text-align: left;">Yes</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Documentation of package implementation</td>
@@ -478,13 +482,13 @@ Copied from the developer site<br><br>
 </table>
 </section>
 <section id="sample-code" class="level3">
-<h3 class="anchored" data-anchor-id="sample-code">Sample Code</h3>
-<p><a href="https://cran.r-project.org/web/packages/earlyR/vignettes/earlyR.html">This vignette</a> gives a basic example of usage</p>
+<h3 class="anchored" data-anchor-id="sample-code">Sample code</h3>
+<p>The package website has <a href="https://dajmcdon.github.io/rtestim/articles/rtestim.html">this helpful vignette</a>.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-Cori2013New" class="csl-entry" role="listitem">
-Cori A, Ferguson NM, Fraser C, Cauchemez S. 2013. A <span>New</span> <span>Framework</span> and <span>Software</span> to <span>Estimate</span> <span>Time</span>-<span>Varying</span> <span>Reproduction</span> <span>Numbers</span> <span>During</span> <span>Epidemics</span>. American Journal of Epidemiology 178:1505–1512; doi:<a href="https://doi.org/10.1093/aje/kwt133">10.1093/aje/kwt133</a>.
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Liu2024rtestim" class="csl-entry" role="listitem">
+Liu J, Cai Z, Gustafson P, McDonald DJ. 2024. Rtestim: Time-varying reproduction number estimation with trend filtering. PLOS Computational Biology 20:e1012324; doi:<a href="https://doi.org/10.1371/journal.pcbi.1012324">10.1371/journal.pcbi.1012324</a>.
 </div>
 </div>
 </section>
@@ -909,13 +913,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./package_bayEStim.html" class="pagination-link" aria-label="bayEstim">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">bayEstim</span>
+      <a href="./package_R0.html" class="pagination-link" aria-label="R0">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">R0</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./package_Epidemia.html" class="pagination-link" aria-label="Epidemia">
-        <span class="nav-page-text">Epidemia</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./package_WhiteLabRt.html" class="pagination-link" aria-label="WhiteLabRt">
+        <span class="nav-page-text">WhiteLabRt</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -927,7 +931,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Reproductive Number R(t) - <a href="https://chadmilando.com/RtEstimBook/" target="_blank">https://chadmilando.com/RtEstimBook/</a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_earlyR.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_RtEstim.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

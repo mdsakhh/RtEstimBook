@@ -19,9 +19,13 @@ This package contains the following methods:
 
 @Li2021Bayesian
 - Adjustment for reporting delay and nowcasting estimates
+- this uses the [fixed sliding windows](methods_time.qmd#sec-fixedwindow) appraoch to estimate $R(t)$
 
 @zhou2022estimation
 - Mobility data in a hierarchical model to obtain spatially granular estimates.
+- this a weekly [random walk](methods_time.qmd#sec-randomwalk) to estimate $R(t)$
+
+
 
 ### Assessment
 

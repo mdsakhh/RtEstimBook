@@ -2,16 +2,14 @@
 
 | | 
 |:---|:--------|
-| REF| |
-| Docs| |
-| Github|  |
-| Last commit||
-| Installation | |
+| REF| @lison2024generative|
+| Docs| [epinowcast.org/](https://www.epinowcast.org/)|
+| Github| [github.com/epinowcast](https://github.com/epinowcast/epinowcast) |
+| Last commit| Sep 30, 2024|
+| Installation | CRAN |
 : {tbl-colwidths="[20,80]"}
 
 ### Description
-
-| [epinowcast](package_epinowcast.qmd) \| Abbott S, Lison A, Funk S, Pearson C, Gruson H, Guenther F, DeWitt M \| [🔗](https://github.com/epinowcast/epinowcast)\| Sep 30, 2024 \|
 
 ::: {style="font-size:0.8em"}
 Copied from the developer site<br><br>
@@ -23,91 +21,22 @@ Tools to enable flexible and efficient hierarchical nowcasting of right-truncate
 
 This package contains the following methods:
 
--   
+-   [random walk](#sec-randomwalk)
 
 ### Assessment
 
-```{=html}
-<table>
-    <caption>Assessment rubric</caption>
-    <!---HEADING --->
-    <tr style="border-top: none;">
-      <th style="font-weight: bold; width: 40%">Category</th>
-      <th style="font-weight: bold; width: 40%">Notes</th>
-      <th style="font-weight: bold; width: 20%">Scales</th>
-    </tr>
-    
-        <!------ SECTION 1: USAGE -------->
-    <tr columnspan="3", style="background-color: lightgrey;border-top: 2px solid;margin-top: 1;margin-bottom: 1; line-height: 1;font-size: 0.8em;">
-      <td> Usage </td>
-    </tr>
-
-    <tr>
-        <td>Runtime length</td>
-        <td>Some description</td>
-        <td>
-          Time (minutes)
-        </td>
-    </tr>
-      
-      <!------ SECTION 2: FEATURES -------->
-    <tr columnspan="3", style="background-color: lightgrey;border-top: 2px solid;margin-top: 1;margin-bottom: 1; line-height: 1;font-size: 0.8em;">
-      <td> Features </td>
-    </tr>
-        <tr>
-        <td>Ability to nowcast/forecast</td>
-        <td>Some description</td>
-        <td>
-          ☐ Yes/no
-                  </td>
-    </tr>
-                    <tr>
-        <td>Incorporates delay distributions</td>
-        <td>Some description</td>
-        <td>
-          ☐ Yes/no
-        </td>
-    </tr>
-    
-                        <tr>
-        <td>Estimates expected cases </td>
-        <td>Some description</td>
-        <td>
-          ☐ Yes/no
-        </td>
-    </tr>
-
-                        <tr>
-        <td>Communicates uncertainty</td>
-        <td>Some description</td>
-        <td>
-☐ Yes/no
-        </td>
-    </tr>
-
-      <!------ SECTION 3: Validation -------->
-    <tr columnspan="3", style="background-color: lightgrey;border-top: 2px solid;margin-top: 1;margin-bottom: 1; line-height: 1;font-size: 0.8em;">
-      <td> Validation </td>
-    </tr>
-    
-                        <tr>
-        <td>Documentation of package methods</td>
-        <td>Some description</td>
-        <td>
-          ☐ Yes/no
-        </td>
-    </tr>
-    
-                        <tr>
-        <td>Documentation of package implementation</td>
-        <td>Some description</td>
-        <td>
-          ☐ Yes/no
-        </td>
-    </tr>
-
-
-</table>
-```
+| | 
+|:---|:--------|
+|<strong>Features</strong>||
+| Ability to nowcast/forecast| Nowcasting |
+| Incorporates delay distributions| Yes |
+| Estimates expected cases| Yes |
+| Communicates uncertainty| Yes |
+|<strong>Validation</strong>||
+| Documentation of package methods| Yes|
+| Documentation of package implementation| Yes |
+: {tbl-colwidths="[40,60]"}
 
 ### Sample code
+
+A list of helpful vignettes are given [here](https://package.epinowcast.org/articles/).

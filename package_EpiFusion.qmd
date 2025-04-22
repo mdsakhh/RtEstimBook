@@ -20,9 +20,7 @@ EpiFusion is a Bayesian framework designed to estimate the effective reproductio
 
 ### Methods
 
-This package contains the following methods:
-
-- 
+This package contains methods that estimate $R(t)$ from both phylodynamic (time-scaled trees estimated from genetic sequences) and epidemiological (case incidence) data. Therefore, a discussion of these methods is somewhat outside the scope of this document.
 
 ### Assessment
 
@@ -42,5 +40,5 @@ This package contains the following methods:
 
 ### Sample code
 
-
+Tutorials for how to use EpiFusion are given in [this Github repository](https://github.com/ciarajudge/EpiFusion/tree/main/examples).
 

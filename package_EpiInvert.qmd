@@ -3,10 +3,10 @@
 | | 
 |:---|:--------|
 | REF| @Alvarez2021Computing|
-| Docs| |
+| Docs| [lalvarezmat.github.io/EpiInvert/](https://lalvarezmat.github.io/EpiInvert/)|
 | Github|[github.com/lalvarezmat/EpiInvert](https://github.com/lalvarezmat/EpiInvert)   |
 | Last commit| Dec, 2023|
-| Installation | |
+| Installation | [via devtools](https://lalvarezmat.github.io/EpiInvert/)|
 : {tbl-colwidths="[20,80]"}
 
 ### Brief description
@@ -18,9 +18,11 @@ EpiInvert is an epidemiological method that estimates the time-varying reproduct
 
 ### Methods
 
-This package contains the following methods:
+This package combines the following methods:
 
-- 
+- [fixed sliding windows](methods_time.qmd#sec-fixedwindow)
+
+modified by a [variational method](methods_time.qmd#sec-var)
 
 ### Assessment
 

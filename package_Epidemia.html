@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Decision matrix – Disease outbreaks and metrics</title>
+<title>Epidemia – Disease outbreaks and metrics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -30,8 +49,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./methods.html" rel="next">
-<link href="./simulation_tool.html" rel="prev">
+<link href="./package_EpiEstim.html" rel="next">
+<link href="./package_earlyR.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -119,7 +138,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./decisiontree.html">Decision matrix</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_Epidemia.html">Epidemia</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -161,7 +180,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./decisiontree.html" class="sidebar-item-text sidebar-link active">
+  <a href="./decisiontree.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Decision matrix</span></a>
   </div>
 </li>
@@ -216,11 +235,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Packages</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./package_APEestim.html" class="sidebar-item-text sidebar-link">
@@ -241,7 +260,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package_Epidemia.html" class="sidebar-item-text sidebar-link">
+  <a href="./package_Epidemia.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Epidemia</span></a>
   </div>
 </li>
@@ -347,16 +366,16 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-assessment" id="toc-sec-assessment" class="nav-link active" data-scroll-target="#sec-assessment">Assessment framework</a></li>
+  <li><a href="#brief-description" id="toc-brief-description" class="nav-link active" data-scroll-target="#brief-description">Brief description</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/decisiontree.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_Epidemia.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_Epidemia.html">Epidemia</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Decision matrix</h1>
+<h1 class="title">Epidemia</h1>
 </div>
 
 
@@ -373,149 +392,44 @@ window.Quarto = {
 </header>
 
 
-<p><span class="math inline">\(R(t)\)</span> has two main uses:</p>
-<ol type="1">
-<li><strong>Retrospective</strong> understanding of the dynamics of historical outbreaks, and</li>
-<li><strong>Real time tracking</strong> ongoing infectious diseases.</li>
-</ol>
-<p>For 1, one might wish to understand the impact on transmission of vaccines or non pharmaceutical interventions, such as masking or physical distancing.</p>
-<p>For real time tracking of ongoing infectious diseases, there is often interest in determining if the current outbreak is getting worse, better or staying the same. In this case, live dashboards are often used to track <span class="math inline">\(R(t)\)</span> as new data on diagnosed cases emerges. This is currently done for COVID-19 and Influenza by the CDC and CA (add refs).</p>
-<p>In either application, <strong>delay distributions play a key role in estimating <span class="math inline">\(R(t)\)</span> for new infections.</strong> You can use the decision tool below to help choose which software package(s) may be right for your application:</p>
-<ol type="1">
-<li>Look first for the desired output that you want to produce</li>
-<li>Then make a decision about whether you want to incorporate delay distributions.</li>
-<li>Finally, estimate <span class="math inline">\(R(t)\)</span> using the packages that are appropriate for your use case</li>
-</ol>
-<p><small>See below the table for the assessment framework used to decide which packages to recommend.</small></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Focus of this matrix
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The table below focuses on <strong>R packages</strong> that esimate <span class="math inline">\(R(t)\)</span> using <strong>reported cases</strong>.</p>
-<p>Future efforts include expanding this table to include <strong>alternative data sources</strong> (e.g., wastewater) and packages in <strong>other coding languages</strong> (e.g., Python). See the <a href="./packages.html">packages list</a> for an index of currently reviewed packages.</p>
-</div>
-</div>
-<style>
-  table td, table th {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-</style>
-
-<table class="caption-top table" data-quarto-postprocess="true">
-<caption>Decision matrix for choosing an R package for R(t) estimation</caption>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 80%">
+</colgroup>
 <tbody>
-<tr class="odd" style="border-top: none; background-color: lightgrey;">
-<td data-quarto-table-cell-role="th" style="font-weight: bold; width: 30%">Desired output</td>
-<td data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold; width: 25%;">Incorporates Delay distributions?</td>
-<td data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold; width: 45%;">Package</td>
+<tr class="odd">
+<td style="text-align: left;">REF</td>
+<td style="text-align: left;"><span class="citation" data-cites="Flaxman2020Estimating">Flaxman et al. (<a href="#ref-Flaxman2020Estimating" role="doc-biblioref">2020</a>)</span></td>
 </tr>
-<tr class="even" style="border-top: 2px solid;">
-<td rowspan="2" style="vertical-align: middle"><u>Forecasting</u>: what will R(t) be next week</td>
-<td style="text-align: center;">Yes</td>
-<td style="text-align: center;"><a href="package_EpiNow2.html">EpiNow2</a></td>
+<tr class="even">
+<td style="text-align: left;">Docs</td>
+<td style="text-align: left;"><a href="https://imperialcollegelondon.github.io/epidemia/index.html">imperialcollegelondon.github.io/epidemia</a></td>
 </tr>
-<tr class="odd" style="border-top: 0.75px solid;">
-<td style="text-align: center;">No</td>
-<td style="text-align: center;"><a href="package_EpiInvert.html">EpiInvert</a></td>
+<tr class="odd">
+<td style="text-align: left;">Github</td>
+<td style="text-align: left;"><a href="https://github.com/ImperialCollegeLondon/epidemia">github.com/ImperialCollegeLondon/epidemia</a></td>
 </tr>
-<tr class="even" style="border-top: 2px solid;">
-<td rowspan="2" style="vertical-align: middle"><u>Nowcasting</u>: what was R(t) in the past week</td>
-<td style="text-align: center;">Yes</td>
-<td style="text-align: center;"><a href="package_EpiNow2.html">EpiNow2</a>, <a href="package_epinowcast.html">epinowcast</a></td>
+<tr class="even">
+<td style="text-align: left;">Last commit</td>
+<td style="text-align: left;">Feb 12, 2021</td>
 </tr>
-<tr class="odd" style="border-top: 0.75px solid;">
-<td style="text-align: center;">No</td>
-<td style="text-align: center;"><a href="package_EpiLPS.html">EpiLPS</a>, <a href="package_EpiInverg.html">EpiInvert</a></td>
-</tr>
-<tr class="even" style="border-top: 2px solid;">
-<td rowspan="2" style="vertical-align: middle"><u>Historical</u>: what was R(t) over the past month</td>
-<td style="text-align: center;">Yes</td>
-<td style="text-align: center;"><a href="package_EpiNow2.html">EpiNow2</a></td>
-</tr>
-<tr class="odd" style="border-bottom: 2px solid;border-top: 0.75px solid;">
-<td style="text-align: center;">No</td>
-<td style="text-align: center;"><a href="package_EpiLPS.html">EpiLPS</a>, <a href="package_EpiEstim.html">EpiEstim</a></td>
+<tr class="odd">
+<td style="text-align: left;">Installation</td>
+<td style="text-align: left;">Broken, see below</td>
 </tr>
 </tbody>
 </table>
+<section id="brief-description" class="level3">
+<h3 class="anchored" data-anchor-id="brief-description">Brief description</h3>
+<p>This package <a href="https://github.com/ImperialCollegeLondon/epidemia/issues/67">cannot currently be installed</a> so no further analysis is provided at this time</p>
 
 
-<section id="sec-assessment" class="level3">
-<h3 class="anchored" data-anchor-id="sec-assessment">Assessment framework</h3>
-<p>An objective comparison of the performance of the methods in these packages would be highly complex, given the following challenges:</p>
-<ul>
-<li>These packages are really a combination of mathematical modeling, available data, and implementation. Any evaluation would have to disaggregate these features.</li>
-<li>Some of the most widely-used packages are not accompanied with a peer-reviewed manuscript that describes or evaluates the theory behind modeling choices.</li>
-<li>Each package contains a subset of the methods below for constraining <span class="math inline">\(R(t)\)</span> in time, but with subtle variations in implementation and presentation that are often not well-documented and have large implications on evaluation metrics.</li>
-<li>Some packages have not been recently updated, and even those that have are not maintained on Installation, instead leaving updates on a development version on GitHub.</li>
-<li>Performance may vary widely considering additional factors like ease of implementation and computational time.</li>
-<li>it also may be the case that some methods of temporal smoothing work better in some cases versus other (very low case counts, rapid changes)</li>
-</ul>
-<p>Indeed, many published validation efforts are often not “apples to apples”, i.e., comparing two models that are using different amounts of information in estimating R(t). For example, comparing a model that has used only data before time before t to estimate R(t) versus a model that uses the entire historical record to estimate R(t) at time t.</p>
-<p>Instead, we present some quantifiable reflections on various aspects of utilizing each package. :</p>
-<table class="caption-top table" data-quarto-postprocess="true">
-<caption>Assessment rubric</caption>
-<tbody>
-<tr class="odd" style="border-top: none;">
-<td data-quarto-table-cell-role="th" style="font-weight: bold; width: 30%">Category</td>
-<td data-quarto-table-cell-role="th" style="font-weight: bold; width: 50%">Notes</td>
-<td data-quarto-table-cell-role="th" style="font-weight: bold; width: 20%">Metric</td>
-</tr>
-<tr class="even" data-columnspan="3" data-,="" style="background-color: lightgrey;border-top: 2px solid;margin-top: 1;margin-bottom: 1; line-height: 1;font-size: 0.8em;">
-<td>Features</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>Ability to nowcast/forecast</td>
-<td>Does the package have functionality to incorporate both right-truncated data from reporting delays and forecasting of near-future cases and/or R(t) values</td>
-<td>☐ Yes/no</td>
-</tr>
-<tr class="even">
-<td>Incorporates delay distributions</td>
-<td>Does the package have methodology for incorporating delay distributions (e.g., transmission times, administrative delays)</td>
-<td>☐ Yes/no</td>
-</tr>
-<tr class="odd">
-<td>Estimates expected cases</td>
-<td>Does the package provide an estimate of expected cases and/or infections, or just R(t)</td>
-<td>☐ Yes/no</td>
-</tr>
-<tr class="even">
-<td>Communicates uncertainty</td>
-<td>Does the package detail how uncertainty is incorporated into presented outputs</td>
-<td>☐ Yes/no</td>
-</tr>
-<tr class="odd" data-columnspan="3" data-,="" style="background-color: lightgrey;border-top: 2px solid;margin-top: 1;margin-bottom: 1; line-height: 1;font-size: 0.8em;">
-<td>Documentation</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Documentation of package methods</td>
-<td>Is there a written report (or published manuscript) that describes the theory behind modeling choices and/or implementation</td>
-<td>☐ Yes/no</td>
-</tr>
-<tr class="odd">
-<td>Documentation of package implementation</td>
-<td>Are there sufficiently detailed vignettes that would permit a new user to implement key package features</td>
-<td>☐ Yes/no</td>
-</tr>
-</tbody>
-</table>
-
-
-
-
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Flaxman2020Estimating" class="csl-entry" role="listitem">
+Flaxman S, Mishra S, Gandy A, Unwin HJT, Mellan TA, Coupland H, et al. 2020. Estimating the effects of non-pharmaceutical interventions on <span>COVID</span>-19 in <span>Europe</span>. Nature 584:257–261; doi:<a href="https://doi.org/10.1038/s41586-020-2405-7">10.1038/s41586-020-2405-7</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -938,13 +852,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./simulation_tool.html" class="pagination-link" aria-label="Example outbreak">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Example outbreak</span>
+      <a href="./package_earlyR.html" class="pagination-link" aria-label="earlyR">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">earlyR</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./methods.html" class="pagination-link" aria-label="Explanation of methods">
-        <span class="nav-page-text">Explanation of methods</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./package_EpiEstim.html" class="pagination-link" aria-label="EpiEstim">
+        <span class="nav-page-text">EpiEstim</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -956,7 +870,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Reproductive Number R(t) - <a href="https://chadmilando.com/RtEstimBook/" target="_blank">https://chadmilando.com/RtEstimBook/</a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/decisiontree.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_Epidemia.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

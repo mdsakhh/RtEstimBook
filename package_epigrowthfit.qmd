@@ -3,9 +3,10 @@
 | | 
 |:---|:--------|
 | REF| @Earn2020Acceleration|
-| Docs| |
+| Docs| None |
 | Github|  [github.com/davidearn/epigrowthfit](https://github.com/davidearn/epigrowthfit)|
-| Installation | |
+| Last commit| Feb, 2025|
+| Installation | [CRAN](https://cran.r-project.org/web/packages/epigrowthfit/index.html) |
 : {tbl-colwidths="[20,80]"}
 
 ### Brief description
@@ -18,9 +19,7 @@ Maximum likelihood estimation of nonlinear mixed effects models of epidemic grow
 
 ### Methods
 
-This package contains the following methods:
-
-- 
+Given the lack of package documentation it is difficult to fully assess which methods are being implemented.
 
 ### Assessment
 
@@ -33,10 +32,14 @@ This package contains the following methods:
 | Communicates uncertainty| No|
 |<strong>Validation</strong>||
 | Documentation of package methods| No|
-| Documentation of package implementation| Yes|
+| Documentation of package implementation| No|
 : {tbl-colwidths="[40,60]"}
 
 
 ### Sample code
+
+There is no available vignette or manual on how to use this package other than function descriptions. 
+
+This [Github repository](https://github.com/davidearn/plague_growth) describes the methods used in @Earn2020Acceleration, but documentation is minimal.
 
 

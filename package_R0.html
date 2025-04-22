@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Glossary – Disease outbreaks and metrics</title>
+<title>R0 – Disease outbreaks and metrics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -49,8 +49,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
-<link href="./package_WhiteLabRt.html" rel="prev">
+<link href="./package_RtEstim.html" rel="next">
+<link href="./package_EstimateR.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -138,7 +138,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./glossary.html">Glossary</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_R0.html">R0</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -235,11 +235,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Packages</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./package_APEestim.html" class="sidebar-item-text sidebar-link">
@@ -326,7 +326,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package_R0.html" class="sidebar-item-text sidebar-link">
+  <a href="./package_R0.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">R0</span></a>
   </div>
 </li>
@@ -346,7 +346,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./glossary.html" class="sidebar-item-text sidebar-link active">
+  <a href="./glossary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Glossary</span></a>
   </div>
 </li>
@@ -361,15 +361,24 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#brief-description" id="toc-brief-description" class="nav-link active" data-scroll-target="#brief-description">Brief description</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
+  <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a></li>
+  <li><a href="#sample-code" id="toc-sample-code" class="nav-link" data-scroll-target="#sample-code">Sample code</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_R0.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_R0.html">R0</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Glossary</h1>
+<h1 class="title">R0</h1>
 </div>
 
 
@@ -386,26 +395,102 @@ window.Quarto = {
 </header>
 
 
-<section id="effectiveRt" class="level5">
-<h5 class="anchored" data-anchor-id="effectiveRt">Effective reproduction number</h5>
-<p>From <span class="citation" data-cites="Gostic2020Practical">Gostic et al. (<a href="references.html#ref-Gostic2020Practical" role="doc-biblioref">2020</a>)</span>:</p>
-<blockquote class="blockquote">
-<p>The effective reproductive number, denoted as or <span class="math inline">\(R_e\)</span> or <span class="math inline">\(R_t\)</span>, is the expected number of new infections caused by an infectious individual in a population where some individuals may no longer be susceptible</p>
-</blockquote>
-<p>Also called the instantaneous reproductive number.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 80%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">REF</td>
+<td style="text-align: left;"><span class="citation" data-cites="obadia2012r0">Obadia et al. (<a href="#ref-obadia2012r0" role="doc-biblioref">2012</a>)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Docs</td>
+<td style="text-align: left;">None</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Github</td>
+<td style="text-align: left;"><a href="https://github.com/tobadia/R0">https://github.com/tobadia/R0</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Last commit</td>
+<td style="text-align: left;">Feb, 2025</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Installation</td>
+<td style="text-align: left;"><a href="https://cran.r-project.org/web/packages/R0/index.html">CRAN</a></td>
+</tr>
+</tbody>
+</table>
+<section id="brief-description" class="level3">
+<h3 class="anchored" data-anchor-id="brief-description">Brief description</h3>
+<p>A package that implements existing methods to estimate <span class="math inline">\(R_0\)</span> and <span class="math inline">\(R_t\)</span>. The advantage of this package is that it standardizes data formats and the parameterization of the generation interval.</p>
+<p>This package was developed in 2012 before many of the current methods were developed and most of the methods that are described in the package are not commonly used.</p>
 </section>
-<section id="genInt" class="level5">
-<h5 class="anchored" data-anchor-id="genInt">Generation interval</h5>
-<p>The time between the infection date of an individual and the infection date of the person who infected them. This is typically described by a statistical distribution, such as a gamma, lognormal or weibull.</p>
+<section id="methods" class="level3">
+<h3 class="anchored" data-anchor-id="methods">Methods</h3>
+<p>This package contains the following methods:</p>
+<ul>
+<li>Function to define the generation interval. Options include empiric (i.e.&nbsp;multinomial), lognormal, gamma, and weibull distributions.</li>
+<li>Estimation of <span class="math inline">\(R_0\)</span> as a function of the attack rate (user must provide this).</li>
+<li>Method to estimate <span class="math inline">\(R_0\)</span> from the exponential growth rate described by <a href="https://pubmed.ncbi.nlm.nih.gov/17476782/"><code>Wallinga and Lipsitch</code></a>.</li>
+<li>Maximum likelihood based estimate of <span class="math inline">\(R_0\)</span> and serial interval introduced by <a href="https://pubmed.ncbi.nlm.nih.gov/18058829/"><code>White and Pagano</code></a>.</li>
+<li>Sequential Bayesian method to estimate time-varying reproductive number introduced by <a href="https://pubmed.ncbi.nlm.nih.gov/18478118/"><code>Bettencourt and Ribiero</code></a>.</li>
+<li>Retrospective estimation of the time-varying reproductive number introduced by <a href="https://pubmed.ncbi.nlm.nih.gov/15353409/"><code>Wallinga and Teunis</code></a>.</li>
+</ul>
 </section>
-<section id="serialInt" class="level5">
-<h5 class="anchored" data-anchor-id="serialInt">Serial interval</h5>
-<p>The time between the infection date of an individual and the infection date of the person who infected them. This is typically described by a statistical distribution, such as a gamma, lognormal or weibull.</p>
+<section id="assessment" class="level3">
+<h3 class="anchored" data-anchor-id="assessment">Assessment</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 60%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Features</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ability to nowcast/forecast</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Incorporates delay distributions</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Estimates expected cases</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Communicates uncertainty</td>
+<td style="text-align: left;">Some methods allow for this</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Validation</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Documentation of package methods</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Documentation of package implementation</td>
+<td style="text-align: left;">No</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sample-code" class="level3">
+<h3 class="anchored" data-anchor-id="sample-code">Sample code</h3>
+<p>No vignettes are given, <a href="https://github.com/tobadia/R0/blob/master/demo/epid.demo.R">this script</a> gives a very simple example, as does the <a href="https://github.com/tobadia/R0/tree/master/tests">tests</a> folder.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-Gostic2020Practical" class="csl-entry" role="listitem">
-Gostic KM, McGough L, Baskerville EB, Abbott S, Joshi K, Tedijanto C, et al. 2020. Practical considerations for measuring the effective reproductive number, <span>Rt</span>. PLOS Computational Biology 16:e1008409; doi:<a href="https://doi.org/10.1371/journal.pcbi.1008409">10.1371/journal.pcbi.1008409</a>.
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-obadia2012r0" class="csl-entry" role="listitem">
+Obadia T, Haneef R, Boëlle P-Y. 2012. The R0 package: A toolbox to estimate reproduction numbers for epidemic outbreaks. BMC medical informatics and decision making 12: 1–9.
 </div>
 </div>
 </section>
@@ -830,13 +915,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./package_WhiteLabRt.html" class="pagination-link" aria-label="WhiteLabRt">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">WhiteLabRt</span>
+      <a href="./package_EstimateR.html" class="pagination-link" aria-label="EstimateR">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">EstimateR</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./package_RtEstim.html" class="pagination-link" aria-label="RtEstim">
+        <span class="nav-page-text">RtEstim</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -848,7 +933,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Reproductive Number R(t) - <a href="https://chadmilando.com/RtEstimBook/" target="_blank">https://chadmilando.com/RtEstimBook/</a></p>
-<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/glossary.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_R0.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

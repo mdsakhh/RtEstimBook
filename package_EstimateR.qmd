@@ -2,11 +2,11 @@
 
 | | 
 |:---|:--------|
-| REF| |
-| Docs| |
-| Github|  |
-| Last commit| |
-| Installation | |
+| REF| @Scire2023estimateR|
+| Docs| [covid-19-re.github.io/estimateR/index.html](https://covid-19-re.github.io/estimateR/index.html)|
+| Github| [https://github.com/covid-19-Re/estimateR](https://github.com/covid-19-Re/estimateR) |
+| Last commit| Sep 10, 2024|
+| Installation | [via devtools](https://github.com/covid-19-Re/estimateR)|
 : {tbl-colwidths="[20,80]"}
 
 ### Brief description
@@ -22,7 +22,6 @@ Each of these tasks can be done separately and the users is not required to perf
 
 There is apparently an option to nowcast data described and implemented in the package, though provided mathematical details are limited.
 
-| [EstimateR](package_EstimateR.qmd) \| @Scire2023estimateR \| [🔗](https://github.com/covid-19-Re/estimateR) \| Sep 10, 2024\|
 
 ### Methods
 
@@ -30,94 +29,25 @@ This package contains the following methods:
 
 -   Data is smoothed using LOESS with a first order polynomial. Users should adapt the smoothing parameter consistent with the noise in the input data.
 -   Deconvolution with an Expectation-Maximization (EM) algorithm is used to create an estimate of the time series of infection events.
--   EpiEstim is used to estimate $R_t$ with a Bayesian framework.
+-   EpiEstim is used to estimate $R_t$ with a Bayesian framework, which uses [fixed sliding windows](methods_time.qmd#sec-fixedwindow).
 -   Block bootstrapping is used to estimate 95% confidence intervals.
 
-Details of the methods used are provided in the supplement of [`Scire et al. (2023)`](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-023-05428-4).
+Details of the methods used are provided in the supplement of @Scire2023estimateR
 
 ### Assessment
 
-```{=html}
-<table>
-    <caption>Assessment rubric</caption>
-    <!---HEADING --->
-    <tr style="border-top: none;">
-      <th style="font-weight: bold; width: 40%">Category</th>
-      <th style="font-weight: bold; width: 40%">Notes</th>
-      <th style="font-weight: bold; width: 20%">Scales</th>
-    </tr>
-    
-        <!------ SECTION 1: USAGE -------->
-    <tr columnspan="3", style="background-color: lightgrey;border-top: 2px solid;margin-top: 1;margin-bottom: 1; line-height: 1;font-size: 0.8em;">
-      <td> Usage </td>
-    </tr>
-
-    <tr>
-        <td>Runtime length</td>
-        <td>Comparison of Estimate R with epidemia and EpiNow2 on simulated data.</td>
-        <td>
-          EstimateR: 9s; epidemia: 14 min; EpiNow2: 25 min
-        </td>
-    </tr>
-      
-      <!------ SECTION 2: FEATURES -------->
-    <tr columnspan="3", style="background-color: lightgrey;border-top: 2px solid;margin-top: 1;margin-bottom: 1; line-height: 1;font-size: 0.8em;">
-      <td> Features </td>
-    </tr>
-        <tr>
-        <td>Ability to nowcast/forecast</td>
-        <td>Appears possible; limited details provided.</td>
-        <td>
-          Yes
-                  </td>
-    </tr>
-                    <tr>
-        <td>Incorporates delay distributions</td>
-        <td>Uses deconvolution.</td>
-        <td>
-          Yes
-        </td>
-    </tr>
-    
-                        <tr>
-        <td>Estimates expected cases </td>
-        <td>This is a separate module that is calculated.</td>
-        <td>
-          Yes
-        </td>
-    </tr>
-
-                        <tr>
-        <td>Communicates uncertainty</td>
-        <td>Uses Block boostrapping to create 95% CIs.</td>
-        <td>
-Yes
-        </td>
-    </tr>
-
-      <!------ SECTION 3: Validation -------->
-    <tr columnspan="3", style="background-color: lightgrey;border-top: 2px solid;margin-top: 1;margin-bottom: 1; line-height: 1;font-size: 0.8em;">
-      <td> Validation </td>
-    </tr>
-    
-                        <tr>
-        <td>Documentation of package methods</td>
-        <td>Peer reviewed publication.</td>
-        <td>
-          Yes
-        </td>
-    </tr>
-    
-                        <tr>
-        <td>Documentation of package implementation</td>
-        <td>GitHub site and R package.</td>
-        <td>
-          Yes
-        </td>
-    </tr>
-
-
-</table>
-```
+| | 
+|:---|:--------|
+|<strong>Features</strong>||
+| Ability to nowcast/forecast| Nowcasting, but details are limited |
+| Incorporates delay distributions| Includes incubation period and reporting delay for clinical data |
+| Estimates expected cases| Doing this from wastewater or aggregated clincal case data |
+| Communicates uncertainty| Uncertainty from both EpiEstim approach, as well as assumptions made in estimating incident cases through resampling approach |
+|<strong>Validation</strong>||
+| Documentation of package methods| Yes|
+| Documentation of package implementation| Yes |
+: {tbl-colwidths="[40,60]"}
 
 ### Sample code
+
+See [here](https://covid-19-re.github.io/estimateR/articles/incidence_data_workflow_example.html) for an example of calculating R(t) from aggregated incidence data, as well as other examples. 

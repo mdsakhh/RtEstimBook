@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Explanation of methods – Disease outbreaks and metrics</title>
+<title>Constraining R(t) over time – Disease outbreaks and metrics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -49,8 +49,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./methods_introduction.html" rel="next">
-<link href="./decisiontree.html" rel="prev">
+<link href="./methods_additionaldata.html" rel="next">
+<link href="./methods_distributions.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -138,7 +138,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./methods.html">Explanation of methods</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./methods.html">Explanation of methods</a></li><li class="breadcrumb-item"><a href="./methods_time.html">Constraining <span class="math inline">\(R(t)\)</span> over time</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -186,7 +186,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./methods.html" class="sidebar-item-text sidebar-link active">
+            <a href="./methods.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Explanation of methods</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -207,7 +207,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./methods_time.html" class="sidebar-item-text sidebar-link">
+  <a href="./methods_time.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Constraining <span class="math inline">\(R(t)\)</span> over time</span></a>
   </div>
 </li>
@@ -366,16 +366,24 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#other-methods-not-discussed-here-include" id="toc-other-methods-not-discussed-here-include" class="nav-link active" data-scroll-target="#other-methods-not-discussed-here-include">Other methods not discussed here include:</a></li>
+  <li><a href="#sec-fixedwindow" id="toc-sec-fixedwindow" class="nav-link active" data-scroll-target="#sec-fixedwindow">Fixed sliding windows</a>
+  <ul class="collapse">
+  <li><a href="#sec-ape" id="toc-sec-ape" class="nav-link" data-scroll-target="#sec-ape">Accumulated Prediction Error (APE) framework</a></li>
+  <li><a href="#sec-var" id="toc-sec-var" class="nav-link" data-scroll-target="#sec-var">Modification via variational method</a></li>
+  <li><a href="#sec-disagg" id="toc-sec-disagg" class="nav-link" data-scroll-target="#sec-disagg">Disaggregation</a></li>
+  </ul></li>
+  <li><a href="#sec-randomwalk" id="toc-sec-randomwalk" class="nav-link" data-scroll-target="#sec-randomwalk">Random walk</a></li>
+  <li><a href="#sec-filtering" id="toc-sec-filtering" class="nav-link" data-scroll-target="#sec-filtering">Filtering</a></li>
+  <li><a href="#sec-gaussianprocess" id="toc-sec-gaussianprocess" class="nav-link" data-scroll-target="#sec-gaussianprocess">Gausian Process models</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/methods.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/methods_time.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./methods.html">Explanation of methods</a></li><li class="breadcrumb-item"><a href="./methods_time.html">Constraining <span class="math inline">\(R(t)\)</span> over time</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Explanation of methods</h1>
+<h1 class="title">Constraining <span class="math inline">\(R(t)\)</span> over time</h1>
 </div>
 
 
@@ -392,45 +400,76 @@ window.Quarto = {
 </header>
 
 
-<p>To aid with interpretation of package outputs, we summarize the currently used inputs, data, methods and assumptions in <span class="math inline">\(R(t)\)</span> estimation across the following categories:</p>
-<p> <a href="./methods_introduction.html">⎘</a>: How the relationship between <span class="math inline">\(R(t)\)</span> and infections is defined <br>  <a href="./methods_distributions.html">⎘</a>: How <span class="math inline">\(R(t)\)</span> is constrained using distributions for key variables<br>  <a href="./methods_time.html">⎘</a>: How <span class="math inline">\(R(t)\)</span> is constrained over time<br>  <a href="./methods_additionaldata.html">⎘</a>: Additional data and distributions that are used to constrain <span class="math inline">\(R(t)\)</span><br>  <a href="./methods_inference.html">⎘</a>: Inference frameworks that are used to estimate <span class="math inline">\(R(t)\)</span><br></p>
-<p>We also present:</p>
-<p> <a href="./simulation_tool.html#">⎘</a>: An Rshiny application for simulation of case data and <span class="math inline">\(R(t)\)</span><br>  <a href="./methods_research.html">⎘</a>: A list of open research questions<br></p>
-<p>We limit the methods discussed here to those for estimating historical to present-day <span class="math inline">\(R(t)\)</span> values using <strong>daily case count data</strong>, where a case can be flexibly defined as an individual with a reported positive test (either through healthcare-seeking behavior, routine surveillance, or a hospital admission).</p>
-<section id="other-methods-not-discussed-here-include" class="level3">
-<h3 class="anchored" data-anchor-id="other-methods-not-discussed-here-include">Other methods not discussed here include:</h3>
+<section id="overview" class="level4">
+<h4 class="anchored" data-anchor-id="overview">Overview</h4>
+<p>The largest variety in constraints of <span class="math inline">\(R(t)\)</span> exists in methods that impose structure on how <span class="math inline">\(R(t)\)</span> varies with time. Each method confers various assumptions and implications for resulting estimates of <span class="math inline">\(R(t)\)</span>, and new methods represent a large area of innovation with regards to real-time infectious disease modeling. With these constraints, we can make inference from sampled case-count data as a signal of unobserved infections in the larger unobserved population.</p>
+</section>
+<section id="sec-fixedwindow" class="level2">
+<h2 class="anchored" data-anchor-id="sec-fixedwindow">Fixed sliding windows</h2>
+<p>A straightforward method of imposing structure on <span class="math inline">\(R(t)\)</span> over time involves constraining <span class="math inline">\(R(t)\)</span> to be drawn from the same distribution within moving time subsets, called sliding windows.</p>
+<p>We add the prefix of “fixed-size” to distinguish from methods that may adapt the size of the sliding window over time.</p>
+<p>Consider the scenario where I(t) are drawn from a series of Poisson distributions and where R(t) are drawn from a series of Gamma distributions. Using a sliding window size, τ, of 5 days: * R(t) on days 2 to 6 are assumed to be drawn from the Gamma distribution with parameters <span class="math inline">\(a_1\)</span> and <span class="math inline">\(b_1\)</span>, * R(t) on days 3 to 7 are drawn from a Gamma distribution with parameters a_2 and b_2, and so on.</p>
+<p>In the above scenario, days 3 through 6 are in both windows and thus will be values that could be reasonably drawn from Gamma distributions with either <span class="math inline">\(a_1\)</span> and <span class="math inline">\(b_1\)</span> or <span class="math inline">\(a_2\)</span> and <span class="math inline">\(b_2\)</span>.</p>
+<p>Using an assumption of Gamma distributions for the prior distribution of ω and R(t), Cori et. al.&nbsp;(2013)18 analytically derived a posterior distribution R(t) using fixed-size sliding windows, which has the following directly calculated (rather than inferred) mean and coefficient of variation of <span class="math inline">\(R(t)\)</span>:</p>
+<p><span class="math display">\[
+E[R(t)]=[a+ ∑_(i=max⁡(1,   t-τ))^t▒I(i) ]/[1/b+∑_(i=max⁡(1,   t-τ))^t▒Λ(i) ]  
+\]</span></p>
+<p><span class="math display">\[
+C.V.[R(t)]=[a+ ∑_(i=max⁡(1,   t-τ))^t▒I(i) ]^(-1)               (Eq.7)
+\]</span></p>
+<p>Thus, sliding windows with larger τ improve the stability of the estimate of R(t) over smaller τ because the coefficient of variation of R(t) decreases as number of infections increases (see Web Appendix 1 of Cori et. al., 2013).18 Sliding windows are a key feature of EpiEstim.21</p>
+<p>There are limitations of this derived sliding window approach, articulated well in Gostic et. al., (2020)1 and summarized here:</p>
 <ul>
-<li>inference of <span class="math inline">\(R(t)\)</span> exclusively from alternative data sources (e.g., genetic data <span class="citation" data-cites="Walker2013Whole">(<a href="references.html#ref-Walker2013Whole" role="doc-biblioref">Walker et al. 2013</a>)</span>, behavioral data <span class="citation" data-cites="Bokanyi2023Real">(<a href="references.html#ref-Bokanyi2023Real" role="doc-biblioref">Bokányi et al. 2023</a>)</span>, or viral loads in waste-water <span class="citation" data-cites="Huisman2022Wastewater">(<a href="references.html#ref-Huisman2022Wastewater" role="doc-biblioref">Huisman et al. 2022</a>)</span>),</li>
-<li>calculations from compartmental, agent-based models, or network <span class="citation" data-cites="Driessche2002Reproduction">Bettencourt and Ribeiro (<a href="references.html#ref-Bettencourt2008Real" role="doc-biblioref">2008</a>)</span>.</li>
+<li><p>There is no posterior distribution for the expected value of incidence In the fixed size sliding window approach, τ must be explicitly defined prior to inference.</p></li>
+<li><p>Shorter τ will lead to quicker response but more variable estimates of R(t), which increases the risk of over-fitting. At the extreme, if the τ is set to 1 day, the resulting R(t) will recover exactly the infection data.</p></li>
+<li><p>In addition, there is debate in the literature about where in time the estimate of R(t) for each window should go: Gostic et. al., (2020)1 recommends using the midpoint of each sliding window rather than time t.</p></li>
+<li><p>The choice of both τ and the location of the estimate of R(t) within each window results in gaps in predictions for R(t), barring other modifications: at the end of the modeling period to account for reporting delays or time between the midpoint of τ and the end of τ, and at the beginning of the time period to allow for enough cases to materialize. Web Appendix 4 of Cori. et. al (2013) gives the following recommendation for when to calculate R(t): “Overall, we suggest starting estimating once those three criteria are fulfilled: at least after , at least after one mean serial interval, and when at least 12 cases have been observed since the beginning of the epidemic.” The default recommendation for τ is one week (7 days);18</p></li>
 </ul>
-<p>We also limit the discussion to packages in the statistical software R <span class="citation" data-cites="R2022R">(<a href="references.html#ref-R2022R" role="doc-biblioref">R Core Team 2022</a>)</span>, which may exclude some packages in other software programs that combine many of the methodological considerations discussed below <span class="citation" data-cites="Yang2022Bayesian">(<a href="references.html#ref-Yang2022Bayesian" role="doc-biblioref">Yang et al. 2022</a>)</span>.</p>
-<p>The methods discussed below and references to specific R packages are current as of December 1, 2024. We attempt to harmonize the mathematical choices between each package using terminology from each.</p>
+<section id="sec-ape" class="level3">
+<h3 class="anchored" data-anchor-id="sec-ape">Accumulated Prediction Error (APE) framework</h3>
+<p>Alternatively the package <a href="./package_APEestim.html">APEestim</a> integrates with <a href="./package_EpiEstim.html">EpiEstim</a> to propose a non-default choice of τ that minimizes one-step-ahead prediction errors (<span class="citation" data-cites="Parag2020Using">Parag and Donnelly (<a href="#ref-Parag2020Using" role="doc-biblioref">2020</a>)</span>).</p>
+<p>In APEestim, Parag et al.&nbsp;adapt an approximation known as the accumulated prediction error (APE) to identify the window length best justified by the available epi-curve, k*, to opitmizing the window length k.</p>
+</section>
+<section id="sec-var" class="level3">
+<h3 class="anchored" data-anchor-id="sec-var">Modification via variational method</h3>
+<p>In <a href="./package_EpiInvert.html">EpiInvert</a></p>
+</section>
+<section id="sec-disagg" class="level3">
+<h3 class="anchored" data-anchor-id="sec-disagg">Disaggregation</h3>
+<p>Package <a href="./package_ern.html">ern</a></p>
+</section>
+</section>
+<section id="sec-randomwalk" class="level2">
+<h2 class="anchored" data-anchor-id="sec-randomwalk">Random walk</h2>
+<p>Another method of constraining how $R(t)4 evolves in time is to define the relationship between R(t), infections, and time in a random walk or auto-regressive framework. In this framework, there are latent or unobserved variables, e.g., R(t), that depend on observed variables, e.g., I(t) via the renewal equation, and the evolution of the unobserved variables through time can be parameterized. The auto-regressive component means that the current value of R(t) is correlated via some mechanism with R(t-1) (and potentially other past values). The packages epidemia23 and EpiNow2 contain an implementations of a random walk procedure that look generally as follows:</p>
+<p>f(R(t))=f(R(t-1))+N(0,σ_R) (Eq.8) σ_R ~ HalfNormal(ρ,φ) (Eq.9)</p>
+<p>The random walk implies that adjacent R(t) values may be drawn from similar or even the same distribution, and would be correlated in time based on previous values. The variables ρ and φ are hyperparameters. The function f can be a transformation of R(t), e.g.&nbsp;in log space as in EpiNow2 to correct for the skewness of R(t), provide a variable that is more Gaussian, provide a variable that obeys the properties that we expect from R(t) (i.e., is non-negative), and aid in interpretability. The function f in epidemia contains more layers for pooled effects and group-level variables.</p>
+</section>
+<section id="sec-filtering" class="level2">
+<h2 class="anchored" data-anchor-id="sec-filtering">Filtering</h2>
+<p>Filtering is another way that R(t) is constrained in common packages. Filtering means […]. One way that a filter could be implemented is in a Hidden Markov Model.24 A simple forward-looking linear filter for R(t) in an Hidden Markov Model might look as follows, with a tuning parameter (η) to influence the amount that R(t) can vary between time-steps and a standard white noise component (ϵ):</p>
+<p>R(t)=R(t-1)+(η√(R(t-1) ))ϵ(t-1) (Eq.10)</p>
+<p>The package EpiFilter25 implements a two-stage filtering and smoothing method for estimating R(t). A key innovation of EpiFilter is that the states of historical R(t) are constrained to a predefined set of values; this dramatically reduces calculation time. The smoothing stage refines estimates of R(t) by incorporating future incidence, in this way using all available data in estimates of historical R(t). These modeling steps help avoid R(t) instability when infections are low and instability at the beginning and (more importantly) the end of the modeling period.</p>
+<p>Another way that filtering can be implemented is across the entire R(t) time-series.</p>
+<pre><code>RtEstim:28 https://dajmcdon.github.io/rtestim/articles/delay-distributions.html
+
+We propose a discrete spline-based approach, RtEstim, that solves a convex optimization problem—Poisson trend filtering—using the proximal Newton method. It produces a locally adaptive estimator for effective reproduction number estimation with heterogeneous smoothness.28
+EpiLPS:29</code></pre>
+<p>In EpiFilter, RtEstim, and EpiLPS, each R(t) estimated in this way thus contains information about past and pending infections, e.g., for R(t=i), the smoothing step will affect R(t=i) using information from 0&lt;i≤t_max. This complicates comparisons to outputs from other methods that only use historical information to estimate R(t), e.g., estimates for R(t=i) containing only information from t&lt;i.</p>
+</section>
+<section id="sec-gaussianprocess" class="level2">
+<h2 class="anchored" data-anchor-id="sec-gaussianprocess">Gausian Process models</h2>
+<p>Gaussian Process models26 are a more flexible method of constraining the evolution of R(t) in time than the methods discussed thus far (in fact, a random-walk process can be thought of as a simplified case of Gaussian Process model). In Gaussian Process modeling, a family of basis functions are fit to available data, permitting inference about continuous processes without needing to a priori define where inflection points occur. The core of Gaussian Process operations is a kernel, which is used to assess the similarity between input vectors, say x and x^’. There are many options for potential kernels, and each contains different hyperparameters that are used to control the amount of smoothing that is enforced, as well as other factors. One such choice is the squared exponential kernel:</p>
+<p>k(x,x^’ )=α^2 exp⁡[-(x-x^’ )<sup>2/(2l</sup>2 )] (Eq.10)</p>
+<p>In this kernel, the hyperparameters are the length scale, l, which controls the smoothness of the model, and the magnitude, α, which controls the range of values used in the fitting process. These parameters can be given prior distributions and fit using optimization. EpiNow2 uses contains options to use Gaussian Process models to control how R(t) in time. As one example, the relationship between first difference values of R(t) can be constrained using a zero-mean Gaussian Process model with the above kernel as the covariance function:</p>
+<pre><code>    log⁡〖R(t)=log⁡R(t-1)+ GP(0,k(R(t),〖R(t〗^')))〗       (Eq.11)
+    </code></pre>
+<p>The advantage of Gaussian Process models is that R(t) is enforced to change smoothly in time using Eq.10. Limitations include complexity and computational time: Gaussian Process models have a computational complexity of O(n^3) for n observations.27 Although EpiNow2 in practice implements faster approximations of Gaussian Process models,27 in general Gaussian Process runtimes and required computational resources are considerable as compared to other methods.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-Almutiry2021Continuous" class="csl-entry" role="listitem">
-Almutiry W, V VWK, Deardon R. 2021. Continuous <span>Time</span> <span>Individual</span>-<span>Level</span> <span>Models</span> of <span>Infectious</span> <span>Disease</span>: Package <span>EpiILMCT</span>. Journal of Statistical Software 98:1–44; doi:<a href="https://doi.org/10.18637/jss.v098.i10">10.18637/jss.v098.i10</a>.
-</div>
-<div id="ref-Bettencourt2008Real" class="csl-entry" role="listitem">
-Bettencourt LMA, Ribeiro RM. 2008. Real <span>Time</span> <span>Bayesian</span> <span>Estimation</span> of the <span>Epidemic</span> <span>Potential</span> of <span>Emerging</span> <span>Infectious</span> <span>Diseases</span>. PLOS ONE 3:e2185; doi:<a href="https://doi.org/10.1371/journal.pone.0002185">10.1371/journal.pone.0002185</a>.
-</div>
-<div id="ref-Bokanyi2023Real" class="csl-entry" role="listitem">
-Bokányi E, Vizi Z, Koltai J, Röst G, Karsai M. 2023. Real-time estimation of the effective reproduction number of <span>COVID</span>-19 from behavioral data. Scientific Reports 13:21452; doi:<a href="https://doi.org/10.1038/s41598-023-46418-z">10.1038/s41598-023-46418-z</a>.
-</div>
-<div id="ref-Driessche2002Reproduction" class="csl-entry" role="listitem">
-Driessche P van den, Watmough J. 2002. Reproduction numbers and sub-threshold endemic equilibria for compartmental models of disease transmission. Mathematical Biosciences 180:29–48; doi:<a href="https://doi.org/10.1016/S0025-5564(02)00108-6">10.1016/S0025-5564(02)00108-6</a>.
-</div>
-<div id="ref-Huisman2022Wastewater" class="csl-entry" role="listitem">
-Huisman JS, Scire J, Caduff L, Fernandez-Cassi X, Ganesanandamoorthy P, Kull A, et al. 2022. Wastewater-<span>Based</span> <span>Estimation</span> of the <span>Effective</span> <span>Reproductive</span> <span>Number</span> of <span>SARS</span>-<span>CoV</span>-2. Environmental Health Perspectives 130:057011; doi:<a href="https://doi.org/10.1289/EHP10050">10.1289/EHP10050</a>.
-</div>
-<div id="ref-R2022R" class="csl-entry" role="listitem">
-R Core Team. 2022. R-4.1.3.
-</div>
-<div id="ref-Walker2013Whole" class="csl-entry" role="listitem">
-Walker TM, Ip CL, Harrell RH, Evans JT, Kapatai G, Dedicoat MJ, et al. 2013. Whole-genome sequencing to delineate <span>Mycobacterium</span> tuberculosis outbreaks: A retrospective observational study. The Lancet Infectious Diseases 13:137–146; doi:<a href="https://doi.org/10.1016/S1473-3099(12)70277-3">10.1016/S1473-3099(12)70277-3</a>.
-</div>
-<div id="ref-Yang2022Bayesian" class="csl-entry" role="listitem">
-Yang X, Wang S, Xing Y, Li L, Xu RYD, Friston KJ, et al. 2022. Bayesian data assimilation for estimating instantaneous reproduction numbers during epidemics: Applications to <span>COVID</span>-19. PLoS Computational Biology 18:e1009807; doi:<a href="https://doi.org/10.1371/journal.pcbi.1009807">10.1371/journal.pcbi.1009807</a>.
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Parag2020Using" class="csl-entry" role="listitem">
+Parag KV, Donnelly CA. 2020. Using information theory to optimise epidemic models for real-time prediction and estimation. PLoS Computational Biology 16:e1007990; doi:<a href="https://doi.org/10.1371/journal.pcbi.1007990">10.1371/journal.pcbi.1007990</a>.
 </div>
 </div>
 </section>
@@ -855,13 +894,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./decisiontree.html" class="pagination-link" aria-label="Decision matrix">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Decision matrix</span>
+      <a href="./methods_distributions.html" class="pagination-link" aria-label="Distributions for key variables">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Distributions for key variables</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./methods_introduction.html" class="pagination-link" aria-label="Relating infections to $R(t)$">
-        <span class="nav-page-text">Relating infections to <span class="math inline">\(R(t)\)</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./methods_additionaldata.html" class="pagination-link" aria-label="Additional data">
+        <span class="nav-page-text">Additional data</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -873,7 +912,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Reproductive Number R(t) - <a href="https://chadmilando.com/RtEstimBook/" target="_blank">https://chadmilando.com/RtEstimBook/</a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/methods.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/methods_time.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

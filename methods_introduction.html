@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>APEestim – Disease outbreaks and metrics</title>
+<title>Relating infections to R(t) – Disease outbreaks and metrics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -49,8 +49,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./package_bayEStim.html" rel="next">
-<link href="./packages.html" rel="prev">
+<link href="./methods_distributions.html" rel="next">
+<link href="./methods.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -138,7 +138,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_APEestim.html">APEestim</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./methods.html">Explanation of methods</a></li><li class="breadcrumb-item"><a href="./methods_introduction.html">Relating infections to <span class="math inline">\(R(t)\)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -188,14 +188,14 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./methods.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Explanation of methods</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./methods_introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="./methods_introduction.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Relating infections to <span class="math inline">\(R(t)\)</span></span></a>
   </div>
 </li>
@@ -235,14 +235,14 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Packages</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package_APEestim.html" class="sidebar-item-text sidebar-link active">
+  <a href="./package_APEestim.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">APEestim</span></a>
   </div>
 </li>
@@ -366,19 +366,20 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#description" id="toc-description" class="nav-link active" data-scroll-target="#description">Description</a></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
-  <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a></li>
-  <li><a href="#sample-code" id="toc-sample-code" class="nav-link" data-scroll-target="#sample-code">Sample Code</a></li>
+  <li><a href="#renewal-equation-estimates-of-rt" id="toc-renewal-equation-estimates-of-rt" class="nav-link active" data-scroll-target="#renewal-equation-estimates-of-rt">Renewal equation estimates of R(t)</a>
+  <ul class="collapse">
+  <li><a href="#solving-for-rt" id="toc-solving-for-rt" class="nav-link" data-scroll-target="#solving-for-rt">Solving for <span class="math inline">\(R(t)\)</span></a></li>
+  </ul></li>
+  <li><a href="#empirical-estimates-of-rt" id="toc-empirical-estimates-of-rt" class="nav-link" data-scroll-target="#empirical-estimates-of-rt">Empirical estimates of <span class="math inline">\(R(t)\)</span></a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_APEestim.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/methods_introduction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_APEestim.html">APEestim</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./methods.html">Explanation of methods</a></li><li class="breadcrumb-item"><a href="./methods_introduction.html">Relating infections to <span class="math inline">\(R(t)\)</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">APEestim</h1>
+<h1 class="title">Relating infections to <span class="math inline">\(R(t)\)</span></h1>
 </div>
 
 
@@ -395,97 +396,89 @@ window.Quarto = {
 </header>
 
 
-<table class="caption-top table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 80%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">REF</td>
-<td style="text-align: left;"><span class="citation" data-cites="Parag2020Using">Parag and Donnelly (<a href="references.html#ref-Parag2020Using" role="doc-biblioref">2020</a>)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Docs</td>
-<td style="text-align: left;">None</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Github</td>
-<td style="text-align: left;"><a href="https://github.com/kpzoo/model-selection-for-epidemic-renewal-models">Github</a></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Last commit</td>
-<td style="text-align: left;">Feb 12, 2021</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Installation</td>
-<td style="text-align: left;">None, this is code to augment <a href="./package_EpiEstim.html">EpiEstim</a></td>
-</tr>
-</tbody>
-</table>
-<section id="description" class="level3">
-<h3 class="anchored" data-anchor-id="description">Description</h3>
-<div style="font-size:0.8em">
-Copied from the developer site<br><br>
+<section id="overview" class="level4">
+<h4 class="anchored" data-anchor-id="overview">Overview</h4>
+<p>There are two primary classes methods of estimating <span class="math inline">\(R(t)\)</span> from case count data that are used in most R software packages.</p>
+<ol type="1">
+<li><p>The first class of methods assumes there is a formulaic relationship between infections and reproduction number, a relationship known as the renewal equation <span class="citation" data-cites="Fraser2007Estimating">(<a href="#ref-Fraser2007Estimating" role="doc-biblioref">Fraser 2007</a>)</span>. These infections are then assumed to result in (some fraction of) the observed cases.</p></li>
+<li><p>A second class of methods involves empirically calculating a quantity that approximates the latent quantity represented by a reproduction number by fitting a curve to the case count time-series and finding the time-varying slope in log space (and then performing other transformations). Empirical calculations are discussed in detail below in our examination of ways in which <span class="math inline">\(R(t)\)</span> is constrained over time.</p></li>
+</ol>
+</section>
+<section id="renewal-equation-estimates-of-rt" class="level2">
+<h2 class="anchored" data-anchor-id="renewal-equation-estimates-of-rt">Renewal equation estimates of R(t)</h2>
+<p>The renewal equation relates <span class="math inline">\(R(t)\)</span> and infections on day <span class="math inline">\(t\)</span>, <span class="math inline">\(I(t)\)</span>, using a third parameter known as the <a class="definition" href="./glossary.html#genInt">generation interval</a>. The generation interval, <span class="math inline">\(ω\)</span>, is the time between infection in the infector and infection in the infectee, and assuming independence is the linear combination of incubation time, the time between infection and symptom onset in an individual, and transmission time, the time between symptom onset in the infector and infection of the infectee <span class="citation" data-cites="Lehtinen2021On">(<a href="#ref-Lehtinen2021On" role="doc-biblioref">Lehtinen et al. 2021</a>)</span>.</p>
+<p>A similar parameter to the generation interval is the <a class="definition" href="./glossary.html#serialInt">serial interval</a>, which is the time between symptom onset in the infector and symptom onset in the infectee. The serial interval and generation interval are interchangeable if the incubation time is independent from the transmission time, and some formulations of the renewal equation use generation interval.</p>
+<p>In this paper we use the generation interval <span class="math inline">\(ω\)</span> described by a probability mass function with non-zero values from day 1 (assuming that disease incubation takes at least 1 day) to a maximum day <span class="math inline">\(s\)</span>, i.e., the longest interval between symptom onset in infector and infectee.</p>
+<p>Taking care to note that <span class="math inline">\(R(t)\)</span> is undefined on day 0 since there has been no transmission yet (and assuming the initial infections are <span class="math inline">\(I(0)\)</span>), the formulation of the renewal equation is thus:</p>
+<p><span class="math display">\[
+I(t) = R(t) \sum_{i = \max(1, t - s + 1)}^{t} \omega(i) \, I(t - i)
+\]</span></p>
+<p>For brevity, we write the inner sum of (Eq.1) as:</p>
+<p><span class="math display">\[
+Λ(t) =  \sum_{i = \max(1, t - s + 1)}^{t} \omega(i) \, I(t - i)
+\]</span></p>
+<p>The assumptions of this formulation, as per <span class="citation" data-cites="Green2022Inferring">Green et al. (<a href="#ref-Green2022Inferring" role="doc-biblioref">2022</a>)</span>, are that incident infections can be described deterministically within each window of <span class="math inline">\([t-s+1,t]\)</span> and that the generation interval distribution does not change over the modeling time.</p>
+<p>A common reframing of the renewal equation is to equate <span class="math inline">\(R(t)\)</span> with an exponential growth rate, <span class="math inline">\(r\)</span>. Under specific conditions and within a small time window (<span class="math inline">\([t-s+1,t]\)</span>), infections can be assumed to grow exponentially at a constant rate <span class="math inline">\(r\)</span> <span class="citation" data-cites="Green2022Inferring">Wallinga and Lipsitch (<a href="#ref-Wallinga2006How" role="doc-biblioref">2006</a>)</span>. Using the time window <span class="math inline">\([t- s+1,t]\)</span> and assuming some initial infections <span class="math inline">\(k\)</span>, <span class="math inline">\(R(t)\)</span> for <span class="math inline">\([t- s+1,t]\)</span> can be inferred from only <span class="math inline">\(r\)</span> and <span class="math inline">\(ω\)</span>:</p>
+<p><span class="math display">\[
+I(t)=ke^rt
+\]</span> <span class="math display">\[
+R(t)= [\sum_{i = \max(1, t - s + 1)}^{t} \omega(i) \, e^{-ri}]^{-1}        
+\]</span></p>
+<p>Again, we will omit the writing the bounds for time in remaining formulae. A single <span class="math inline">\(R(t)\)</span> value, say <span class="math inline">\(R_0\)</span>, can also be put in the form of an infection attack rate, <span class="math inline">\(z\)</span> <span class="citation" data-cites="Musa2020Estimation">Musa et al. (<a href="#ref-Musa2020Estimation" role="doc-biblioref">2020</a>)</span>, or in the final size equation <span class="citation" data-cites="Ma2006Generality">Ma and Earn (<a href="#ref-Ma2006Generality" role="doc-biblioref">2006</a>)</span>, to estimate the proportion of all individuals that were affected by a disease with this <span class="math inline">\(R_0\)</span>:</p>
+<p><span class="math display">\[
+z=1-exp⁡(-R_0  z)                   
+\]</span></p>
+<p>The attack rate function and others are implemented in the package <a href="./package_epigrowthfit.html">epigrowthfit</a>. The major difference between calculating <span class="math inline">\(R(t)\)</span> from a renewal equation or an exponential growth rate equation is whether <span class="math inline">\(I(t)\)</span> is used. If for a given time window both r and ω can be estimated independently, then <span class="math inline">\(R(t)\)</span> can be inferred without infection data. Otherwise, infection data are needed to estimate <span class="math inline">\(R(t)\)</span>.</p>
+<section id="solving-for-rt" class="level3">
+<h3 class="anchored" data-anchor-id="solving-for-rt">Solving for <span class="math inline">\(R(t)\)</span></h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p><a href="./package_APEestim.html">APEestim</a> estimates the time-varying reproduction number on cases by date of infection (using a similar approach to that implemented in <a href="./package_EpiEstim.html">EpiEstim</a>).</p>
-<p>The quality of this estimate is highly dependent on the size of a smoothing window (k) that is employed. This code presents a method for optimally selecting k in a manner that balances reliable R(t) estimation with short-term forecasts of incidence. This method is based on the accumulated prediction error (APE) idea from information theory.</p>
+<div class="callout-title-container flex-fill">
+Solving for <span class="math inline">\(R(t)\)</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Using the renewal equation and given that <span class="math inline">\(I(t)\)</span> and <span class="math inline">\(ω\)</span> are known, <span class="math inline">\(R(t)\)</span> can be solved for algebraically starting with R(t=1) and iterating forwards in time. However, this will produce highly volatile estimates of <span class="math inline">\(R(t)\)</span> that recover the incidence curve directly.</p>
+</div>
+</div>
+<p>Solving directly for <span class="math inline">\(R(t)\)</span> at every timestep is undesirable for several reasons:</p>
+<ul>
+<li>real-world infectivity likely does not vary dramatically from day to day</li>
+<li>and real-world infection data are rarely complete, especially in an emerging epidemic, meaning that a certain amount of uncertainty must be incorporated into any estimation framework.</li>
+<li>In addition, infection incidence, <span class="math inline">\(I(t)\)</span>, are the data of interest but it is impossible to observe, so many calculations instead may use the observed reported cases, <span class="math inline">\(C(t)\)</span>, which requires some additional processing to incorporate into calculations of <span class="math inline">\(R(t)\)</span>.</li>
+</ul>
+<p>Therefore, a variety of constraints on <span class="math inline">\(R(t)\)</span> are added in the inferential process: using distributions on key variables, placing restrictions on how <span class="math inline">\(R(t)\)</span> varies through time, and with additional data sources and delay distributions. These choices dictate which estimation framework is used, which can add additional constraints.</p>
 </section>
-<section id="methods" class="level3">
-<h3 class="anchored" data-anchor-id="methods">Methods</h3>
-<p>This package aims to improve upon the limitation of <a href="./methods_time.html#sec-fixedwindow">fixed sliding windows</a>, specifically by optimizing the choice of the window size in an <a href="./methods_time.html#sec-ape">APE Framework</a>.</p>
 </section>
-<section id="assessment" class="level3">
-<h3 class="anchored" data-anchor-id="assessment">Assessment</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 40%">
-<col style="width: 60%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><strong>Features</strong></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Ability to nowcast/forecast</td>
-<td style="text-align: left;">No</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Incorporates delay distributions</td>
-<td style="text-align: left;">No</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Estimates expected cases</td>
-<td style="text-align: left;">No</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Communicates uncertainty</td>
-<td style="text-align: left;">Yes</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Validation</strong></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Documentation of package methods</td>
-<td style="text-align: left;">Yes</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Documentation of package implementation</td>
-<td style="text-align: left;">No</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="sample-code" class="level3">
-<h3 class="anchored" data-anchor-id="sample-code">Sample Code</h3>
-<p>See <a href="https://github.com/kpzoo/model-selection-for-epidemic-renewal-models/blob/master/apeExamples.R">this file</a> in the Github repo.</p>
+<section id="empirical-estimates-of-rt" class="level2">
+<h2 class="anchored" data-anchor-id="empirical-estimates-of-rt">Empirical estimates of <span class="math inline">\(R(t)\)</span></h2>
+<p>In contrast to models that assume that renewal equation defines the relationship between infections and <span class="math inline">\(R(t)\)</span>, smoothing or regression models calculate time-varying <span class="math inline">\(R(t)\)</span> directly from slope of the log of the infections time-series. Using this method, the relationship between <span class="math inline">\(R(t)\)</span> and infections is empirically defined, being only constrained by the smoothing parameters of curve fit to infections data. Several R packages contain methods for this type of smoothing, e.g., <a href="./package_EpiLPS.html">EpiLPS</a>, <a href="./package_EpiNow2.html">EpiNow2</a></p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-Parag2020Using" class="csl-entry" role="listitem">
-Parag KV, Donnelly CA. 2020. Using information theory to optimise epidemic models for real-time prediction and estimation. PLoS Computational Biology 16:e1007990; doi:<a href="https://doi.org/10.1371/journal.pcbi.1007990">10.1371/journal.pcbi.1007990</a>.
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Fraser2007Estimating" class="csl-entry" role="listitem">
+Fraser C. 2007. Estimating <span>Individual</span> and <span>Household</span> <span>Reproduction</span> <span>Numbers</span> in an <span>Emerging</span> <span>Epidemic</span>. PLOS ONE 2:e758; doi:<a href="https://doi.org/10.1371/journal.pone.0000758">10.1371/journal.pone.0000758</a>.
+</div>
+<div id="ref-Green2022Inferring" class="csl-entry" role="listitem">
+Green WD, Ferguson NM, Cori A. 2022. Inferring the reproduction number using the renewal equation in heterogeneous epidemics. Journal of The Royal Society Interface 19:20210429; doi:<a href="https://doi.org/10.1098/rsif.2021.0429">10.1098/rsif.2021.0429</a>.
+</div>
+<div id="ref-Lehtinen2021On" class="csl-entry" role="listitem">
+Lehtinen S, Ashcroft P, Bonhoeffer S. 2021. On the relationship between serial interval, infectiousness profile and generation time. Journal of The Royal Society Interface 18:20200756; doi:<a href="https://doi.org/10.1098/rsif.2020.0756">10.1098/rsif.2020.0756</a>.
+</div>
+<div id="ref-Ma2020Estimating" class="csl-entry" role="listitem">
+Ma J. 2020. Estimating epidemic exponential growth rate and basic reproduction number. Infectious Disease Modelling 5:129–141; doi:<a href="https://doi.org/10.1016/j.idm.2019.12.009">10.1016/j.idm.2019.12.009</a>.
+</div>
+<div id="ref-Ma2006Generality" class="csl-entry" role="listitem">
+Ma J, Earn DJD. 2006. Generality of the <span>Final</span> <span>Size</span> <span>Formula</span> for an <span>Epidemic</span> of a <span>Newly</span> <span>Invading</span> <span>Infectious</span> <span>Disease</span>. Bulletin of Mathematical Biology 68:679–702; doi:<a href="https://doi.org/10.1007/s11538-005-9047-7">10.1007/s11538-005-9047-7</a>.
+</div>
+<div id="ref-Musa2020Estimation" class="csl-entry" role="listitem">
+Musa SS, Zhao S, Wang MH, Habib AG, Mustapha UT, He D. 2020. Estimation of exponential growth rate and basic reproduction number of the coronavirus disease 2019 (<span>COVID</span>-19) in <span>Africa</span>. Infectious Diseases of Poverty 9:96; doi:<a href="https://doi.org/10.1186/s40249-020-00718-y">10.1186/s40249-020-00718-y</a>.
+</div>
+<div id="ref-Wallinga2006How" class="csl-entry" role="listitem">
+Wallinga J, Lipsitch M. 2006. How generation intervals shape the relationship between growth rates and reproductive numbers. Proceedings of the Royal Society B: Biological Sciences 274:599–604; doi:<a href="https://doi.org/10.1098/rspb.2006.3754">10.1098/rspb.2006.3754</a>.
 </div>
 </div>
 </section>
@@ -910,13 +903,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./packages.html" class="pagination-link" aria-label="Packages">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Packages</span>
+      <a href="./methods.html" class="pagination-link" aria-label="Explanation of methods">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Explanation of methods</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./package_bayEStim.html" class="pagination-link" aria-label="bayEstim">
-        <span class="nav-page-text">bayEstim</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./methods_distributions.html" class="pagination-link" aria-label="Distributions for key variables">
+        <span class="nav-page-text">Distributions for key variables</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -928,7 +921,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Reproductive Number R(t) - <a href="https://chadmilando.com/RtEstimBook/" target="_blank">https://chadmilando.com/RtEstimBook/</a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_APEestim.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/methods_introduction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

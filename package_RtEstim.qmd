@@ -2,18 +2,18 @@
 
 | | 
 |:---|:--------|
-| REF| |
-| Docs| |
+| REF| @Liu2024rtestim|
+| Docs| [https://dajmcdon.github.io/rtestim/](https://dajmcdon.github.io/rtestim/)|
 | Github|  |
 | Last commit| |
-| Installation | |
+| Installation | [via devtools](https://dajmcdon.github.io/rtestim/)|
 : {tbl-colwidths="[20,80]"}
 
 ### Brief description
 
 Rtestim is a method that uses the renewal equation and a provided serial interval distribution to estimate $R_t$. Distinct from other methods, it uses a frequentist approach with an L1 smoothing penalty which decreases computation time and allows for locally adaptive estimates. The method estimates confidence bands for $R_t$ and incidence.
 
-| [RtEstim](package_RtEstim.qmd) | @Liu2024rtestim | [🔗](https://github.com/dajmcdon/rtestim) | Sep 25, 2024|
+| [RtEstim](package_RtEstim.qmd) |  | [🔗](https://github.com/dajmcdon/rtestim) | Sep 25, 2024|
 
 ### Methods
 
@@ -23,92 +23,22 @@ This package contains the following methods:
 - L1 smoothing
 - Cross validation to select tuning parameters for the smoother
 
+This approach is similar to [filtering](methods_time.qmd#sec-filtering)
+
 ### Assessment
 
-```{=html}
-<table>
-    <caption>Assessment rubric</caption>
-    <!---HEADING --->
-    <tr style="border-top: none;">
-      <th style="font-weight: bold; width: 40%">Category</th>
-      <th style="font-weight: bold; width: 40%">Notes</th>
-      <th style="font-weight: bold; width: 20%">Scales</th>
-    </tr>
-    
-        <!------ SECTION 1: USAGE -------->
-    <tr columnspan="3", style="background-color: lightgrey;border-top: 2px solid;margin-top: 1;margin-bottom: 1; line-height: 1;font-size: 0.8em;">
-      <td> Usage </td>
-    </tr>
-
-    <tr>
-        <td>Runtime length</td>
-        <td>Not provided, but states that runs take seconds.</td>
-        <td>
-          Not provided.
-        </td>
-    </tr>
-      
-      <!------ SECTION 2: FEATURES -------->
-    <tr columnspan="3", style="background-color: lightgrey;border-top: 2px solid;margin-top: 1;margin-bottom: 1; line-height: 1;font-size: 0.8em;">
-      <td> Features </td>
-    </tr>
-        <tr>
-        <td>Ability to nowcast/forecast</td>
-        <td>Not described.</td>
-        <td>
-          No
-                  </td>
-    </tr>
-                    <tr>
-        <td>Incorporates delay distributions</td>
-        <td>Not described.</td>
-        <td>
-          No
-        </td>
-    </tr>
-    
-                        <tr>
-        <td>Estimates expected cases </td>
-        <td>Predicts this based on estimated $R_t$.</td>
-        <td>
-          Yes
-        </td>
-    </tr>
-
-                        <tr>
-        <td>Communicates uncertainty</td>
-        <td>Provides 95% confidence bands.</td>
-        <td>
-Yes
-        </td>
-    </tr>
-
-      <!------ SECTION 3: Validation -------->
-    <tr columnspan="3", style="background-color: lightgrey;border-top: 2px solid;margin-top: 1;margin-bottom: 1; line-height: 1;font-size: 0.8em;">
-      <td> Validation </td>
-    </tr>
-    
-                        <tr>
-        <td>Documentation of package methods</td>
-        <td>Published paper in Plos Comp Biol.</td>
-        <td>
-          Yes
-        </td>
-    </tr>
-    
-                        <tr>
-        <td>Documentation of package implementation</td>
-        <td>R package and details [`here`](https://dajmcdon.github.io/rtestim/).</td>
-        <td>
-          Yes
-        </td>
-    </tr>
-
-
-</table>
-
-```
-
-
+| | 
+|:---|:--------|
+|<strong>Features</strong>||
+| Ability to nowcast/forecast| No|
+| Incorporates delay distributions| No|
+| Estimates expected cases| Predicts based on estimated $R_t$|
+| Communicates uncertainty| Yes|
+|<strong>Validation</strong>||
+| Documentation of package methods| Yes|
+| Documentation of package implementation| Yes|
+: {tbl-colwidths="[40,60]"}
 
 ### Sample code
+
+The package website has [this helpful vignette](https://dajmcdon.github.io/rtestim/articles/rtestim.html).

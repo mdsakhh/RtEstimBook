@@ -49,15 +49,26 @@ Future efforts include expanding this table to include **alternative data source
     <tr style="border-top: 2px solid;">
         
          <td rowspan="2" style="vertical-align: middle;"> 
+        
             <u>Forecasting</u>: what will R(t) be next week
+        
         </td>
+        
         <td style="text-align: center;">Yes</td>
-        <td style="text-align: center;"><a href="package_EpiNow2.html">EpiNow2</a></td>
+        <td style="text-align: center;">
+        
+          <a href="package_EpiNow2.html">EpiNow2</a>
+        
+        </td>
         
     </tr><tr style="border-top: 0.75px solid;">
 
         <td style="text-align: center;">No</td>
-        <td style="text-align: center;"><a href="package_EpiInvert.html">EpiInvert</a></td>
+        <td style="text-align: center;">
+        
+          <a href="package_EpiInvert.html">EpiInvert</a>
+        
+        </td>
         
     </tr>
     
@@ -68,16 +79,30 @@ Future efforts include expanding this table to include **alternative data source
     <tr style="border-top: 2px solid;">
         
          <td rowspan="2" style="vertical-align: middle;"> 
+         
             <u>Nowcasting</u>: what was R(t) in the past week
+        
         </td>
+        
         <td style="text-align: center;">Yes</td>
-        <td style="text-align: center;"><a href="package_EpiNow2.html">EpiNow2</a>,
-        <a href="package_epinowcast.html">epinowcast</a></td>
+        <td style="text-align: center;">'
+          
+          <a href="package_EpiNow2.html">EpiNow2</a>,
+          
+          <a href="package_epinowcast.html">EpiNowcast</a>,
+          
+          <a href="package_EstimateR.html">EstimateR</a>
+          
+        </td>
     </tr><tr style="border-top: 0.75px solid;">
 
         <td style="text-align: center;">No</td>
         <td style="text-align: center;">
-          <a href="package_EpiLPS.html">EpiLPS</a>, <a href="package_EpiInverg.html">EpiInvert</a>
+        
+          <a href="package_EpiLPS.html">EpiLPS</a>, 
+          
+          <a href="package_EpiInvert.html">EpiInvert</a>
+          
         </td>
         
     </tr>
@@ -95,7 +120,13 @@ Future efforts include expanding this table to include **alternative data source
         <td style="text-align: center;">Yes</td>
         
         <td style="text-align: center;">
-          <a href="package_EpiNow2.html">EpiNow2</a>
+          
+          <a href="package_EpiNow2.html">EpiNow2</a>,
+          
+          <a href="package_epinowcast.html">EpiNowcast</a>,
+          
+          <a href="package_EstimateR.html">EstimateR</a>
+          
         </td>
     </tr> 
     
@@ -104,9 +135,18 @@ Future efforts include expanding this table to include **alternative data source
   <td style="text-align: center;">No</td>
     
     <td style="text-align: center;">
-      <a href="package_EpiLPS.html">EpiLPS</a>,
-      <a href="package_EpiEstim.html">EpiEstim</a>
-        </td>
+    
+      <a href="package_EpiLPS.html">EpiLPS</a>, 
+      
+      <a href="package_EpiInvert.html">EpiInvert</a>,
+      
+      <a href="package_RtEstim.html">RtEstim</a>,
+      
+      <a href="package_EpiEstim.html">EpiEstim</a>,
+      
+      <a href="package_R0.html">R0</a>
+    
+    </td>
         
         </tr>
     

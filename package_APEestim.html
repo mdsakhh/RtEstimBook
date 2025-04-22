@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>epigrowthfit – Disease outbreaks and metrics</title>
+<title>APEestim – Disease outbreaks and metrics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -49,8 +49,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./package_EpiInvert.html" rel="next">
-<link href="./package_EpiFusion.html" rel="prev">
+<link href="./package_bayEStim.html" rel="next">
+<link href="./packages.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -138,7 +138,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_epigrowthfit.html">epigrowthfit</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_APEestim.html">APEestim</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -242,7 +242,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package_APEestim.html" class="sidebar-item-text sidebar-link">
+  <a href="./package_APEestim.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">APEestim</span></a>
   </div>
 </li>
@@ -284,7 +284,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package_epigrowthfit.html" class="sidebar-item-text sidebar-link active">
+  <a href="./package_epigrowthfit.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">epigrowthfit</span></a>
   </div>
 </li>
@@ -366,19 +366,19 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#brief-description" id="toc-brief-description" class="nav-link active" data-scroll-target="#brief-description">Brief description</a></li>
+  <li><a href="#description" id="toc-description" class="nav-link active" data-scroll-target="#description">Description</a></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
   <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a></li>
-  <li><a href="#sample-code" id="toc-sample-code" class="nav-link" data-scroll-target="#sample-code">Sample code</a></li>
+  <li><a href="#sample-code" id="toc-sample-code" class="nav-link" data-scroll-target="#sample-code">Sample Code</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_epigrowthfit.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_APEestim.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_epigrowthfit.html">epigrowthfit</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_APEestim.html">APEestim</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">epigrowthfit</h1>
+<h1 class="title">APEestim</h1>
 </div>
 
 
@@ -403,35 +403,37 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">REF</td>
-<td style="text-align: left;"><span class="citation" data-cites="Earn2020Acceleration">Earn et al. (<a href="references.html#ref-Earn2020Acceleration" role="doc-biblioref">2020</a>)</span></td>
+<td style="text-align: left;"><span class="citation" data-cites="Parag2020Using">Parag and Donnelly (<a href="#ref-Parag2020Using" role="doc-biblioref">2020</a>)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Docs</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">None</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Github</td>
-<td style="text-align: left;"><a href="https://github.com/davidearn/epigrowthfit">github.com/davidearn/epigrowthfit</a></td>
+<td style="text-align: left;"><a href="https://github.com/kpzoo/model-selection-for-epidemic-renewal-models">Github</a></td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Last commit</td>
+<td style="text-align: left;">Feb 12, 2021</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">Installation</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">None, this is code to augment <a href="./package_EpiEstim.html">EpiEstim</a></td>
 </tr>
 </tbody>
 </table>
-<section id="brief-description" class="level3">
-<h3 class="anchored" data-anchor-id="brief-description">Brief description</h3>
+<section id="description" class="level3">
+<h3 class="anchored" data-anchor-id="description">Description</h3>
 <div style="font-size:0.8em">
-<p>Copied from the developer site.<br><be></be></p>
+Copied from the developer site<br><br>
 </div>
-<p>Maximum likelihood estimation of nonlinear mixed effects models of epidemic growth using Template Model Builder (‘TMB’). Enables joint estimation for collections of disease incidence time series, including time series that describe multiple epidemic waves. Supports a set of widely used phenomenological models: exponential, logistic, Richards (generalized logistic), subexponential, and Gompertz. Provides methods for interrogating model objects and several auxiliary functions, including one for computing basic reproduction numbers from fitted values of the initial exponential growth rate. Preliminary versions of this software were applied in Ma et al.&nbsp;(2014) <a href="doi:10.1007/s11538-013-9918-2" class="uri">doi:10.1007/s11538-013-9918-2</a> and in Earn et al.&nbsp;(2020) <a href="doi:10.1073/pnas.2004904117" class="uri">doi:10.1073/pnas.2004904117</a></p>
+<p><a href="./package_APEestim.html">APEestim</a> estimates the time-varying reproduction number on cases by date of infection (using a similar approach to that implemented in <a href="./package_EpiEstim.html">EpiEstim</a>).</p>
+<p>The quality of this estimate is highly dependent on the size of a smoothing window (k) that is employed. This code presents a method for optimally selecting k in a manner that balances reliable R(t) estimation with short-term forecasts of incidence. This method is based on the accumulated prediction error (APE) idea from information theory.</p>
 </section>
 <section id="methods" class="level3">
 <h3 class="anchored" data-anchor-id="methods">Methods</h3>
-<p>This package contains the following methods:</p>
-<ul>
-<li></li>
-</ul>
+<p>This package aims to improve upon the limitation of <a href="./methods_time.html#sec-fixedwindow">fixed sliding windows</a>, specifically by optimizing the choice of the window size in an <a href="./methods_time.html#sec-ape">APE Framework</a>.</p>
 </section>
 <section id="assessment" class="level3">
 <h3 class="anchored" data-anchor-id="assessment">Assessment</h3>
@@ -459,7 +461,7 @@ window.Quarto = {
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Communicates uncertainty</td>
-<td style="text-align: left;">No</td>
+<td style="text-align: left;">Yes</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>Validation</strong></td>
@@ -467,22 +469,23 @@ window.Quarto = {
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Documentation of package methods</td>
-<td style="text-align: left;">No</td>
+<td style="text-align: left;">Yes</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Documentation of package implementation</td>
-<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="sample-code" class="level3">
-<h3 class="anchored" data-anchor-id="sample-code">Sample code</h3>
+<h3 class="anchored" data-anchor-id="sample-code">Sample Code</h3>
+<p>See <a href="https://github.com/kpzoo/model-selection-for-epidemic-renewal-models/blob/master/apeExamples.R">this file</a> in the Github repo.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-Earn2020Acceleration" class="csl-entry" role="listitem">
-Earn DJD, Ma J, Poinar H, Dushoff J, Bolker BM. 2020. Acceleration of plague outbreaks in the second pandemic. Proceedings of the National Academy of Sciences 117:27703–27711; doi:<a href="https://doi.org/10.1073/pnas.2004904117">10.1073/pnas.2004904117</a>.
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Parag2020Using" class="csl-entry" role="listitem">
+Parag KV, Donnelly CA. 2020. Using information theory to optimise epidemic models for real-time prediction and estimation. PLoS Computational Biology 16:e1007990; doi:<a href="https://doi.org/10.1371/journal.pcbi.1007990">10.1371/journal.pcbi.1007990</a>.
 </div>
 </div>
 </section>
@@ -907,13 +910,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./package_EpiFusion.html" class="pagination-link" aria-label="EpiFusion">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">EpiFusion</span>
+      <a href="./packages.html" class="pagination-link" aria-label="Packages">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Packages</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./package_EpiInvert.html" class="pagination-link" aria-label="EpiInvert">
-        <span class="nav-page-text">EpiInvert</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./package_bayEStim.html" class="pagination-link" aria-label="bayEstim">
+        <span class="nav-page-text">bayEstim</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -925,7 +928,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Reproductive Number R(t) - <a href="https://chadmilando.com/RtEstimBook/" target="_blank">https://chadmilando.com/RtEstimBook/</a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_epigrowthfit.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_APEestim.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

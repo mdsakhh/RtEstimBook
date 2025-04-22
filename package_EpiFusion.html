@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Epidemia – Disease outbreaks and metrics</title>
+<title>EpiFusion – Disease outbreaks and metrics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -49,8 +49,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./package_EpiEstim.html" rel="next">
-<link href="./package_earlyR.html" rel="prev">
+<link href="./package_epigrowthfit.html" rel="next">
+<link href="./package_EpiFilter.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -138,7 +138,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_Epidemia.html">Epidemia</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_EpiFusion.html">EpiFusion</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -260,7 +260,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package_Epidemia.html" class="sidebar-item-text sidebar-link active">
+  <a href="./package_Epidemia.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Epidemia</span></a>
   </div>
 </li>
@@ -278,7 +278,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package_EpiFusion.html" class="sidebar-item-text sidebar-link">
+  <a href="./package_EpiFusion.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">EpiFusion</span></a>
   </div>
 </li>
@@ -367,15 +367,18 @@ window.Quarto = {
    
   <ul>
   <li><a href="#brief-description" id="toc-brief-description" class="nav-link active" data-scroll-target="#brief-description">Brief description</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
+  <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a></li>
+  <li><a href="#sample-code" id="toc-sample-code" class="nav-link" data-scroll-target="#sample-code">Sample code</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_Epidemia.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_EpiFusion.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_Epidemia.html">Epidemia</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_EpiFusion.html">EpiFusion</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Epidemia</h1>
+<h1 class="title">EpiFusion</h1>
 </div>
 
 
@@ -400,34 +403,88 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">REF</td>
-<td style="text-align: left;"><span class="citation" data-cites="Flaxman2020Estimating">Flaxman et al. (<a href="references.html#ref-Flaxman2020Estimating" role="doc-biblioref">2020</a>)</span></td>
+<td style="text-align: left;"><span class="citation" data-cites="Judge2024EpiFusion">Judge et al. (<a href="#ref-Judge2024EpiFusion" role="doc-biblioref">2024</a>)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Docs</td>
-<td style="text-align: left;"><a href="https://imperialcollegelondon.github.io/epidemia/index.html">imperialcollegelondon.github.io/epidemia</a></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Github</td>
-<td style="text-align: left;"><a href="https://github.com/ImperialCollegeLondon/epidemia">github.com/ImperialCollegeLondon/epidemia</a></td>
+<td style="text-align: left;"><a href="https://github.com/ciarajudge/EpiFusion">github.com/ciarajudge/EpiFusion</a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Last commit</td>
-<td style="text-align: left;">Feb 12, 2021</td>
+<td style="text-align: left;">Nov, 2024</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Installation</td>
-<td style="text-align: left;">Broken, see below</td>
+<td style="text-align: left;"></td>
 </tr>
 </tbody>
 </table>
 <section id="brief-description" class="level3">
 <h3 class="anchored" data-anchor-id="brief-description">Brief description</h3>
-<p>This package <a href="https://github.com/ImperialCollegeLondon/epidemia/issues/67">cannot currently be installed</a> so no further analysis is provided at this time</p>
+<div style="font-size:0.8em">
+<p>Brief summary of EpiFusion method from the paper<br><br></p>
+</div>
+<p>EpiFusion is a Bayesian framework designed to estimate the effective reproduction number by jointly analyzing epidemiological (case incidence) and phylodynamic (genomic) data using particle filtering within a particle Markov Chain Monte Carlo (pMCMC) framework. It addresses the limitations of using only epidemiological or genomic data, particularly in under-sampled outbreaks. EpiFusion combines a stochastic infection dynamics model with dual observation models: one for case incidence data and another for phylodynamic tree data. The approach involves sequential particle filtering to simulate infection trajectories, with particles weighted and resampled based on their fit to both data sources. Parameter inference is achieved through Metropolis-Hastings MCMC. EpiFusion has been validated through simulations, benchmarking against existing tools, and application to real-world outbreaks, including the 2014 Ebola outbreak in Sierra Leone.</p>
+</section>
+<section id="methods" class="level3">
+<h3 class="anchored" data-anchor-id="methods">Methods</h3>
+<p>This package contains methods that estimate <span class="math inline">\(R(t)\)</span> from both phylodynamic (time-scaled trees estimated from genetic sequences) and epidemiological (case incidence) data. Therefore, a discussion of these methods is somewhat outside the scope of this document.</p>
+</section>
+<section id="assessment" class="level3">
+<h3 class="anchored" data-anchor-id="assessment">Assessment</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 60%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Features</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ability to nowcast/forecast</td>
+<td style="text-align: left;">No, Designed for retrospective analysis</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Incorporates delay distributions</td>
+<td style="text-align: left;">Yes, Handles delays between infection and reporting implicitly</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Estimates expected cases</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Communicates uncertainty</td>
+<td style="text-align: left;">Yes, Highest Posterior Density (HPD) intervals</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Validation</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Documentation of package methods</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Documentation of package implementation</td>
+<td style="text-align: left;">No</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sample-code" class="level3">
+<h3 class="anchored" data-anchor-id="sample-code">Sample code</h3>
+<p>Tutorials for how to use EpiFusion are given in <a href="https://github.com/ciarajudge/EpiFusion/tree/main/examples">this Github repository</a>.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-Flaxman2020Estimating" class="csl-entry" role="listitem">
-Flaxman S, Mishra S, Gandy A, Unwin HJT, Mellan TA, Coupland H, et al. 2020. Estimating the effects of non-pharmaceutical interventions on <span>COVID</span>-19 in <span>Europe</span>. Nature 584:257–261; doi:<a href="https://doi.org/10.1038/s41586-020-2405-7">10.1038/s41586-020-2405-7</a>.
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Judge2024EpiFusion" class="csl-entry" role="listitem">
+Judge C, Vaughan T, Russell T, Abbott S, Plessis L, Stadler T, et al. 2024. EpiFusion: Joint inference of the effective reproduction number by integrating phylodynamic and epidemiological modelling with particle filtering. PLOS Computational Biology 20:e1012528; doi:<a href="https://doi.org/10.1371/journal.pcbi.1012528">10.1371/journal.pcbi.1012528</a>.
 </div>
 </div>
 </section>
@@ -852,13 +909,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./package_earlyR.html" class="pagination-link" aria-label="earlyR">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">earlyR</span>
+      <a href="./package_EpiFilter.html" class="pagination-link" aria-label="EpiFilter">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">EpiFilter</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./package_EpiEstim.html" class="pagination-link" aria-label="EpiEstim">
-        <span class="nav-page-text">EpiEstim</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./package_epigrowthfit.html" class="pagination-link" aria-label="epigrowthfit">
+        <span class="nav-page-text">epigrowthfit</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -870,7 +927,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Reproductive Number R(t) - <a href="https://chadmilando.com/RtEstimBook/" target="_blank">https://chadmilando.com/RtEstimBook/</a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_Epidemia.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_EpiFusion.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

@@ -2,11 +2,11 @@
 
 | | 
 |:---|:--------|
-| REF| |
-| Docs| |
-| Github|  |
-| Last commit| |
-| Installation | |
+| REF| @obadia2012r0 |
+| Docs| None |
+| Github| [https://github.com/tobadia/R0](https://github.com/tobadia/R0) |
+| Last commit| Feb, 2025 |
+| Installation | [CRAN](https://cran.r-project.org/web/packages/R0/index.html)|
 : {tbl-colwidths="[20,80]"}
 
 ### Brief description
@@ -15,7 +15,6 @@ A package that implements existing methods to estimate $R_0$ and $R_t$. The adva
 
 This package was developed in 2012 before many of the current methods were developed and most of the methods that are described in the package are not commonly used.
 
-| [R0](package_R0.qmd) | @obadia2012r0 | [🔗](https://github.com/tobadia/R0) | Sep 20, 2023|
 
 ### Methods
 
@@ -30,90 +29,19 @@ This package contains the following methods:
 
 ### Assessment
 
-```{=html}
-<table>
-    <caption>Assessment rubric</caption>
-    <!---HEADING --->
-    <tr style="border-top: none;">
-      <th style="font-weight: bold; width: 40%">Category</th>
-      <th style="font-weight: bold; width: 40%">Notes</th>
-      <th style="font-weight: bold; width: 20%">Scales</th>
-    </tr>
-    
-        <!------ SECTION 1: USAGE -------->
-    <tr columnspan="3", style="background-color: lightgrey;border-top: 2px solid;margin-top: 1;margin-bottom: 1; line-height: 1;font-size: 0.8em;">
-      <td> Usage </td>
-    </tr>
-
-    <tr>
-        <td>Runtime length</td>
-        <td>Not described. But methods used are not computationally complex.</td>
-        <td>
-          N/A
-        </td>
-    </tr>
-      
-      <!------ SECTION 2: FEATURES -------->
-    <tr columnspan="3", style="background-color: lightgrey;border-top: 2px solid;margin-top: 1;margin-bottom: 1; line-height: 1;font-size: 0.8em;">
-      <td> Features </td>
-    </tr>
-        <tr>
-        <td>Ability to nowcast/forecast</td>
-        <td>Not available in the provided methods.</td>
-        <td>
-          No
-                  </td>
-    </tr>
-                    <tr>
-        <td>Incorporates delay distributions</td>
-        <td>Not available in the provided methods</td>
-        <td>
-          No
-        </td>
-    </tr>
-    
-                        <tr>
-        <td>Estimates expected cases </td>
-        <td>Not available in the provided methods</td>
-        <td>
-          No
-        </td>
-    </tr>
-
-                        <tr>
-        <td>Communicates uncertainty</td>
-        <td>Some methods allow for this.</td>
-        <td>
-Yes
-        </td>
-    </tr>
-
-      <!------ SECTION 3: Validation -------->
-    <tr columnspan="3", style="background-color: lightgrey;border-top: 2px solid;margin-top: 1;margin-bottom: 1; line-height: 1;font-size: 0.8em;">
-      <td> Validation </td>
-    </tr>
-    
-                        <tr>
-        <td>Documentation of package methods</td>
-        <td>Peer reviewed paper published describing the package.</td>
-        <td>
-          Yes
-        </td>
-    </tr>
-    
-                        <tr>
-        <td>Documentation of package implementation</td>
-        <td>Package is on Installation.</td>
-        <td>
-          Yes
-        </td>
-    </tr>
-
-
-</table>
-
-```
-
-
+| | 
+|:---|:--------|
+|<strong>Features</strong>||
+| Ability to nowcast/forecast| No |
+| Incorporates delay distributions| No |
+| Estimates expected cases| No |
+| Communicates uncertainty| Some methods allow for this |
+|<strong>Validation</strong>||
+| Documentation of package methods| Yes|
+| Documentation of package implementation| No |
+: {tbl-colwidths="[40,60]"}
 
 ### Sample code
+
+No vignettes are given, [this script](https://github.com/tobadia/R0/blob/master/demo/epid.demo.R) gives a very simple example, as does the [tests](https://github.com/tobadia/R0/tree/master/tests) folder.
+

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>epinowcast – Disease outbreaks and metrics</title>
+<title>EpiLPS – Disease outbreaks and metrics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -30,8 +49,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./package_ern.html" rel="next">
-<link href="./package_EpiNow2.html" rel="prev">
+<link href="./package_EpiNow2.html" rel="next">
+<link href="./package_EpiInvert.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -119,7 +138,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_epinowcast.html">epinowcast</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_EpiLPS.html">EpiLPS</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -277,7 +296,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package_EpiLPS.html" class="sidebar-item-text sidebar-link">
+  <a href="./package_EpiLPS.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">EpiLPS</span></a>
   </div>
 </li>
@@ -289,7 +308,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package_epinowcast.html" class="sidebar-item-text sidebar-link active">
+  <a href="./package_epinowcast.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">epinowcast</span></a>
   </div>
 </li>
@@ -347,19 +366,19 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#description" id="toc-description" class="nav-link active" data-scroll-target="#description">Description</a></li>
+  <li><a href="#brief-description" id="toc-brief-description" class="nav-link active" data-scroll-target="#brief-description">Brief description</a></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
   <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a></li>
-  <li><a href="#sample-code" id="toc-sample-code" class="nav-link" data-scroll-target="#sample-code">Sample code</a></li>
+  <li><a href="#starter-code" id="toc-starter-code" class="nav-link" data-scroll-target="#starter-code">Starter code</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_epinowcast.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_EpiLPS.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_epinowcast.html">epinowcast</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_EpiLPS.html">EpiLPS</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">epinowcast</h1>
+<h1 class="title">EpiLPS</h1>
 </div>
 
 
@@ -384,7 +403,7 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">REF</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;"><span class="citation" data-cites="Gressani2022EpiLPS">Gressani et al. (<a href="#ref-Gressani2022EpiLPS" role="doc-biblioref">2022</a>)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Docs</td>
@@ -392,11 +411,11 @@ window.Quarto = {
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Github</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;"><a href="https://github.com/oswaldogressani/EpiLPS">github.com/oswaldogressani/EpiLPS</a></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Last commit</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">Last Commit</td>
+<td style="text-align: left;">Oct, 2024</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Installation</td>
@@ -404,13 +423,12 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<section id="description" class="level3">
-<h3 class="anchored" data-anchor-id="description">Description</h3>
-<div class="line-block"><a href="./package_epinowcast.html">epinowcast</a> | Abbott S, Lison A, Funk S, Pearson C, Gruson H, Guenther F, DeWitt M | <a href="https://github.com/epinowcast/epinowcast">🔗</a>| Sep 30, 2024 |</div>
+<section id="brief-description" class="level3">
+<h3 class="anchored" data-anchor-id="brief-description">Brief description</h3>
 <div style="font-size:0.8em">
-<p>Copied from the developer site<br><br></p>
+<p>Brief summary of the method from the paper<br><br></p>
 </div>
-<p>Tools to enable flexible and efficient hierarchical nowcasting of right-truncated epidemiological time-series using a semi-mechanistic Bayesian model with support for a range of reporting and generative processes. Nowcasting, in this context, is gaining situational awareness using currently available observations and the reporting patterns of historical observations. This can be useful when tracking the spread of infectious disease in real-time: without nowcasting, changes in trends can be obfuscated by partial reporting or their detection may be delayed due to the use of simpler methods like truncation. While the package has been designed with epidemiological applications in mind, it could be applied to any set of right-truncated time-series count data.</p>
+<p>EpiLPS is a Bayesian tool for estimating the time-varying reproduction number using a robust, efficient approach. It models case counts with a Negative Binomial distribution to handle overdispersion and employs Bayesian P-splines for smoothing epidemic curves. The methodology leverages Laplace approximations to estimate the posterior distribution of the spline coefficients rapidly. Two inference methods are provided: a fast maximum a posteriori approach for quick estimates and an MCMC scheme using Langevin dynamics for thorough posterior sampling. EpiLPS delivers accurate estimates without arbitrary smoothing assumptions and has been applied to SARS-CoV-1, H1N1, and COVID-19 datasets.</p>
 </section>
 <section id="methods" class="level3">
 <h3 class="anchored" data-anchor-id="methods">Methods</h3>
@@ -421,71 +439,56 @@ window.Quarto = {
 </section>
 <section id="assessment" class="level3">
 <h3 class="anchored" data-anchor-id="assessment">Assessment</h3>
-<table class="caption-top table" data-quarto-postprocess="true">
-<caption>Assessment rubric</caption>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 60%">
+</colgroup>
 <tbody>
-<tr class="odd" style="border-top: none;">
-<td data-quarto-table-cell-role="th" style="font-weight: bold; width: 40%">Category</td>
-<td data-quarto-table-cell-role="th" style="font-weight: bold; width: 40%">Notes</td>
-<td data-quarto-table-cell-role="th" style="font-weight: bold; width: 20%">Scales</td>
-</tr>
-<tr class="even" data-columnspan="3" data-,="" style="background-color: lightgrey;border-top: 2px solid;margin-top: 1;margin-bottom: 1; line-height: 1;font-size: 0.8em;">
-<td>Usage</td>
-<td></td>
-<td></td>
-</tr>
 <tr class="odd">
-<td>Runtime length</td>
-<td>Some description</td>
-<td>Time (minutes)</td>
-</tr>
-<tr class="even" data-columnspan="3" data-,="" style="background-color: lightgrey;border-top: 2px solid;margin-top: 1;margin-bottom: 1; line-height: 1;font-size: 0.8em;">
-<td>Features</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>Ability to nowcast/forecast</td>
-<td>Some description</td>
-<td>☐ Yes/no</td>
+<td style="text-align: left;"><strong>Features</strong></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td>Incorporates delay distributions</td>
-<td>Some description</td>
-<td>☐ Yes/no</td>
+<td style="text-align: left;">Ability to nowcast/forecast</td>
+<td style="text-align: left;">Nowcasting,adjusts for underreporting by estimating unreported infections and combining them with reported cases to reflect actual daily epidemics</td>
 </tr>
 <tr class="odd">
-<td>Estimates expected cases</td>
-<td>Some description</td>
-<td>☐ Yes/no</td>
+<td style="text-align: left;">Incorporates delay distributions</td>
+<td style="text-align: left;">Some, It accounts for the uncertainty associated with reporting delays</td>
 </tr>
 <tr class="even">
-<td>Communicates uncertainty</td>
-<td>Some description</td>
-<td>☐ Yes/no</td>
-</tr>
-<tr class="odd" data-columnspan="3" data-,="" style="background-color: lightgrey;border-top: 2px solid;margin-top: 1;margin-bottom: 1; line-height: 1;font-size: 0.8em;">
-<td>Validation</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Documentation of package methods</td>
-<td>Some description</td>
-<td>☐ Yes/no</td>
+<td style="text-align: left;">Estimates expected cases</td>
+<td style="text-align: left;">Yes</td>
 </tr>
 <tr class="odd">
-<td>Documentation of package implementation</td>
-<td>Some description</td>
-<td>☐ Yes/no</td>
+<td style="text-align: left;">Communicates uncertainty</td>
+<td style="text-align: left;">Yes, The credible intervals are calculated via the delta method</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Validation</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Documentation of package methods</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Documentation of package implementation</td>
+<td style="text-align: left;">Yes</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="sample-code" class="level3">
-<h3 class="anchored" data-anchor-id="sample-code">Sample code</h3>
+<section id="starter-code" class="level3">
+<h3 class="anchored" data-anchor-id="starter-code">Starter code</h3>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Gressani2022EpiLPS" class="csl-entry" role="listitem">
+Gressani O, Wallinga J, Althaus CL, Hens N, Faes C. 2022. EpiLPS: A fast and flexible <span>Bayesian</span> tool for estimation of the time-varying reproduction number. PLOS Computational Biology 18:e1010618; doi:<a href="https://doi.org/10.1371/journal.pcbi.1010618">10.1371/journal.pcbi.1010618</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -908,13 +911,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./package_EpiNow2.html" class="pagination-link" aria-label="EpiNow2">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">EpiNow2</span>
+      <a href="./package_EpiInvert.html" class="pagination-link" aria-label="EpiInvert">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">EpiInvert</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./package_ern.html" class="pagination-link" aria-label="ern">
-        <span class="nav-page-text">ern</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./package_EpiNow2.html" class="pagination-link" aria-label="EpiNow2">
+        <span class="nav-page-text">EpiNow2</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -926,7 +929,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Reproductive Number R(t) - <a href="https://chadmilando.com/RtEstimBook/" target="_blank">https://chadmilando.com/RtEstimBook/</a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_epinowcast.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_EpiLPS.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

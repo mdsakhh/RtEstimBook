@@ -8,11 +8,6 @@ To aid with interpretation of package outputs, we summarize the currently used i
 &emsp;[⎘](methods_additionaldata.qmd): Additional data and distributions that are used to constrain $R(t)$<br>
 &emsp;[⎘](methods_inference.qmd): Inference frameworks that are used to estimate $R(t)$<br>
 
-We also present:
-
-&emsp;[⎘](simulation_tool.qmd#): An Rshiny application for simulation of case data and $R(t)$<br>
-&emsp;[⎘](methods_research.qmd): A list of open research questions<br>
-
 We limit the methods discussed here to those for estimating historical to present-day $R(t)$ values using **daily case count data**, where a case can be flexibly defined as an individual with a reported positive test (either through healthcare-seeking behavior, routine surveillance, or a hospital admission). 
 
 ### Other methods not discussed here include:
@@ -22,5 +17,5 @@ We limit the methods discussed here to those for estimating historical to presen
 
 We also limit the discussion to packages in the statistical software R [@R2022R], which may exclude some packages in other software programs that combine many of the methodological considerations discussed below [@Yang2022Bayesian]. 
 
-The methods discussed below and references to specific R packages are current as of December 1, 2024. We attempt to harmonize the mathematical choices between each package using terminology from each.
+ We attempt to harmonize the mathematical choices between each package using terminology from each.
 
