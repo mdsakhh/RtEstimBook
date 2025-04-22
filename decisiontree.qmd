@@ -89,7 +89,7 @@ Future efforts include expanding this table to include **alternative data source
           
           <a href="package_EpiNow2.html">EpiNow2</a>,
           
-          <a href="package_epinowcast.html">EpiNowcast</a>,
+          <a href="package_epinowcast.html">epinowcast</a>,
           
           <a href="package_EstimateR.html">EstimateR</a>
           
@@ -123,7 +123,7 @@ Future efforts include expanding this table to include **alternative data source
           
           <a href="package_EpiNow2.html">EpiNow2</a>,
           
-          <a href="package_epinowcast.html">EpiNowcast</a>,
+          <a href="package_epinowcast.html">epinowcast</a>,
           
           <a href="package_EstimateR.html">EstimateR</a>
           

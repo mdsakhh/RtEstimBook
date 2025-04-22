@@ -25,6 +25,7 @@ Forecasting is also supported for the time-varying reproduction number, infectio
 This package contains the following methods:
 
 - [Gaussian Process](methods_time.qmd#sec-gaussianprocess)
+- [random walk](#sec-randomwalk)
 
 
 ### Assessment
