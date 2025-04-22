@@ -1,0 +1,16 @@
+# bayEstim {.unnumbered}
+
+| | 
+|:---|:--------|
+| REF| [Lytras et al. preprint](https://www.medrxiv.org/content/10.1101/2020.09.19.20198028v1)|
+| Docs| None|
+| Github| [github.com/thlytras/bayEStim](https://github.com/thlytras/bayEStim) |
+| Last commit| Aug 3, 2020|
+| Installation | None|
+: {tbl-colwidths="[20,80]"}
+
+### Brief description
+
+Package never submitted to CRAN, no further action taken
+
+

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – Disease outbreaks and metrics</title>
+<title>EstimateR – Disease outbreaks and metrics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -49,7 +49,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./glossary.html" rel="prev">
+<link href="./package_R0.html" rel="next">
+<link href="./package_ern.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -137,7 +138,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_EstimateR.html">EstimateR</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -234,11 +235,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Packages</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./package_APEestim.html" class="sidebar-item-text sidebar-link">
@@ -319,7 +320,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package_EstimateR.html" class="sidebar-item-text sidebar-link">
+  <a href="./package_EstimateR.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">EstimateR</span></a>
   </div>
 </li>
@@ -351,7 +352,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -360,15 +361,24 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#brief-description" id="toc-brief-description" class="nav-link active" data-scroll-target="#brief-description">Brief description</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
+  <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a></li>
+  <li><a href="#sample-code" id="toc-sample-code" class="nav-link" data-scroll-target="#sample-code">Sample code</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_EstimateR.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_EstimateR.html">EstimateR</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title">EstimateR</h1>
 </div>
 
 
@@ -385,11 +395,111 @@ window.Quarto = {
 </header>
 
 
-<div id="refs" role="list">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 80%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">REF</td>
+<td style="text-align: left;"><span class="citation" data-cites="Scire2023estimateR">Scire et al. (<a href="references.html#ref-Scire2023estimateR" role="doc-biblioref">2023</a>)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Docs</td>
+<td style="text-align: left;"><a href="https://covid-19-re.github.io/estimateR/index.html">covid-19-re.github.io/estimateR/index.html</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Github</td>
+<td style="text-align: left;"><a href="https://github.com/covid-19-Re/estimateR">https://github.com/covid-19-Re/estimateR</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Last commit</td>
+<td style="text-align: left;">Sep 10, 2024</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Installation</td>
+<td style="text-align: left;"><a href="https://github.com/covid-19-Re/estimateR">via devtools</a></td>
+</tr>
+</tbody>
+</table>
+<section id="brief-description" class="level3">
+<h3 class="anchored" data-anchor-id="brief-description">Brief description</h3>
+<p>EstimateR is a package that is built on the EpiEstim framework for estimating <span class="math inline">\(R_t\)</span> and includes steps to smooth, backcalculate data to infection dates and create confidence intervals for estimates. Specifically, the method takes observed observations of infection events, such as case confirmations, hospital admissions, intensive care unit admissions, or deaths and performs the following four steps:</p>
+<ul>
+<li>Smooth the data to reduce noise in the data.</li>
+<li>Backcalculate data to date of infection.</li>
+<li>Estimate <span class="math inline">\(R_t\)</span> using EpiEstim.</li>
+<li>Calculate 95% confidence intervals using bootstrapping.</li>
+</ul>
+<p>Each of these tasks can be done separately and the users is not required to perform all tasks.</p>
+<p>There is apparently an option to nowcast data described and implemented in the package, though provided mathematical details are limited.</p>
+</section>
+<section id="methods" class="level3">
+<h3 class="anchored" data-anchor-id="methods">Methods</h3>
+<p>This package contains the following methods:</p>
+<ul>
+<li>Data is smoothed using LOESS with a first order polynomial. Users should adapt the smoothing parameter consistent with the noise in the input data.</li>
+<li>Deconvolution with an Expectation-Maximization (EM) algorithm is used to create an estimate of the time series of infection events.</li>
+<li>EpiEstim is used to estimate <span class="math inline">\(R_t\)</span> with a Bayesian framework, which uses <a href="./methods_time.html#sec-fixedwindow">fixed sliding windows</a>.</li>
+<li>Block bootstrapping is used to estimate 95% confidence intervals.</li>
+</ul>
+<p>Details of the methods used are provided in the supplement of <span class="citation" data-cites="Scire2023estimateR">Scire et al. (<a href="references.html#ref-Scire2023estimateR" role="doc-biblioref">2023</a>)</span></p>
+</section>
+<section id="assessment" class="level3">
+<h3 class="anchored" data-anchor-id="assessment">Assessment</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 60%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Features</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ability to nowcast/forecast</td>
+<td style="text-align: left;">Nowcasting, but details are limited</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Incorporates delay distributions</td>
+<td style="text-align: left;">Includes incubation period and reporting delay for clinical data</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Estimates expected cases</td>
+<td style="text-align: left;">Doing this from wastewater or aggregated clincal case data</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Communicates uncertainty</td>
+<td style="text-align: left;">Uncertainty from both EpiEstim approach, as well as assumptions made in estimating incident cases through resampling approach</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Validation</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Documentation of package methods</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Documentation of package implementation</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sample-code" class="level3">
+<h3 class="anchored" data-anchor-id="sample-code">Sample code</h3>
+<p>See <a href="https://covid-19-re.github.io/estimateR/articles/incidence_data_workflow_example.html">here</a> for an example of calculating R(t) from aggregated incidence data, as well as other examples.</p>
 
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-Scire2023estimateR" class="csl-entry" role="listitem">
+Scire J, Huisman JS, Grosu A, Angst DC, Lison A, Li J, et al. 2023. estimateR: An <span>R</span> package to estimate and monitor the effective reproductive number. BMC Bioinformatics 24:310; doi:<a href="https://doi.org/10.1186/s12859-023-05428-4">10.1186/s12859-023-05428-4</a>.
 </div>
-
-
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -811,11 +921,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./glossary.html" class="pagination-link" aria-label="Glossary">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Glossary</span>
+      <a href="./package_ern.html" class="pagination-link" aria-label="ern">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">ern</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./package_R0.html" class="pagination-link" aria-label="R0">
+        <span class="nav-page-text">R0</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -826,7 +939,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Reproductive Number R(t) - <a href="https://chadmilando.com/RtEstimBook/" target="_blank">https://chadmilando.com/RtEstimBook/</a></p>
-<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/references.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_EstimateR.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

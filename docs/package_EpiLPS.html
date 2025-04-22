@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EpiFilter – Disease outbreaks and metrics</title>
+<title>EpiLPS – Disease outbreaks and metrics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -49,8 +49,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./package_EpiFusion.html" rel="next">
-<link href="./package_EpiEstim.html" rel="prev">
+<link href="./package_EpiNow2.html" rel="next">
+<link href="./package_EpiInvert.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -138,7 +138,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_EpiFilter.html">EpiFilter</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_EpiLPS.html">EpiLPS</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -272,7 +272,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package_EpiFilter.html" class="sidebar-item-text sidebar-link active">
+  <a href="./package_EpiFilter.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">EpiFilter</span></a>
   </div>
 </li>
@@ -296,7 +296,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package_EpiLPS.html" class="sidebar-item-text sidebar-link">
+  <a href="./package_EpiLPS.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">EpiLPS</span></a>
   </div>
 </li>
@@ -369,16 +369,16 @@ window.Quarto = {
   <li><a href="#brief-description" id="toc-brief-description" class="nav-link active" data-scroll-target="#brief-description">Brief description</a></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
   <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a></li>
-  <li><a href="#sample-code" id="toc-sample-code" class="nav-link" data-scroll-target="#sample-code">Sample code</a></li>
+  <li><a href="#starter-code" id="toc-starter-code" class="nav-link" data-scroll-target="#starter-code">Starter code</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_EpiFilter.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_EpiLPS.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_EpiFilter.html">EpiFilter</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_EpiLPS.html">EpiLPS</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">EpiFilter</h1>
+<h1 class="title">EpiLPS</h1>
 </div>
 
 
@@ -403,7 +403,7 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">REF</td>
-<td style="text-align: left;"><span class="citation" data-cites="Parag2021Improved">Parag (<a href="#ref-Parag2021Improved" role="doc-biblioref">2021</a>)</span></td>
+<td style="text-align: left;"><span class="citation" data-cites="Gressani2022EpiLPS">Gressani et al. (<a href="references.html#ref-Gressani2022EpiLPS" role="doc-biblioref">2022</a>)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Docs</td>
@@ -411,11 +411,11 @@ window.Quarto = {
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Github</td>
-<td style="text-align: left;"><a href="https://github.com/kpzoo/EpiFilter">https://github.com/kpzoo/EpiFilter</a></td>
+<td style="text-align: left;"><a href="https://github.com/oswaldogressani/EpiLPS">github.com/oswaldogressani/EpiLPS</a></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Last commit</td>
-<td style="text-align: left;">Dec 9, 2023</td>
+<td style="text-align: left;">Last Commit</td>
+<td style="text-align: left;">Oct, 2024</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Installation</td>
@@ -426,16 +426,15 @@ window.Quarto = {
 <section id="brief-description" class="level3">
 <h3 class="anchored" data-anchor-id="brief-description">Brief description</h3>
 <div style="font-size:0.8em">
-Copied from the developer site<br><br>
+<p>Brief summary of the method from the paper<br><br></p>
 </div>
-<p>Maximally informed, mean square error optimised estimates of reproduction numbers (R) over time.</p>
-<p>Uses Bayesian recursive filtering and smoothing to maximise the information extracted from the incidence data used. Takes a forward-backward approach and provides estimates that combine advantages of <a href="./package_EpiEstim.html">EpiEstim</a> and the Wallinga-Teunis method. Method is exact (and optimal given a grid over R) and deterministic (produces the same answer on the same data).</p>
+<p>EpiLPS is a Bayesian tool for estimating the time-varying reproduction number using a robust, efficient approach. It models case counts with a Negative Binomial distribution to handle overdispersion and employs Bayesian P-splines for smoothing epidemic curves. The methodology leverages Laplace approximations to estimate the posterior distribution of the spline coefficients rapidly. Two inference methods are provided: a fast maximum a posteriori approach for quick estimates and an MCMC scheme using Langevin dynamics for thorough posterior sampling. EpiLPS delivers accurate estimates without arbitrary smoothing assumptions and has been applied to SARS-CoV-1, H1N1, and COVID-19 datasets.</p>
 </section>
 <section id="methods" class="level3">
 <h3 class="anchored" data-anchor-id="methods">Methods</h3>
-<p>This package contains the following methods to solve for <span class="math inline">\(R(t)\)</span> in time:</p>
+<p>This package contains the following methods:</p>
 <ul>
-<li><a href="./methods_time.html#sec-filtering">filtering</a></li>
+<li></li>
 </ul>
 </section>
 <section id="assessment" class="level3">
@@ -452,19 +451,19 @@ Copied from the developer site<br><br>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Ability to nowcast/forecast</td>
-<td style="text-align: left;">No</td>
+<td style="text-align: left;">Nowcasting,adjusts for underreporting by estimating unreported infections and combining them with reported cases to reflect actual daily epidemics</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Incorporates delay distributions</td>
-<td style="text-align: left;">No, although some right-censoring is included</td>
+<td style="text-align: left;">Some, It accounts for the uncertainty associated with reporting delays</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Estimates expected cases</td>
-<td style="text-align: left;">No</td>
+<td style="text-align: left;">Yes</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Communicates uncertainty</td>
-<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Yes, The credible intervals are calculated via the delta method</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>Validation</strong></td>
@@ -476,19 +475,18 @@ Copied from the developer site<br><br>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Documentation of package implementation</td>
-<td style="text-align: left;">No</td>
+<td style="text-align: left;">Yes</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="sample-code" class="level3">
-<h3 class="anchored" data-anchor-id="sample-code">Sample code</h3>
-<p>The primary sample code comes from <a href="https://github.com/kpzoo/EpiFilter/blob/master/R%20files/vignette.R">this R script</a>.</p>
+<section id="starter-code" class="level3">
+<h3 class="anchored" data-anchor-id="starter-code">Starter code</h3>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-Parag2021Improved" class="csl-entry" role="listitem">
-Parag KV. 2021. Improved estimation of time-varying reproduction numbers at low case incidence and between epidemic waves. PLOS Computational Biology 17:e1009347; doi:<a href="https://doi.org/10.1371/journal.pcbi.1009347">10.1371/journal.pcbi.1009347</a>.
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-Gressani2022EpiLPS" class="csl-entry" role="listitem">
+Gressani O, Wallinga J, Althaus CL, Hens N, Faes C. 2022. EpiLPS: A fast and flexible <span>Bayesian</span> tool for estimation of the time-varying reproduction number. PLOS Computational Biology 18:e1010618; doi:<a href="https://doi.org/10.1371/journal.pcbi.1010618">10.1371/journal.pcbi.1010618</a>.
 </div>
 </div>
 </section>
@@ -913,13 +911,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./package_EpiEstim.html" class="pagination-link" aria-label="EpiEstim">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">EpiEstim</span>
+      <a href="./package_EpiInvert.html" class="pagination-link" aria-label="EpiInvert">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">EpiInvert</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./package_EpiFusion.html" class="pagination-link" aria-label="EpiFusion">
-        <span class="nav-page-text">EpiFusion</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./package_EpiNow2.html" class="pagination-link" aria-label="EpiNow2">
+        <span class="nav-page-text">EpiNow2</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -931,7 +929,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Reproductive Number R(t) - <a href="https://chadmilando.com/RtEstimBook/" target="_blank">https://chadmilando.com/RtEstimBook/</a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_EpiFilter.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_EpiLPS.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

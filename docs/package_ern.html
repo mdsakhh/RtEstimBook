@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EstimateR – Disease outbreaks and metrics</title>
+<title>ern – Disease outbreaks and metrics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -49,8 +49,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./package_R0.html" rel="next">
-<link href="./package_ern.html" rel="prev">
+<link href="./package_EstimateR.html" rel="next">
+<link href="./package_epinowcast.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -138,7 +138,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_EstimateR.html">EstimateR</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_ern.html">ern</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -314,13 +314,13 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package_ern.html" class="sidebar-item-text sidebar-link">
+  <a href="./package_ern.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">ern</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package_EstimateR.html" class="sidebar-item-text sidebar-link active">
+  <a href="./package_EstimateR.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">EstimateR</span></a>
   </div>
 </li>
@@ -371,14 +371,14 @@ window.Quarto = {
   <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a></li>
   <li><a href="#sample-code" id="toc-sample-code" class="nav-link" data-scroll-target="#sample-code">Sample code</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_EstimateR.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_ern.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_EstimateR.html">EstimateR</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_ern.html">ern</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">EstimateR</h1>
+<h1 class="title">ern</h1>
 </div>
 
 
@@ -403,48 +403,43 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">REF</td>
-<td style="text-align: left;"><span class="citation" data-cites="Scire2023estimateR">Scire et al. (<a href="#ref-Scire2023estimateR" role="doc-biblioref">2023</a>)</span></td>
+<td style="text-align: left;"><span class="citation" data-cites="Champredon2024ern">Champredon et al. (<a href="references.html#ref-Champredon2024ern" role="doc-biblioref">2024</a>)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Docs</td>
-<td style="text-align: left;"><a href="https://covid-19-re.github.io/estimateR/index.html">covid-19-re.github.io/estimateR/index.html</a></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Github</td>
-<td style="text-align: left;"><a href="https://github.com/covid-19-Re/estimateR">https://github.com/covid-19-Re/estimateR</a></td>
+<td style="text-align: left;"><a href="https://github.com/phac-nml-phrsd/ern">github.com/phac-nml-phrsd/ern</a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Last commit</td>
-<td style="text-align: left;">Sep 10, 2024</td>
+<td style="text-align: left;">May 22, 2024</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Installation</td>
-<td style="text-align: left;"><a href="https://github.com/covid-19-Re/estimateR">via devtools</a></td>
+<td style="text-align: left;"><a href="https://github.com/phac-nml-phrsd/ern">via devtools</a></td>
 </tr>
 </tbody>
 </table>
 <section id="brief-description" class="level3">
 <h3 class="anchored" data-anchor-id="brief-description">Brief description</h3>
-<p>EstimateR is a package that is built on the EpiEstim framework for estimating <span class="math inline">\(R_t\)</span> and includes steps to smooth, backcalculate data to infection dates and create confidence intervals for estimates. Specifically, the method takes observed observations of infection events, such as case confirmations, hospital admissions, intensive care unit admissions, or deaths and performs the following four steps:</p>
+<p>The <a href="./package_ern.html">ern</a> package was developed to adapt the <a href="./package_EpiEstim.html">EpiEstim</a> package for real world data, including wastewater and clinical data. Specifically the package:</p>
 <ul>
-<li>Smooth the data to reduce noise in the data.</li>
-<li>Backcalculate data to date of infection.</li>
-<li>Estimate <span class="math inline">\(R_t\)</span> using EpiEstim.</li>
-<li>Calculate 95% confidence intervals using bootstrapping.</li>
+<li>disaggregates clinical reports into a shorter time unit to enable estimation of <span class="math inline">\(R_t\)</span> using an intrinsic generation interval on a useful timescale;</li>
+<li>provides a framework to estimate <span class="math inline">\(R_t\)</span> from wastewater data, consistent with an estimation based on clinical data;</li>
+<li>provides a user-friendly interface geared at public-health practitioners that may have limited proficiency in the R programming language;</li>
+<li>uses EpiEstim for efficient and rapid estimation.</li>
 </ul>
-<p>Each of these tasks can be done separately and the users is not required to perform all tasks.</p>
-<p>There is apparently an option to nowcast data described and implemented in the package, though provided mathematical details are limited.</p>
 </section>
 <section id="methods" class="level3">
 <h3 class="anchored" data-anchor-id="methods">Methods</h3>
-<p>This package contains the following methods:</p>
+<p>This package combines the following methods:</p>
 <ul>
-<li>Data is smoothed using LOESS with a first order polynomial. Users should adapt the smoothing parameter consistent with the noise in the input data.</li>
-<li>Deconvolution with an Expectation-Maximization (EM) algorithm is used to create an estimate of the time series of infection events.</li>
-<li>EpiEstim is used to estimate <span class="math inline">\(R_t\)</span> with a Bayesian framework, which uses <a href="./methods_time.html#sec-fixedwindow">fixed sliding windows</a>.</li>
-<li>Block bootstrapping is used to estimate 95% confidence intervals.</li>
+<li><a href="./methods_time.html#sec-fixedwindow">fixed sliding windows</a></li>
 </ul>
-<p>Details of the methods used are provided in the supplement of <span class="citation" data-cites="Scire2023estimateR">Scire et al. (<a href="#ref-Scire2023estimateR" role="doc-biblioref">2023</a>)</span></p>
+<p>including an additional module for <a href="./methods_time.html#sec-disagg">disaggregation of data into shorter time units</a></p>
 </section>
 <section id="assessment" class="level3">
 <h3 class="anchored" data-anchor-id="assessment">Assessment</h3>
@@ -460,7 +455,7 @@ window.Quarto = {
 </tr>
 <tr class="even">
 <td style="text-align: left;">Ability to nowcast/forecast</td>
-<td style="text-align: left;">Nowcasting, but details are limited</td>
+<td style="text-align: left;">No</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Incorporates delay distributions</td>
@@ -491,12 +486,12 @@ window.Quarto = {
 </section>
 <section id="sample-code" class="level3">
 <h3 class="anchored" data-anchor-id="sample-code">Sample code</h3>
-<p>See <a href="https://covid-19-re.github.io/estimateR/articles/incidence_data_workflow_example.html">here</a> for an example of calculating R(t) from aggregated incidence data, as well as other examples.</p>
+<p>There is a <a href="https://cran.r-project.org/web/packages/ern/vignettes/est-rt.html">vignette</a> and sample code and worked examples in the Plos One publication for this method <span class="citation" data-cites="Champredon2024ern">Champredon et al. (<a href="references.html#ref-Champredon2024ern" role="doc-biblioref">2024</a>)</span>.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-Scire2023estimateR" class="csl-entry" role="listitem">
-Scire J, Huisman JS, Grosu A, Angst DC, Lison A, Li J, et al. 2023. estimateR: An <span>R</span> package to estimate and monitor the effective reproductive number. BMC Bioinformatics 24:310; doi:<a href="https://doi.org/10.1186/s12859-023-05428-4">10.1186/s12859-023-05428-4</a>.
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-Champredon2024ern" class="csl-entry" role="listitem">
+Champredon D, Papst I, Yusuf W. 2024. Ern: An <span>R</span> package to estimate the effective reproduction number using clinical and wastewater surveillance data. PLOS ONE 19:e0305550; doi:<a href="https://doi.org/10.1371/journal.pone.0305550">10.1371/journal.pone.0305550</a>.
 </div>
 </div>
 </section>
@@ -921,13 +916,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./package_ern.html" class="pagination-link" aria-label="ern">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">ern</span>
+      <a href="./package_epinowcast.html" class="pagination-link" aria-label="epinowcast">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">epinowcast</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./package_R0.html" class="pagination-link" aria-label="R0">
-        <span class="nav-page-text">R0</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./package_EstimateR.html" class="pagination-link" aria-label="EstimateR">
+        <span class="nav-page-text">EstimateR</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -939,7 +934,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Reproductive Number R(t) - <a href="https://chadmilando.com/RtEstimBook/" target="_blank">https://chadmilando.com/RtEstimBook/</a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_EstimateR.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_ern.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

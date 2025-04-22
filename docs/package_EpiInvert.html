@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>epinowcast – Disease outbreaks and metrics</title>
+<title>EpiInvert – Disease outbreaks and metrics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -49,8 +49,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./package_ern.html" rel="next">
-<link href="./package_EpiNow2.html" rel="prev">
+<link href="./package_EpiLPS.html" rel="next">
+<link href="./package_epigrowthfit.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -138,7 +138,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_epinowcast.html">epinowcast</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_EpiInvert.html">EpiInvert</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -290,7 +290,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package_EpiInvert.html" class="sidebar-item-text sidebar-link">
+  <a href="./package_EpiInvert.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">EpiInvert</span></a>
   </div>
 </li>
@@ -308,7 +308,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package_epinowcast.html" class="sidebar-item-text sidebar-link active">
+  <a href="./package_epinowcast.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">epinowcast</span></a>
   </div>
 </li>
@@ -366,19 +366,19 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#description" id="toc-description" class="nav-link active" data-scroll-target="#description">Description</a></li>
+  <li><a href="#brief-description" id="toc-brief-description" class="nav-link active" data-scroll-target="#brief-description">Brief description</a></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
   <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a></li>
   <li><a href="#sample-code" id="toc-sample-code" class="nav-link" data-scroll-target="#sample-code">Sample code</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_epinowcast.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_EpiInvert.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_epinowcast.html">epinowcast</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_EpiInvert.html">EpiInvert</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">epinowcast</h1>
+<h1 class="title">EpiInvert</h1>
 </div>
 
 
@@ -403,39 +403,40 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">REF</td>
-<td style="text-align: left;"><span class="citation" data-cites="lison2024generative">Lison et al. (<a href="#ref-lison2024generative" role="doc-biblioref">2024</a>)</span></td>
+<td style="text-align: left;"><span class="citation" data-cites="Alvarez2021Computing">Alvarez et al. (<a href="references.html#ref-Alvarez2021Computing" role="doc-biblioref">2021</a>)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Docs</td>
-<td style="text-align: left;"><a href="https://www.epinowcast.org/">epinowcast.org/</a></td>
+<td style="text-align: left;"><a href="https://lalvarezmat.github.io/EpiInvert/">lalvarezmat.github.io/EpiInvert/</a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Github</td>
-<td style="text-align: left;"><a href="https://github.com/epinowcast/epinowcast">github.com/epinowcast</a></td>
+<td style="text-align: left;"><a href="https://github.com/lalvarezmat/EpiInvert">github.com/lalvarezmat/EpiInvert</a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Last commit</td>
-<td style="text-align: left;">Sep 30, 2024</td>
+<td style="text-align: left;">Dec, 2023</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Installation</td>
-<td style="text-align: left;">CRAN</td>
+<td style="text-align: left;"><a href="https://lalvarezmat.github.io/EpiInvert/">via devtools</a></td>
 </tr>
 </tbody>
 </table>
-<section id="description" class="level3">
-<h3 class="anchored" data-anchor-id="description">Description</h3>
+<section id="brief-description" class="level3">
+<h3 class="anchored" data-anchor-id="brief-description">Brief description</h3>
 <div style="font-size:0.8em">
-<p>Copied from the developer site<br><br></p>
+<p>Brief summary of the method from the paper <br><br></p>
 </div>
-<p>Tools to enable flexible and efficient hierarchical nowcasting of right-truncated epidemiological time-series using a semi-mechanistic Bayesian model with support for a range of reporting and generative processes. Nowcasting, in this context, is gaining situational awareness using currently available observations and the reporting patterns of historical observations. This can be useful when tracking the spread of infectious disease in real-time: without nowcasting, changes in trends can be obfuscated by partial reporting or their detection may be delayed due to the use of simpler methods like truncation. While the package has been designed with epidemiological applications in mind, it could be applied to any set of right-truncated time-series count data.</p>
+<p>EpiInvert is an epidemiological method that estimates the time-varying reproductive number and restores incidence curves by inverting the renewal equation using variational techniques. The approach corrects biases introduced by reporting inconsistencies, including weekly and festive biases, ensuring robust epidemic trend estimation. EpiInvert estimates Rt by inverting the renewal equation using signal processing techniques, providing a reliable measure of epidemic dynamics. It corrects systematic underreporting due to weekends and holidays by detecting anomalies based on historical trends, redistributing cases across affected days to reduce artificial fluctuations, and adjusting Rt estimates to reflect true transmission patterns. It also includes a forecasting model that predicts epidemic trends using historical trends.</p>
 </section>
 <section id="methods" class="level3">
 <h3 class="anchored" data-anchor-id="methods">Methods</h3>
-<p>This package contains the following methods:</p>
+<p>This package combines the following methods:</p>
 <ul>
-<li><a href="#sec-randomwalk">random walk</a></li>
+<li><a href="./methods_time.html#sec-fixedwindow">fixed sliding windows</a></li>
 </ul>
+<p>modified by a <a href="./methods_time.html#sec-var">variational method</a></p>
 </section>
 <section id="assessment" class="level3">
 <h3 class="anchored" data-anchor-id="assessment">Assessment</h3>
@@ -451,11 +452,11 @@ window.Quarto = {
 </tr>
 <tr class="even">
 <td style="text-align: left;">Ability to nowcast/forecast</td>
-<td style="text-align: left;">Nowcasting</td>
+<td style="text-align: left;">Yes, Use ‘EpiInvertForecast’ for forecasting</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Incorporates delay distributions</td>
-<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Estimates expected cases</td>
@@ -482,12 +483,12 @@ window.Quarto = {
 </section>
 <section id="sample-code" class="level3">
 <h3 class="anchored" data-anchor-id="sample-code">Sample code</h3>
-<p>A list of helpful vignettes are given <a href="https://package.epinowcast.org/articles/">here</a>.</p>
+<p>See <a href="https://lalvarezmat.github.io/EpiInvert/EpiInvertForecastVignette.html">this vignette</a> for an example of forecasting, and <a href="https://lalvarezmat.github.io/EpiInvert/RtComparisonVignette.html">this vignette</a> for a comparison between EpiInvert and other related packages.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-lison2024generative" class="csl-entry" role="listitem">
-Lison A, Abbott S, Huisman J, Stadler T. 2024. Generative bayesian modeling to nowcast the effective reproduction number from line list data with missing symptom onset dates. PLoS Computational Biology 20: e1012021.
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-Alvarez2021Computing" class="csl-entry" role="listitem">
+Alvarez L, Colom M, Morel J-D, Morel J-M. 2021. Computing the daily reproduction number of <span>COVID</span>-19 by inverting the renewal equation using a variational technique. Proceedings of the National Academy of Sciences 118:e2105112118; doi:<a href="https://doi.org/10.1073/pnas.2105112118">10.1073/pnas.2105112118</a>.
 </div>
 </div>
 </section>
@@ -912,13 +913,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./package_EpiNow2.html" class="pagination-link" aria-label="EpiNow2">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">EpiNow2</span>
+      <a href="./package_epigrowthfit.html" class="pagination-link" aria-label="epigrowthfit">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">epigrowthfit</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./package_ern.html" class="pagination-link" aria-label="ern">
-        <span class="nav-page-text">ern</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./package_EpiLPS.html" class="pagination-link" aria-label="EpiLPS">
+        <span class="nav-page-text">EpiLPS</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -930,7 +931,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Reproductive Number R(t) - <a href="https://chadmilando.com/RtEstimBook/" target="_blank">https://chadmilando.com/RtEstimBook/</a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_epinowcast.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_EpiInvert.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>epigrowthfit – Disease outbreaks and metrics</title>
+<title>Explanation of methods – Disease outbreaks and metrics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -49,8 +49,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./package_EpiInvert.html" rel="next">
-<link href="./package_EpiFusion.html" rel="prev">
+<link href="./methods_introduction.html" rel="next">
+<link href="./decisiontree.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -138,7 +138,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_epigrowthfit.html">epigrowthfit</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./methods.html">Explanation of methods</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -186,13 +186,13 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./methods.html" class="sidebar-item-text sidebar-link">
+            <a href="./methods.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Explanation of methods</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./methods_introduction.html" class="sidebar-item-text sidebar-link">
@@ -235,11 +235,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Packages</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./package_APEestim.html" class="sidebar-item-text sidebar-link">
@@ -284,7 +284,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package_epigrowthfit.html" class="sidebar-item-text sidebar-link active">
+  <a href="./package_epigrowthfit.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">epigrowthfit</span></a>
   </div>
 </li>
@@ -366,19 +366,16 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#brief-description" id="toc-brief-description" class="nav-link active" data-scroll-target="#brief-description">Brief description</a></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
-  <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a></li>
-  <li><a href="#sample-code" id="toc-sample-code" class="nav-link" data-scroll-target="#sample-code">Sample code</a></li>
+  <li><a href="#other-methods-not-discussed-here-include" id="toc-other-methods-not-discussed-here-include" class="nav-link active" data-scroll-target="#other-methods-not-discussed-here-include">Other methods not discussed here include:</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_epigrowthfit.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/methods.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li><li class="breadcrumb-item"><a href="./package_epigrowthfit.html">epigrowthfit</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">epigrowthfit</h1>
+<h1 class="title">Explanation of methods</h1>
 </div>
 
 
@@ -395,97 +392,43 @@ window.Quarto = {
 </header>
 
 
-<table class="caption-top table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 80%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">REF</td>
-<td style="text-align: left;"><span class="citation" data-cites="Earn2020Acceleration">Earn et al. (<a href="#ref-Earn2020Acceleration" role="doc-biblioref">2020</a>)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Docs</td>
-<td style="text-align: left;">None</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Github</td>
-<td style="text-align: left;"><a href="https://github.com/davidearn/epigrowthfit">github.com/davidearn/epigrowthfit</a></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Last commit</td>
-<td style="text-align: left;">Feb, 2025</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Installation</td>
-<td style="text-align: left;"><a href="https://cran.r-project.org/web/packages/epigrowthfit/index.html">CRAN</a></td>
-</tr>
-</tbody>
-</table>
-<section id="brief-description" class="level3">
-<h3 class="anchored" data-anchor-id="brief-description">Brief description</h3>
-<div style="font-size:0.8em">
-<p>Copied from the developer site.<br><be></be></p>
+<p>To aid with interpretation of package outputs, we summarize the currently used inputs, data, methods and assumptions in <span class="math inline">\(R(t)\)</span> estimation across the following categories:</p>
+<p> <a href="./methods_introduction.html">⎘</a>: How the relationship between <span class="math inline">\(R(t)\)</span> and infections is defined <br>  <a href="./methods_distributions.html">⎘</a>: How <span class="math inline">\(R(t)\)</span> is constrained using distributions for key variables<br>  <a href="./methods_time.html">⎘</a>: How <span class="math inline">\(R(t)\)</span> is constrained over time<br>  <a href="./methods_additionaldata.html">⎘</a>: Additional data and distributions that are used to constrain <span class="math inline">\(R(t)\)</span><br>  <a href="./methods_inference.html">⎘</a>: Inference frameworks that are used to estimate <span class="math inline">\(R(t)\)</span><br></p>
+<p>We limit the methods discussed here to those for estimating historical to present-day <span class="math inline">\(R(t)\)</span> values using <strong>daily case count data</strong>, where a case can be flexibly defined as an individual with a reported positive test (either through healthcare-seeking behavior, routine surveillance, or a hospital admission).</p>
+<section id="other-methods-not-discussed-here-include" class="level3">
+<h3 class="anchored" data-anchor-id="other-methods-not-discussed-here-include">Other methods not discussed here include:</h3>
+<ul>
+<li>inference of <span class="math inline">\(R(t)\)</span> exclusively from alternative data sources (e.g., genetic data <span class="citation" data-cites="Walker2013Whole">(<a href="references.html#ref-Walker2013Whole" role="doc-biblioref">Walker et al. 2013</a>)</span>, behavioral data <span class="citation" data-cites="Bokanyi2023Real">(<a href="references.html#ref-Bokanyi2023Real" role="doc-biblioref">Bokányi et al. 2023</a>)</span>, or viral loads in waste-water <span class="citation" data-cites="Huisman2022Wastewater">(<a href="references.html#ref-Huisman2022Wastewater" role="doc-biblioref">Huisman et al. 2022</a>)</span>),</li>
+<li>calculations from compartmental, agent-based models, or network <span class="citation" data-cites="Driessche2002Reproduction">Bettencourt and Ribeiro (<a href="references.html#ref-Bettencourt2008Real" role="doc-biblioref">2008</a>)</span>.</li>
+</ul>
+<p>We also limit the discussion to packages in the statistical software R <span class="citation" data-cites="R2022R">(<a href="references.html#ref-R2022R" role="doc-biblioref">R Core Team 2022</a>)</span>, which may exclude some packages in other software programs that combine many of the methodological considerations discussed below <span class="citation" data-cites="Yang2022Bayesian">(<a href="references.html#ref-Yang2022Bayesian" role="doc-biblioref">Yang et al. 2022</a>)</span>.</p>
+<p>We attempt to harmonize the mathematical choices between each package using terminology from each.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-Almutiry2021Continuous" class="csl-entry" role="listitem">
+Almutiry W, V VWK, Deardon R. 2021. Continuous <span>Time</span> <span>Individual</span>-<span>Level</span> <span>Models</span> of <span>Infectious</span> <span>Disease</span>: Package <span>EpiILMCT</span>. Journal of Statistical Software 98:1–44; doi:<a href="https://doi.org/10.18637/jss.v098.i10">10.18637/jss.v098.i10</a>.
 </div>
-<p>Maximum likelihood estimation of nonlinear mixed effects models of epidemic growth using Template Model Builder (‘TMB’). Enables joint estimation for collections of disease incidence time series, including time series that describe multiple epidemic waves. Supports a set of widely used phenomenological models: exponential, logistic, Richards (generalized logistic), subexponential, and Gompertz. Provides methods for interrogating model objects and several auxiliary functions, including one for computing basic reproduction numbers from fitted values of the initial exponential growth rate. Preliminary versions of this software were applied in Ma et al.&nbsp;(2014) <a href="doi:10.1007/s11538-013-9918-2" class="uri">doi:10.1007/s11538-013-9918-2</a> and in Earn et al.&nbsp;(2020) <a href="doi:10.1073/pnas.2004904117" class="uri">doi:10.1073/pnas.2004904117</a></p>
-</section>
-<section id="methods" class="level3">
-<h3 class="anchored" data-anchor-id="methods">Methods</h3>
-<p>Given the lack of package documentation it is difficult to fully assess which methods are being implemented.</p>
-</section>
-<section id="assessment" class="level3">
-<h3 class="anchored" data-anchor-id="assessment">Assessment</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 40%">
-<col style="width: 60%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><strong>Features</strong></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Ability to nowcast/forecast</td>
-<td style="text-align: left;">No</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Incorporates delay distributions</td>
-<td style="text-align: left;">No</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Estimates expected cases</td>
-<td style="text-align: left;">No</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Communicates uncertainty</td>
-<td style="text-align: left;">No</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Validation</strong></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Documentation of package methods</td>
-<td style="text-align: left;">No</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Documentation of package implementation</td>
-<td style="text-align: left;">No</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="sample-code" class="level3">
-<h3 class="anchored" data-anchor-id="sample-code">Sample code</h3>
-<p>There is no available vignette or manual on how to use this package other than function descriptions.</p>
-<p>This <a href="https://github.com/davidearn/plague_growth">Github repository</a> describes the methods used in <span class="citation" data-cites="Earn2020Acceleration">Earn et al. (<a href="#ref-Earn2020Acceleration" role="doc-biblioref">2020</a>)</span>, but documentation is minimal.</p>
-
-
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-Earn2020Acceleration" class="csl-entry" role="listitem">
-Earn DJD, Ma J, Poinar H, Dushoff J, Bolker BM. 2020. Acceleration of plague outbreaks in the second pandemic. Proceedings of the National Academy of Sciences 117:27703–27711; doi:<a href="https://doi.org/10.1073/pnas.2004904117">10.1073/pnas.2004904117</a>.
+<div id="ref-Bettencourt2008Real" class="csl-entry" role="listitem">
+Bettencourt LMA, Ribeiro RM. 2008. Real <span>Time</span> <span>Bayesian</span> <span>Estimation</span> of the <span>Epidemic</span> <span>Potential</span> of <span>Emerging</span> <span>Infectious</span> <span>Diseases</span>. PLOS ONE 3:e2185; doi:<a href="https://doi.org/10.1371/journal.pone.0002185">10.1371/journal.pone.0002185</a>.
+</div>
+<div id="ref-Bokanyi2023Real" class="csl-entry" role="listitem">
+Bokányi E, Vizi Z, Koltai J, Röst G, Karsai M. 2023. Real-time estimation of the effective reproduction number of <span>COVID</span>-19 from behavioral data. Scientific Reports 13:21452; doi:<a href="https://doi.org/10.1038/s41598-023-46418-z">10.1038/s41598-023-46418-z</a>.
+</div>
+<div id="ref-Driessche2002Reproduction" class="csl-entry" role="listitem">
+Driessche P van den, Watmough J. 2002. Reproduction numbers and sub-threshold endemic equilibria for compartmental models of disease transmission. Mathematical Biosciences 180:29–48; doi:<a href="https://doi.org/10.1016/S0025-5564(02)00108-6">10.1016/S0025-5564(02)00108-6</a>.
+</div>
+<div id="ref-Huisman2022Wastewater" class="csl-entry" role="listitem">
+Huisman JS, Scire J, Caduff L, Fernandez-Cassi X, Ganesanandamoorthy P, Kull A, et al. 2022. Wastewater-<span>Based</span> <span>Estimation</span> of the <span>Effective</span> <span>Reproductive</span> <span>Number</span> of <span>SARS</span>-<span>CoV</span>-2. Environmental Health Perspectives 130:057011; doi:<a href="https://doi.org/10.1289/EHP10050">10.1289/EHP10050</a>.
+</div>
+<div id="ref-R2022R" class="csl-entry" role="listitem">
+R Core Team. 2022. R-4.1.3.
+</div>
+<div id="ref-Walker2013Whole" class="csl-entry" role="listitem">
+Walker TM, Ip CL, Harrell RH, Evans JT, Kapatai G, Dedicoat MJ, et al. 2013. Whole-genome sequencing to delineate <span>Mycobacterium</span> tuberculosis outbreaks: A retrospective observational study. The Lancet Infectious Diseases 13:137–146; doi:<a href="https://doi.org/10.1016/S1473-3099(12)70277-3">10.1016/S1473-3099(12)70277-3</a>.
+</div>
+<div id="ref-Yang2022Bayesian" class="csl-entry" role="listitem">
+Yang X, Wang S, Xing Y, Li L, Xu RYD, Friston KJ, et al. 2022. Bayesian data assimilation for estimating instantaneous reproduction numbers during epidemics: Applications to <span>COVID</span>-19. PLoS Computational Biology 18:e1009807; doi:<a href="https://doi.org/10.1371/journal.pcbi.1009807">10.1371/journal.pcbi.1009807</a>.
 </div>
 </div>
 </section>
@@ -910,13 +853,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./package_EpiFusion.html" class="pagination-link" aria-label="EpiFusion">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">EpiFusion</span>
+      <a href="./decisiontree.html" class="pagination-link" aria-label="Decision matrix">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Decision matrix</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./package_EpiInvert.html" class="pagination-link" aria-label="EpiInvert">
-        <span class="nav-page-text">EpiInvert</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./methods_introduction.html" class="pagination-link" aria-label="Relating infections to $R(t)$">
+        <span class="nav-page-text">Relating infections to <span class="math inline">\(R(t)\)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -928,7 +871,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Reproductive Number R(t) - <a href="https://chadmilando.com/RtEstimBook/" target="_blank">https://chadmilando.com/RtEstimBook/</a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/package_epigrowthfit.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/methods.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
