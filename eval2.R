@@ -142,6 +142,8 @@ getR <- EpiEstim::estimate_R(
   method = "non_parametric_si",
   config = make_config(list(
     si_distr = serial_interval_pmf
+    # t_start = 2:nrow(incidence_df),
+    # t_end = 2:nrow(incidence_df)
   ))
 )
 
@@ -149,7 +151,7 @@ getR <- EpiEstim::estimate_R(
 ## has to be an integer
 ## OBVIOUSLY THIS CAN HAVE A HUGE IMPACT ON YOUR ESTIMATES
 getR$R$date_int <- round((getR$R$t_end - getR$R$t_start) / 2 + getR$R$t_start)
-getR$R$date_int <- round((getR$R$t_end - getR$R$t_start) / 2 + getR$R$t_start)
+getR$R$date_int <- getR$R$t_end
 
 EpiEstim_R <- getR$R[, c('date_int', 'Median(R)',
                        'Quantile.0.05(R)', 'Quantile.0.95(R)')]
@@ -167,11 +169,11 @@ EpiEstim_R$date_int = EpiEstim_R$date_int -
 ##
 head(EpiEstim_R)
 
-Rt_df <- rbind(Rt_df, EpiEstim_R)
+Rt_df2 <- rbind(Rt_df, EpiEstim_R)
 
 
-ggplot(Rt_df) +
-  geom_pointline(aes(x = date_int, y = Rt, color = model))
+ggplot(Rt_df2) +
+  geom_line(aes(x = date_int, y = Rt, color = model))
 
 # ----------------------------------------------------------------------------
 res_epinow <- epinow(
