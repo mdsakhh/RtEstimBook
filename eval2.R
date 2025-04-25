@@ -2,6 +2,8 @@
 library(EpiEstim)
 library(EpiNow2)
 library(ggplot2)
+library(ggpubr)
+library(patchwork)
 
 # ////////////////////////////////////////////////////////////////////////////
 # ----------------------------------------------------------------------------
@@ -27,7 +29,6 @@ generation_interval_pmf <- c(
 gi_pmf <- NonParametric(pmf = c(0, generation_interval_pmf))
 
 ## ASSUME THAT SERIAL INTERVAL = GENERATION INTERVAL
-## also has to start with 0
 serial_interval_pmf <- c(0, generation_interval_pmf)
 
 # ////////////////////////////////////////////////////////////////////////////
@@ -54,7 +55,7 @@ sym_report_delay_pmf <- NonParametric(pmf = reporting_delay_pmf)
 
 # ////////////////////////////////////////////////////////////////////////////
 # ----------------------------------------------------------------------------
-# ADD RIGHT TRUNCATION TO DATA
+# ADD RIGHT TRUNCATION TO DATA BASED ON REPORTING DELAY
 # ----------------------------------------------------------------------------
 # ////////////////////////////////////////////////////////////////////////////
 
@@ -72,14 +73,7 @@ incidence_df$confirm <- incidence_df$confirm * incidence_df$Px
 
 incidence_df$confirm <- as.integer(incidence_df$confirm)
 
-plot(x = incidence_df$date,
-     y = incidence_df$confirm,
-     type = 'l')
-
-lines(x = incidence_df$date,
-      y = incidence_df$confirm_true,
-      type = 'l', col = 'red')
-
+incidence_df$date_int <- 1:nrow(incidence_df) - 1
 
 # ////////////////////////////////////////////////////////////////////////////
 # ----------------------------------------------------------------------------
@@ -116,7 +110,7 @@ REPORTINGDELAY_SHIFT = round(weighted.mean(x = 1:length(reporting_delay_pmf),
                                            w = reporting_delay_pmf))
 
 Rt_df$date = Rt_df$report_date -  INFECT_TO_TEST_SHIFT - REPORTINGDELAY_SHIFT
-Rt_df$date_int <- 1:nrow(Rt_df) - INFECT_TO_TEST_SHIFT - REPORTINGDELAY_SHIFT
+Rt_df$date_int <- 1:nrow(Rt_df) - 1 - INFECT_TO_TEST_SHIFT - REPORTINGDELAY_SHIFT
 
 Rt_df$report_date <- NULL
 
@@ -125,10 +119,6 @@ head(Rt_df)
 Rt_df$Rt_lb <- NA
 Rt_df$Rt_ub <- NA
 
-ggplot(Rt_df) +
-  geom_line(aes(x = date_int, y = Rt))
-
-head(Rt_df)
 # ----------------------------------------------------------------------------
 
 ##
@@ -148,9 +138,6 @@ getR <- EpiEstim::estimate_R(
 )
 
 ## assign where between t_start and t_end is dt_int
-## has to be an integer
-## OBVIOUSLY THIS CAN HAVE A HUGE IMPACT ON YOUR ESTIMATES
-getR$R$date_int <- round((getR$R$t_end - getR$R$t_start) / 2 + getR$R$t_start)
 getR$R$date_int <- getR$R$t_end
 
 EpiEstim_R <- getR$R[, c('date_int', 'Median(R)',
@@ -171,9 +158,14 @@ head(EpiEstim_R)
 
 Rt_df2 <- rbind(Rt_df, EpiEstim_R)
 
+## shift the dates
+EpiEstim_R$date_int = EpiEstim_R$date_int - mean((getR$R$t_end - getR$R$t_start) / 2)
+EpiEstim_R$model <- 'EpiEstim (midpoint)'
+##
+head(EpiEstim_R)
 
-ggplot(Rt_df2) +
-  geom_line(aes(x = date_int, y = Rt, color = model))
+Rt_df3 <- rbind(Rt_df2, EpiEstim_R)
+head(Rt_df3)
 
 # ----------------------------------------------------------------------------
 res_epinow <- epinow(
@@ -182,21 +174,74 @@ res_epinow <- epinow(
   delays          = delay_opts(infect_to_test),
   truncation      = trunc_opts(sym_report_delay_pmf),
   backcalc        = backcalc_opts(prior = 'reports'),
-  # rt = rt_opts(rw = 1),
   stan            = stan_opts(chains = 4, cores = 4)
 )
 
+plot(res_epinow)
+
 R_df <- subset(res_epinow$estimates$summarised, variable == 'R')
+R_df$date_int <- 1:nrow(R_df) - 1
+R_df$model <- 'EpiNow2'
+R_df$Rt <- R_df$median
+R_df$Rt_lb <- R_df$lower_90
+R_df$Rt_ub <- R_df$upper_90
 
-R_df <-
+cases_df <- subset(res_epinow$estimates$summarised, variable == 'reported_cases')
+cases_df$date_int <- 1:nrow(R_df) - 1
+cases_df$model <- 'EpiNow2'
+cases_df$reports <- cases_df$median
+cases_df$reports_lb <- cases_df$lower_90
+cases_df$reports_ub <- cases_df$upper_90
 
 
+EpiNow2_df <- R_df[, c('model', 'Rt', 'date', 'date_int', 'Rt_lb', 'Rt_ub')]
+
+Rt_df4 <- rbind(Rt_df3, EpiNow2_df)
+
+gg_color_hue <- function(n) {
+  hues = seq(15, 375, length = n + 1)
+  hcl(h = hues, l = 65, c = 100)[1:n]
+}
+
+n = 4
+cols = gg_color_hue(n)
+cols
+
+col_EpiEstim <- cols[1]
+col_EpiNow2 <- cols[3]
+
+plot_rt1 <- ggplot(subset(Rt_df4, date_int >= 0 &
+                            ! (model %in% c('Rt_calc', 'EpiEstim (midpoint)'))))+
+  theme_classic2() +
+  geom_hline(yintercept = 1, linetype = '11') +
+  geom_vline(xintercept = c(40 + 1.5 - length(reporting_delay_pmf), 40.5 ),
+             linetype = '41') +
+  geom_ribbon(aes(x = date_int, ymin = Rt_lb, ymax = Rt_ub, fill = model),
+              alpha = 0.25) +
+  geom_line(aes(x = date_int, y = Rt, color = model)) +
+  scale_color_manual(name = 'Model', values = c(col_EpiEstim,col_EpiNow2 )) +
+  scale_fill_manual(name = 'Model', values = c(col_EpiEstim,col_EpiNow2 )) +
+  coord_cartesian(xlim = c(0, 50)) + ylab("R(t)") +
+  annotate('text', x = 10, y = 2.5, label = 'Historical period') +
+  annotate('text', x = 37.5, y = 2.5, label = 'Nowcast') +
+  annotate('text', x = 43.5, y = 2.5, label = 'Forecast') +
+  xlab(NULL)
+
+plot_report <- ggplot(incidence_df) + theme_classic2() +
+  geom_col(aes(x = date_int, y = confirm), fill = grey(0.75), width = 0.5) +
+  geom_vline(xintercept = c(40 + 1.5 - length(reporting_delay_pmf), 40.5 ),
+             linetype = '41') +
+  coord_cartesian(xlim = c(0, 50)) + ylab("Reported cases") +
+  geom_ribbon(data = cases_df, aes(x = date_int,
+                                   ymin = reports_lb, ymax = reports_ub),
+              alpha = 0.25, fill = col_EpiNow2) +
+  geom_line(data = cases_df, aes(x = date_int, y = reports), color = col_EpiNow2) +
+  xlab('Date') +
+  annotate('text', x = 10, y = 8000, label = 'Historical period') +
+  annotate('text', x = 37.5, y = 8000, label = 'Nowcast') +
+  annotate('text', x = 43.5, y = 8000, label = 'Forecast')
 
 
-#
-INCUBATION_SHIFT = round(weighted.mean(x = all_data$incubation$Day,
-                                       w = all_data$incubation$Px))
-
-REPORTINGDELAY_SHIFT = round(weighted.mean(x = all_data$reporting_delay$Day,
-                                           w = all_data$reporting_delay$Px))
-
+plot_rt1 / (plot_report) + plot_layout(guides = "collect")
+dev.size()
+ggsave('Eval.png', width = 6*1.5, height = 3.5*1.5)
