@@ -28,7 +28,7 @@ $$
 C.V. [R(t)]=\frac{1}{a + \sum_{i = \max(1, t - τ)}^{t} I(t)}
 $$
 
-Thus, sliding windows with larger $τ$ improve the stability of the estimate of $R(t)$ (as compared to smaller $τ$ because the coefficient of variation of $R(t)$ decreases as number of infections increases (see Web Appendix 1 of @Cori2013New). Fixed sliding windows are a key feature of the [EpiEstim](package_EpiEstim.qmd) package. 
+Thus, sliding windows with larger $τ$ improve the stability of the estimate of $R(t)$ (as compared to smaller $τ$) because the coefficient of variation of $R(t)$ decreases as number of infections increases (see Web Appendix 1 of @Cori2013New). Fixed sliding windows are a key feature of the [EpiEstim](package_EpiEstim.qmd) package. 
 
 ### Drawbacks of fixed sliding windows
 
@@ -41,9 +41,8 @@ There are limitations of the fixed sliding window approach, articulated well in 
 * In addition, there is debate in the literature about where in time the estimate of $R(t)$ for each window should go: @Gostic2020Practical recommends using the midpoint of each sliding window rather than time $t$. 
 
 * The choice of both $τ$ and the location of the estimate of $R(t)$ within each window results in gaps in predictions for $R(t)$, barring other modifications: 
-  * at the beginning of the modeling period, if not enough cases have occurred (Web Index 4 of @Cori2013New suggests a minimum of 12 cases need to be recorded before calculation of $R(t)$, and waiting at least 1 serial interval)
-  * at the end of the modeling period to account for reporting delays or time between the midpoint of τ and the end of τ, and
-  * at the beginning of the time period to allow for enough cases to materialize. 
+  * at the beginning of the modeling period, if not enough cases have occurred (Web Index 4 of @Cori2013New suggests that calculation of R(t) should start at least one serial interval's worth of time after the 12th case is recorded)
+  * at the end of the modeling period to account for reporting delays or time between the midpoint of τ and the end of τ.
   
 ### Modifications of EpiEstim
 
@@ -91,7 +90,7 @@ The function $f$ can be a transformation of $R(t)$, e.g. in log space to correct
 
 ## Filtering {#sec-filtering}
 
-Filtering is another way that $R(t)$ is constrained in time: a factor controls the amount of difference between $R(t)$ in adjacent time-steps is constrained. 
+Filtering is another way that $R(t)$ is constrained in time. Filtering is similar to a random walk constraint, in that a hyperparameter controls the amount of difference between $R(t)$ in adjacent time-steps, but with a different functional form to a random walk.
 
 One way that a filter could be implemented is in a Hidden Markov Model.24 A simple forward-looking linear filter for R(t) in an Hidden Markov Model might look as follows, with a tuning parameter (η) to influence the amount that R(t) can vary between time-steps and a standard white noise component (ϵ): 
 
@@ -114,15 +113,19 @@ In EpiFilter, RtEstim, and EpiLPS, each R(t) estimated in this way thus contains
 
 ## Gausian Process models {#sec-gaussianprocess}
 
-Gaussian Process models26 are a more flexible method of constraining the evolution of R(t)  in time than the methods discussed thus far (in fact, a random-walk process can be thought of as a simplified case of Gaussian Process model).  In Gaussian Process modeling, a family of basis functions are fit to available data, permitting inference about continuous processes without needing to a priori define where inflection points occur. The core of Gaussian Process operations is a kernel, which is used to assess the similarity between input vectors, say x and x^'. There are many options for potential kernels, and each contains different hyperparameters that are used to control the amount of smoothing that is enforced, as well as other factors. One such choice is the squared exponential kernel:
+Gaussian Process models26 are a more flexible method of constraining the evolution of R(t)  in time than the methods discussed thus far (in fact, a random-walk process can be thought of as a simplified case of Gaussian Process model).  In Gaussian Process modeling, a family of basis functions are fit to available data, permitting inference about continuous processes without needing to a priori define where inflection points occur. The core of Gaussian Process operations is a kernel, which is used to assess the similarity between input vectors, say $x$ and $x^'$. There are many options for potential kernels, and each contains different hyperparameters that are used to control the amount of smoothing that is enforced, as well as other factors. One such choice is the squared exponential kernel:
 
+$$
 k(x,x^' )=α^2   exp⁡[-(x-x^' )^2/(2l^2 )] 		(Eq.10)
+$$
 
 In this kernel, the hyperparameters are the length scale, l, which controls the smoothness of the model, and the magnitude, α, which controls the range of values used in the fitting process. These parameters can be given prior distributions and fit using optimization. EpiNow2 uses contains options to use Gaussian Process models to control how R(t)  in time. As one example, the relationship between first difference values of R(t) can be constrained using a zero-mean Gaussian Process model with the above kernel as the covariance function:
 
-		log⁡〖R(t)=log⁡R(t-1)+ GP(0,k(R(t),〖R(t〗^')))〗		(Eq.11)
-		
-The advantage of Gaussian Process models is that R(t) is enforced to change smoothly in time using Eq.10. Limitations include complexity and computational time: Gaussian Process models have a computational complexity of O(n^3) for n observations.27  Although EpiNow2 in practice implements faster approximations of Gaussian Process models,27 in general Gaussian Process runtimes and required computational resources are considerable as compared to other methods.
+$$
+log⁡[R(t)] = log[⁡R(t-1) + GP(0, k(R(t),[R(t)]^'))]		(Eq.11)
+$$
+
+The advantage of Gaussian Process models is that R(t) is enforced to change smoothly in time using Eq.10. Limitations include complexity and computational time: Gaussian Process models have a computational complexity of O(n^3) for n observations.27  Although EpiNow2 in practice implements faster approximations of Gaussian Process models,27 in general Gaussian Process runtimes and required computational resources are large compared to other methods.
 
 
 
