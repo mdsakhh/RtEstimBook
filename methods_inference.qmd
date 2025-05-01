@@ -16,7 +16,7 @@ This page describes the different software / mathematical implementations of the
 # •	Hierarchical NUTS
 ```
 
-## MaxLiklihood optimization
+## Maximum Likelihood optimization
 
 *Section in progress*
 
