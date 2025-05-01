@@ -155,7 +155,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Disease outbreaks and metrics</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/cmilando/RtEstimBook" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://sites.bu.edu/disease-rt/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-git"></i></a>
 </div>
     </div>
       </div>
@@ -363,13 +363,13 @@ window.Quarto = {
   <li><a href="#sec-fixedwindow" id="toc-sec-fixedwindow" class="nav-link active" data-scroll-target="#sec-fixedwindow">Fixed sliding windows</a>
   <ul class="collapse">
   <li><a href="#drawbacks-of-fixed-sliding-windows" id="toc-drawbacks-of-fixed-sliding-windows" class="nav-link" data-scroll-target="#drawbacks-of-fixed-sliding-windows">Drawbacks of fixed sliding windows</a></li>
-  <li><a href="#modifications-of-epiestim" id="toc-modifications-of-epiestim" class="nav-link" data-scroll-target="#modifications-of-epiestim">Modifications of EpiEstim</a></li>
+  <li><a href="#sec-modifications" id="toc-sec-modifications" class="nav-link" data-scroll-target="#sec-modifications">Modifications of EpiEstim</a></li>
   </ul></li>
   <li><a href="#sec-randomwalk" id="toc-sec-randomwalk" class="nav-link" data-scroll-target="#sec-randomwalk">Random walk</a></li>
   <li><a href="#sec-filtering" id="toc-sec-filtering" class="nav-link" data-scroll-target="#sec-filtering">Filtering</a></li>
   <li><a href="#sec-gaussianprocess" id="toc-sec-gaussianprocess" class="nav-link" data-scroll-target="#sec-gaussianprocess">Gausian Process models</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/methods_time.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://sites.bu.edu/disease-rt/edit/main/methods_time.qmd" class="toc-action"><i class="bi bi-git"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -420,7 +420,7 @@ C.V. [R(t)]=\frac{1}{a + \sum_{i = \max(1, t - τ)}^{t} I(t)}
 <p>There are limitations of the fixed sliding window approach, articulated well in <span class="citation" data-cites="Gostic2020Practical">Gostic et al. (<a href="references.html#ref-Gostic2020Practical" role="doc-biblioref">2020</a>)</span> and summarized here:</p>
 <ul>
 <li><p>There is no posterior distribution for the expected value of incidence.</p></li>
-<li><p>In the fixed size sliding window approach, <span class="math inline">\(τ\)</span> must be explicitly defined prior to inference. Shorter <span class="math inline">\(τ\)</span> will lead to quicker response but more variable estimates of <span class="math inline">\(R(t)\)</span>, which increases the risk of over-fitting. At the extreme, if the <span class="math inline">\(τ\)</span> is set to 1 day, the resulting <span class="math inline">\(R(t)\)</span> will recover exactly the infection data. The default recommendation for <span class="math inline">\(τ\)</span> is one week (7 days)</p></li>
+<li><p>In the fixed size sliding window approach, <span class="math inline">\(τ\)</span> must be explicitly defined prior to inference. Shorter <span class="math inline">\(τ\)</span> will lead to quicker response but more variable estimates of <span class="math inline">\(R(t)\)</span>, which increases the risk of over-fitting. At the extreme, if the <span class="math inline">\(τ\)</span> is set to 1 day, the resulting <span class="math inline">\(R(t)\)</span> will recover exactly the input case data. The default recommendation for <span class="math inline">\(τ\)</span> is one week (7 days)</p></li>
 <li><p>In addition, there is debate in the literature about where in time the estimate of <span class="math inline">\(R(t)\)</span> for each window should go: <span class="citation" data-cites="Gostic2020Practical">Gostic et al. (<a href="references.html#ref-Gostic2020Practical" role="doc-biblioref">2020</a>)</span> recommends using the midpoint of each sliding window rather than time <span class="math inline">\(t\)</span>.</p></li>
 <li><p>The choice of both <span class="math inline">\(τ\)</span> and the location of the estimate of <span class="math inline">\(R(t)\)</span> within each window results in gaps in predictions for <span class="math inline">\(R(t)\)</span>, barring other modifications:</p>
 <ul>
@@ -430,22 +430,14 @@ C.V. [R(t)]=\frac{1}{a + \sum_{i = \max(1, t - τ)}^{t} I(t)}
 </ul></li>
 </ul>
 </section>
-<section id="modifications-of-epiestim" class="level3">
-<h3 class="anchored" data-anchor-id="modifications-of-epiestim">Modifications of EpiEstim</h3>
-<p>Several packages modify the functionality of EpiEstim. These modifications include fitting <span class="math inline">\(τ\)</span> to minimize the <a href="./methods_time.html#sec-ape">Accumulated Prediction Error</a>, fitting <span class="math inline">\(R(t)\)</span> via harmonizing the EpiEstim method and methods from the case reproduction number in a <a href="./methods_time.html#sec-var">variational method</a>, and <a href="./methods_time.html#sec-disagg">dissaggregation</a> of data into smaller time units.</p>
-<section id="sec-ape" class="level4">
-<h4 class="anchored" data-anchor-id="sec-ape">Accumulated Prediction Error (APE) framework</h4>
-<p>Alternatively the package <a href="./package_APEestim.html">APEestim</a> integrates with <a href="./package_EpiEstim.html">EpiEstim</a> to propose a non-default choice of τ that minimizes one-step-ahead prediction errors (<span class="citation" data-cites="Parag2020Using">Parag and Donnelly (<a href="references.html#ref-Parag2020Using" role="doc-biblioref">2020</a>)</span>).</p>
-<p>In APEestim, Parag et al.&nbsp;adapt an approximation known as the accumulated prediction error (APE) to identify the window length best justified by the available epi-curve, k*, to opitmizing the window length k.</p>
-</section>
-<section id="sec-var" class="level4">
-<h4 class="anchored" data-anchor-id="sec-var">Modification via variational method</h4>
-<p>In <a href="./package_EpiInvert.html">EpiInvert</a></p>
-</section>
-<section id="sec-disagg" class="level4">
-<h4 class="anchored" data-anchor-id="sec-disagg">Disaggregation</h4>
-<p>Package <a href="./package_ern.html">ern</a></p>
-</section>
+<section id="sec-modifications" class="level3">
+<h3 class="anchored" data-anchor-id="sec-modifications">Modifications of EpiEstim</h3>
+<p>Several packages modify the functionality of EpiEstim. These modifications include:</p>
+<ul>
+<li><p>fitting <span class="math inline">\(τ\)</span> to minimize the Accumulated Prediction Error, as in the package <a href="./package_APEestim.html">APEestim</a></p></li>
+<li><p>fitting <span class="math inline">\(R(t)\)</span> via harmonizing the EpiEstim method and methods from the case reproduction number in a variational method, as in the <a href="./package_EpiInvert.html">EpiInvert</a> package.</p></li>
+<li><p>and dissaggregation of data into smaller time units, as in the <a href="./package_ern.html">ern</a> package.</p></li>
+</ul>
 </section>
 </section>
 <section id="sec-randomwalk" class="level2">
@@ -457,32 +449,38 @@ C.V. [R(t)]=\frac{1}{a + \sum_{i = \max(1, t - τ)}^{t} I(t)}
 <p><span class="math display">\[
 f(R(t))=f(R(t-1))+N(0,σ_R)  
 \]</span></p>
-<p><span class="math display">\[
+<p>where <span class="math inline">\(σ_R\)</span> has a user-defined prior, e.g., with hyperparameters <span class="math inline">\(ρ\)</span> and <span class="math inline">\(φ\)</span>: <span class="math display">\[
 σ_R \sim HalfNormal(ρ,φ)        
 \]</span></p>
 <p>The random walk implies that adjacent <span class="math inline">\(R(t)\)</span> values may be drawn from similar or even the same distribution, and would be correlated in time based on previous values.</p>
-<p>The variables <span class="math inline">\(ρ\)</span> and <span class="math inline">\(φ\)</span> are hyperparameters. The function f can be a transformation of R(t), e.g.&nbsp;in log space as in EpiNow2 to correct for the skewness of R(t), provide a variable that is more Gaussian, provide a variable that obeys the properties that we expect from R(t) (i.e., is non-negative), and aid in interpretability. The function f in epidemia contains more layers for pooled effects and group-level variables.</p>
+<p>The function <span class="math inline">\(f\)</span> can be a transformation of <span class="math inline">\(R(t)\)</span>, e.g.&nbsp;in log space to correct for the skewness of <span class="math inline">\(R(t)\)</span>. This can help provide a variable that is more Gaussian, provide a variable that obeys the properties that we expect from <span class="math inline">\(R(t)\)</span> (i.e., is non-negative), and aid in interpretability.</p>
 </section>
 <section id="sec-filtering" class="level2">
 <h2 class="anchored" data-anchor-id="sec-filtering">Filtering</h2>
-<p>Filtering is another way that R(t) is constrained in common packages. Filtering means […]. One way that a filter could be implemented is in a Hidden Markov Model.24 A simple forward-looking linear filter for R(t) in an Hidden Markov Model might look as follows, with a tuning parameter (η) to influence the amount that R(t) can vary between time-steps and a standard white noise component (ϵ):</p>
-<p>R(t)=R(t-1)+(η√(R(t-1) ))ϵ(t-1) (Eq.10)</p>
-<p>The package EpiFilter25 implements a two-stage filtering and smoothing method for estimating R(t). A key innovation of EpiFilter is that the states of historical R(t) are constrained to a predefined set of values; this dramatically reduces calculation time. The smoothing stage refines estimates of R(t) by incorporating future incidence, in this way using all available data in estimates of historical R(t). These modeling steps help avoid R(t) instability when infections are low and instability at the beginning and (more importantly) the end of the modeling period.</p>
-<p>Another way that filtering can be implemented is across the entire R(t) time-series.</p>
-<pre><code>RtEstim:28 https://dajmcdon.github.io/rtestim/articles/delay-distributions.html
-
-We propose a discrete spline-based approach, RtEstim, that solves a convex optimization problem—Poisson trend filtering—using the proximal Newton method. It produces a locally adaptive estimator for effective reproduction number estimation with heterogeneous smoothness.28
-EpiLPS:29</code></pre>
-<p>In EpiFilter, RtEstim, and EpiLPS, each R(t) estimated in this way thus contains information about past and pending infections, e.g., for R(t=i), the smoothing step will affect R(t=i) using information from 0&lt;i≤t_max. This complicates comparisons to outputs from other methods that only use historical information to estimate R(t), e.g., estimates for R(t=i) containing only information from t&lt;i.</p>
+<p>Filtering is another way that <span class="math inline">\(R(t)\)</span> is constrained in time: a factor controls the amount of difference between <span class="math inline">\(R(t)\)</span> in adjacent time-steps.</p>
+<p>One way that a filter could be implemented is in a Hidden Markov Model (<span class="citation" data-cites="rabiner1986introduction">Rabiner and Juang (<a href="references.html#ref-rabiner1986introduction" role="doc-biblioref">1986</a>)</span>). A simple forward-looking linear filter for <span class="math inline">\(R(t)\)</span> in an Hidden Markov Model might look as follows, with a tuning parameter (<span class="math inline">\(η\)</span>) to influence the amount that <span class="math inline">\(R(t)\)</span> can vary between time-steps and a standard white noise component (<span class="math inline">\(ϵ\)</span>):</p>
+<p><span class="math display">\[
+R(t)=R(t-1)+(η√(R(t-1))) * ϵ(t-1)   
+\]</span></p>
+<p>The package <a href="./package_EpiFilter.html">EpiFilter</a> implements a two-stage filtering and smoothing method for estimating <span class="math inline">\(R(t)\)</span>. A key innovation of EpiFilter is that the states of historical <span class="math inline">\(R(t)\)</span> are constrained to a predefined set of values; this dramatically reduces calculation time. The smoothing stage refines estimates of <span class="math inline">\(R(t)\)</span> by incorporating future incidence, in this way using all available data in estimates of historical <span class="math inline">\(R(t)\)</span>. These modeling steps help avoid <span class="math inline">\(R(t)\)</span> instability when infections are low and instability at the beginning and (more importantly) the end of the modeling period.</p>
+<p>Another way that filtering can be implemented is across the entire R(t) time-series, as in the packages <a href="./package_RtEstim.html">RtEstim</a> and <a href="./package_EpiLPS.html">EpiLPS</a>.</p>
+<p>Notably, <span class="math inline">\(R(t)\)</span> estimated in this way thus contains information about past and pending infections, e.g., for <span class="math inline">\(R(t=i)\)</span>, the smoothing step will affect <span class="math inline">\(R(t=i)\)</span> using information from <span class="math inline">\(0&lt;i≤t_{max}\)</span>. This complicates comparisons to outputs from other methods that only use historical information to estimate <span class="math inline">\(R(t)\)</span>, e.g., estimates for <span class="math inline">\(R(t=i)\)</span> containing only information from <span class="math inline">\(t&lt;i\)</span>.</p>
 </section>
 <section id="sec-gaussianprocess" class="level2">
 <h2 class="anchored" data-anchor-id="sec-gaussianprocess">Gausian Process models</h2>
-<p>Gaussian Process models26 are a more flexible method of constraining the evolution of R(t) in time than the methods discussed thus far (in fact, a random-walk process can be thought of as a simplified case of Gaussian Process model). In Gaussian Process modeling, a family of basis functions are fit to available data, permitting inference about continuous processes without needing to a priori define where inflection points occur. The core of Gaussian Process operations is a kernel, which is used to assess the similarity between input vectors, say x and x^’. There are many options for potential kernels, and each contains different hyperparameters that are used to control the amount of smoothing that is enforced, as well as other factors. One such choice is the squared exponential kernel:</p>
-<p>k(x,x^’ )=α^2 exp⁡[-(x-x^’ )<sup>2/(2l</sup>2 )] (Eq.10)</p>
-<p>In this kernel, the hyperparameters are the length scale, l, which controls the smoothness of the model, and the magnitude, α, which controls the range of values used in the fitting process. These parameters can be given prior distributions and fit using optimization. EpiNow2 uses contains options to use Gaussian Process models to control how R(t) in time. As one example, the relationship between first difference values of R(t) can be constrained using a zero-mean Gaussian Process model with the above kernel as the covariance function:</p>
-<pre><code>    log⁡〖R(t)=log⁡R(t-1)+ GP(0,k(R(t),〖R(t〗^')))〗       (Eq.11)
-    </code></pre>
-<p>The advantage of Gaussian Process models is that R(t) is enforced to change smoothly in time using Eq.10. Limitations include complexity and computational time: Gaussian Process models have a computational complexity of O(n^3) for n observations.27 Although EpiNow2 in practice implements faster approximations of Gaussian Process models,27 in general Gaussian Process runtimes and required computational resources are considerable as compared to other methods.</p>
+<p>Gaussian Process models (<span class="citation" data-cites="schulz2018tutorial">Schulz et al. (<a href="references.html#ref-schulz2018tutorial" role="doc-biblioref">2018</a>)</span>) are yet another flexible method of constraining the evolution of <span class="math inline">\(R(t)\)</span> in time than the methods discussed thus far.</p>
+<p>In Gaussian Process modeling, a family of basis functions are fit to available data, permitting inference about continuous processes without needing to a priori define where inflection points occur.</p>
+<p>The core of Gaussian Process operations is a kernel, which is used to assess the similarity between input vectors, say <span class="math inline">\(x\)</span> and <span class="math inline">\(x'\)</span>.</p>
+<p>There are many options for potential kernels, and each contains different hyperparameters that are used to control the amount of smoothing that is enforced, as well as other factors. One such choice is the squared exponential kernel:</p>
+<p><span class="math display">\[
+k(x,x') = α^2 \exp ( \frac {-(x -x')^2} {2l^2} )
+\]</span></p>
+<p>In this kernel, the hyperparameters are the length scale, <span class="math inline">\(l\)</span>, which controls the smoothness of the model, and the magnitude, α, which controls the range of values used in the fitting process. These parameters can be given prior distributions and fit using optimization.</p>
+<p><a href="./package_EpiNow2.html">EpiNow2</a> contains options to use Gaussian Process models to control how R(t) evolves in time. As one example, the relationship between first difference values of R(t) can be constrained using a zero-mean Gaussian Process model with the above kernel as the covariance function:</p>
+<p><span class="math display">\[
+\log R(t) = \log R(t-1) + GP(0, k(R(t), R(t')) )
+\]</span></p>
+<p>The advantage of Gaussian Process models is that R(t) is enforced to change smoothly in time . Limitations include complexity and computational time: Gaussian Process models have a computational complexity of <span class="math inline">\(O(n^3)\)</span> for n observations (<span class="citation" data-cites="riutort2020practical">Riutort-Mayol et al. (<a href="references.html#ref-riutort2020practical" role="doc-biblioref">2020</a>)</span>), which in general means Gaussian Process runtimes and required computational resources are considerable as compared to other methods.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
@@ -492,8 +490,14 @@ Cori A, Ferguson NM, Fraser C, Cauchemez S. 2013. A <span>New</span> <span>Frame
 <div id="ref-Gostic2020Practical" class="csl-entry" role="listitem">
 Gostic KM, McGough L, Baskerville EB, Abbott S, Joshi K, Tedijanto C, et al. 2020. Practical considerations for measuring the effective reproductive number, <span>Rt</span>. PLOS Computational Biology 16:e1008409; doi:<a href="https://doi.org/10.1371/journal.pcbi.1008409">10.1371/journal.pcbi.1008409</a>.
 </div>
-<div id="ref-Parag2020Using" class="csl-entry" role="listitem">
-Parag KV, Donnelly CA. 2020. Using information theory to optimise epidemic models for real-time prediction and estimation. PLoS Computational Biology 16:e1007990; doi:<a href="https://doi.org/10.1371/journal.pcbi.1007990">10.1371/journal.pcbi.1007990</a>.
+<div id="ref-rabiner1986introduction" class="csl-entry" role="listitem">
+Rabiner L, Juang B. 1986. An introduction to hidden markov models. ieee assp magazine 3: 4–16.
+</div>
+<div id="ref-riutort2020practical" class="csl-entry" role="listitem">
+Riutort-Mayol G, Bürkner P, Andersen M, Solin A, Vehtari A. 2020. Practical hilbert space approximate bayesian gaussian processes for probabilistic programming. ArXiv prepr. arXiv preprint arXiv:200411408.
+</div>
+<div id="ref-schulz2018tutorial" class="csl-entry" role="listitem">
+Schulz E, Speekenbrink M, Krause A. 2018. A tutorial on gaussian process regression: Modelling, exploring, and exploiting functions. Journal of mathematical psychology 85: 1–16.
 </div>
 </div>
 </section>
@@ -589,7 +593,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/chadmilando\.com\/RtEstimBook\/");
+      var filterRegex = new RegExp("https:\/\/sites\.bu\.edu\/disease-rt\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -935,8 +939,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Reproductive Number R(t) - <a href="https://chadmilando.com/RtEstimBook/" target="_blank">https://chadmilando.com/RtEstimBook/</a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/methods_time.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<p>Disease outbreak and metrics - <a href="https://sites.bu.edu/disease-rt/" target="_blank">https://sites.bu.edu/disease-rt/</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://sites.bu.edu/disease-rt/edit/main/methods_time.qmd" class="toc-action"><i class="bi bi-git"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

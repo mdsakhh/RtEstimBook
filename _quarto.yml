@@ -5,11 +5,11 @@ project:
 book:
   google-analytics: G-NRY8TV1Q8G
   title: "Disease outbreaks and metrics"
-  repo-url: https://github.com/cmilando/RtEstimBook
-  page-footer: Reproductive Number R(t) - [https://chadmilando.com/RtEstimBook/](https://chadmilando.com/RtEstimBook/){target="_blank"}
+  repo-url: https://sites.bu.edu/disease-rt/
+  page-footer: Disease outbreak and metrics - [https://sites.bu.edu/disease-rt/](https://sites.bu.edu/disease-rt/){target="_blank"}
   repo-branch: main
   repo-actions: [edit]
-  site-url: https://chadmilando.com/RtEstimBook/
+  site-url: https://sites.bu.edu/disease-rt/
   sidebar:
     collapse-level: 1
   chapters:

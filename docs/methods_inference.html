@@ -136,7 +136,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Disease outbreaks and metrics</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/cmilando/RtEstimBook" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://sites.bu.edu/disease-rt/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-git"></i></a>
 </div>
     </div>
       </div>
@@ -344,7 +344,7 @@ window.Quarto = {
   <li><a href="#bayesian-optimization" id="toc-bayesian-optimization" class="nav-link active" data-scroll-target="#bayesian-optimization">Bayesian optimization</a></li>
   <li><a href="#maxliklihood-optimization" id="toc-maxliklihood-optimization" class="nav-link" data-scroll-target="#maxliklihood-optimization">MaxLiklihood optimization</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/methods_inference.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://sites.bu.edu/disease-rt/edit/main/methods_inference.qmd" class="toc-action"><i class="bi bi-git"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -368,17 +368,14 @@ window.Quarto = {
 </header>
 
 
-<p>Finally there are different ways of acutally calculating the numbers once you have the theory lined up.</p>
+<p>This page describes the different software / mathematical implementations of the solving the smoothing equations described previously.</p>
 <section id="bayesian-optimization" class="level2">
 <h2 class="anchored" data-anchor-id="bayesian-optimization">Bayesian optimization</h2>
-<p> Assumes a distribution –&gt; solved analytically • EpiEstim o restricted set of GI options (gamma?) enables analytical solve for the posterior estimate of R(t) which is also a Gamma, using conjugate priors</p>
-<p> Doesn’t assume a distribution of R(t) or I(t) –&gt; Uses MCMC • EpiNow2, implemented in STAN • Hierarchical NUTS</p>
+<p><em>Section in progress</em></p>
 </section>
 <section id="maxliklihood-optimization" class="level2">
 <h2 class="anchored" data-anchor-id="maxliklihood-optimization">MaxLiklihood optimization</h2>
-<p>• Frequentist o RtEstim</p>
-<p>Wallinga, J., and P. Teunis. “Different Epidemic Curves for Severe Acute Respiratory Syndrome Reveal Similar Impacts of Control Measures.” American Journal of Epidemiology 160,no. 6 (2004): 509. • ^ this has the likelihood calculation in it</p>
-<p>One of the most widely used methods for estimating time-varying reproduction number is a maximum likelihood-based approach {White, 2008}. • White LF, Pagano M. A likelihood-based method for real-time estimation of the serial interval and reproductive number of an epidemic. Stat Med 2008; 27(16): 2999–3016.</p>
+<p><em>Section in progress</em></p>
 
 
 </section>
@@ -474,7 +471,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/chadmilando\.com\/RtEstimBook\/");
+      var filterRegex = new RegExp("https:\/\/sites\.bu\.edu\/disease-rt\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -820,8 +817,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Reproductive Number R(t) - <a href="https://chadmilando.com/RtEstimBook/" target="_blank">https://chadmilando.com/RtEstimBook/</a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/methods_inference.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<p>Disease outbreak and metrics - <a href="https://sites.bu.edu/disease-rt/" target="_blank">https://sites.bu.edu/disease-rt/</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://sites.bu.edu/disease-rt/edit/main/methods_inference.qmd" class="toc-action"><i class="bi bi-git"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
