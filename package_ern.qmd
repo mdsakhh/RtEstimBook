@@ -24,7 +24,7 @@ This package combines the following methods:
 
 - [fixed sliding windows](methods_time.qmd#sec-fixedwindow)
 
-including an additional module for [disaggregation of data into shorter time units](methods_time.qmd#sec-disagg)
+including an additional module for disaggregation of data into shorter time units.
 
 ### Assessment
 

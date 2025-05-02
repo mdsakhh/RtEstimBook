@@ -4,31 +4,42 @@ Estimates of R(t) can also be improved using additional data. , you can beef up 
 
 ## Reconstruction of missing data
 
-Extending EpiEstim
-•	The package bayEStim30 also extends EpiEstim
-o	Our method extends that of Cori et al (2013), adding Bayesian imputation of missing symptom onset dates, imputation of infection times using an external estimate of the incubation period, and an adjustment for reporting delay. 
-•	Tenglong’s work31 and the accompanying package WhiteLabRt32 use the sliding window approach to estimating missing reporting delay information from line-list data (originally implemented as a Gibbs sampler, later updater to STAN).
-•	The package estimateR involves estimating missing count data using smoothing [confirm].33
+*Section in progress*
 
-•	Does EpiNow2 do this?
+```{r, include=FALSE, echo=F}
 
-
-[Epidemia](package_Epidemia.qmd): 23
-. We introduce a Bayesian mechanistic model linking the infection cycle to observed deaths, inferring the total population infected (attack rates) as well as Rt. 
+# Extending EpiEstim
+# •	The package bayEStim30 also extends EpiEstim
+# o	Our method extends that of Cori et al (2013), adding Bayesian imputation of missing symptom onset dates, imputation of infection times using an external estimate of the incubation period, and an adjustment for reporting delay. 
+# •	Tenglong’s work31 and the accompanying package WhiteLabRt32 use the sliding window approach to estimating missing reporting delay information from line-list data (originally implemented as a Gibbs sampler, later updater to STAN).
+# •	The package estimateR involves estimating missing count data using smoothing [confirm].33
+# 
+# •	Does EpiNow2 do this?
+# 
+# 
+# [Epidemia](package_Epidemia.qmd): 23
+# . We introduce a Bayesian mechanistic model linking the infection cycle to observed deaths, inferring the total population infected (attack rates) as well as Rt. 
+```
 
 ## Delay distributions
 
+*Section in progress*
+
 Importantly, the definition of R(t) is linked to the data that are being used, so models that calculate a similar quantity as R(t) but instead from infections, symptom onset, or reports are important quantities but differ in definition from the instantaneous reproduction number R(t) as defined throughout the literature. 
-sometimes R(t) is calculated directly from reported case data and then shifted backwards by a delay distribution, whereas other times R(t) is calculated from inferred dates of infection using reported case data.
 
-Reporting delay, Onset delays etc
-Delay PMFs that you can pass in series which have cascading impacts.
+```{r, include=FALSE, echo=F}
 
-	EpiNow2 has this:
-	Our estimates overcome some of the limitations of naive implementations that derive estimates for the reproduction number directly from numbers of reported cases without adjusting (or with only partial adjustments) for the delay from infection to symptom onset or from onset to notification. 
-	Our approach also incorporates multiple sources of uncertainty that if excluded can bias estimates.
-
-	EpiFilter was also recently generalized to incorporate hetereogeonous transmission rates and reporting delays.34
+# sometimes R(t) is calculated directly from reported case data and then shifted backwards by a delay distribution, whereas other times R(t) is calculated from inferred dates of infection using reported case data.
+# 
+# Reporting delay, Onset delays etc
+# Delay PMFs that you can pass in series which have cascading impacts.
+# 
+# 	EpiNow2 has this:
+# 	Our estimates overcome some of the limitations of naive implementations that derive estimates for the reproduction number directly from numbers of reported cases without adjusting (or with only partial adjustments) for the delay from infection to symptom onset or from onset to notification. 
+# 	Our approach also incorporates multiple sources of uncertainty that if excluded can bias estimates.
+# 
+# 	EpiFilter was also recently generalized to incorporate hetereogeonous transmission rates and reporting delays.34
+```
 
 Several packages have been created to extend [EpiEstim](package_EpiEstim.qmd) to use delay distributions:
 
@@ -36,23 +47,28 @@ Several packages have been created to extend [EpiEstim](package_EpiEstim.qmd) to
 - [estimateR](package_EstimateR.qmd) involves combining various delay distributions with [EpiEstim](package_EpiEstim.qmd)
 - [EpiInvert](package_EpiInvert.qmd) also has methods for including delay disributions with [EpiEstim](package_EpiEstim.qmd)
 	
-## Clinical data distributions
+## Additional data streams
 
-Again, some packages just modify EpiEstim:
+*Section in progress*
 
-- The [ern](package_ern.qmd) package ultimately uses the [EpiEstim](package_EpiEstim.qmd) package for the core of the   computation as [EpiEstim](package_EpiEstim.qmd) already provides a robust and one of the fastest implementations of well-tested   estimation algorithms. However, [ern](package_ern.qmd) wraps complex and critical features for estimating   from real-world clinical and wastewater data that have not all been implemented in any one existing   package for   estimation
+Additional data include: clinical data, wastewater 
 
-Here, we present the  library [ern](package_ern.qmd) to address the gaps identified above, specifically:
-o	to disaggregate the clinical reports into a shorter time unit to enable estimation of  using an intrinsic generation interval on a useful timescale;
-o	to provide a framework to estimate  from wastewater data, consistent with an estimation based on clinical data;
-o	to provide a user-friendly interface geared at public-health practitioners that may have limited proficiency in the  programming language;
-o	to perform an efficient and rapid  estimation.
-
-## Linear predictor model components
-
-ViaEpidemia
-School closures etc
-
-EpiFusion:37 We propose a model of Rt that estimates outbreak trajectories conditional upon both phylodynamic (time-scaled trees estimated from genetic sequences) and epidemiological (case incidence) data. 
-
+```{r, include=FALSE, echo=F}
+# Again, some packages just modify EpiEstim:
+# 
+# - The [ern](package_ern.qmd) package ultimately uses the [EpiEstim](package_EpiEstim.qmd) package for the core of the   computation as [EpiEstim](package_EpiEstim.qmd) already provides a robust and one of the fastest implementations of well-tested   estimation algorithms. However, [ern](package_ern.qmd) wraps complex and critical features for estimating   from real-world clinical and wastewater data that have not all been implemented in any one existing   package for   estimation
+# 
+# Here, we present the  library [ern](package_ern.qmd) to address the gaps identified above, specifically:
+# o	to disaggregate the clinical reports into a shorter time unit to enable estimation of  using an intrinsic generation interval on a useful timescale;
+# o	to provide a framework to estimate  from wastewater data, consistent with an estimation based on clinical data;
+# o	to provide a user-friendly interface geared at public-health practitioners that may have limited proficiency in the  programming language;
+# o	to perform an efficient and rapid  estimation.
+# 
+# ## Linear predictor model components
+# 
+# ViaEpidemia
+# School closures etc
+# 
+# EpiFusion:37 We propose a model of Rt that estimates outbreak trajectories conditional upon both phylodynamic (time-scaled trees estimated from genetic sequences) and epidemiological (case incidence) data. 
+```
 

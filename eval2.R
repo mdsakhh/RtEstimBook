@@ -132,8 +132,6 @@ getR <- EpiEstim::estimate_R(
   method = "non_parametric_si",
   config = make_config(list(
     si_distr = serial_interval_pmf
-    # t_start = 2:nrow(incidence_df),
-    # t_end = 2:nrow(incidence_df)
   ))
 )
 

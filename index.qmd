@@ -1,6 +1,8 @@
 ## Overview {.unnumbered}
 
-When an infectious disease outbreak begins, a time-sensitive question arises: "are things getting better or worse?" A great deal of research has gone into how to answer this question, including the development of forecasting tools to attempt to predict what might be coming, as well as data streams and metrics to summarize and understand that data. Here we focus more on the latter approach.
+When an infectious disease outbreak begins, a time-sensitive question arises: "tomorrow, are things getting better or worse?" 
+
+A great deal of research has gone into how to answer this question, including the development of forecasting tools to attempt to predict what might be coming, as well as data streams and metrics to summarize and understand that data. Here we focus more on the latter approach.
 
 Suppose you work at a public health agency, and you have the following reported case data in blue:
 
@@ -14,7 +16,7 @@ However the process that generates these new cases, i.e. infection, has already 
 
 This is what the **effective reproductive number**, $R(t)$, aims to estimate. The reproductive number estimates the average number of people an infectious individual will infect at time $t$. This is typically done daily. The reproductive number is estimated from case count data like that shown in the plots above. But there is another  critical piece of information to indicate when reported cases might have been infected. This is: 
 
-**How long does it take for an infected person to infect others?** This is described by the <a class="definition" href="glossary.qmd#genInt">generation interval</a>. This can be summarized by a mean which would give the average amount of time between an infector and their infectee. But more often it is described by a statistical distribution. For example, the infector of an infected individual would have been infected 1 day prior with 30% probability, 2 days prior with 40% probability, or 3 days prior with probability. 
+**How long does it take for an infected person to infect others?** This is described by the <a class="definition" href="glossary.qmd#genInt">generation interval</a>. This can be summarized by a mean which would give the average amount of time between an infector and their infectee. But more often it is described by a statistical distribution. For example, the infector of an infected individual would have been infected 1 day prior with 30% probability, 2 days prior with 40% probability, or 3 days prior with 30% probability. 
 
 The generation interval is central to estimating the reproductive number. The generation interval can estimated by a number of methods, including analyzing data of [infector-infectee pairs](https://journals.lww.com/epidem/FullText/2009/05000/Estimation_of_the_Serial_Interval_of_Influenza.7.aspx?casa_token=ryVMHOD5AEgAAAAA:dTLXhhBPGA_sFo1yyON5_GDSwqV7cvMxb7p7FJAfHlO3OnpLfbTDLdgiWKNNz3_P4rQm18po9HSte9PtG_Sa0MQKRL0).
 
@@ -55,7 +57,9 @@ There has been a proliferation of software tools that make inference about the c
 
 Important to keep in mind when choosing a tool to estimate $R(t)$ is this fact: $R(t)$ is a *latent* variable, which means *cannot be measured directly*. Instead, it can only be estimated from observable variables (like reported case counts). 
 
-The ideal estimator of $R(t)$ requires a list of the number of newly *infected* cases by infection date and the <a class="definition" href="glossary.qmd#getInt">generation interval</a>. This is because we want to know about the state of disease based on when people are infected, not when they report having symptoms. In reality we usually only observe the new number of newly *reported* cases and can only estimate the <a class="definition" href="glossary.qmd#serialInt">serial interval</a>, which is the time between symptom onset of an infector-infectee pair. In this case the estimate of $R(t)$ will lag reality without some adjustments. 
+The ideal estimator of $R(t)$ requires a list of the number of newly *infected* cases by infection date and the <a class="definition" href="glossary.qmd#getInt">generation interval</a>. This is because we want to know about the state of disease based on when people are infected, not when they report having symptoms. 
+
+In reality we usually only observe the new number of newly *reported* cases and can only estimate the <a class="definition" href="glossary.qmd#serialInt">serial interval</a>, which is the time between symptom onset of an infector-infectee pair. In this case the estimate of $R(t)$ will lag reality without some adjustments. 
 
 Each software package that estimates $R(t)$ makes different adjustments and assumptions about how these parameters relate, which leads to variations in estimated $R(t)$ _even if the same input data are used_. In addition, different packages require different levels on input data to provide additional robustness in estimated outputs.
 
