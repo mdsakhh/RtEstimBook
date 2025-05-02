@@ -118,7 +118,7 @@ $$
 \log R(t) = \log R(t-1) + GP(0, k(R(t), R(t')) )
 $$
 
-The advantage of Gaussian Process models is that R(t) is enforced to change smoothly in time . Limitations include complexity and computational time: Gaussian Process models have a computational complexity of $O(n^3)$ for n observations (@riutort2020practical), which in general means Gaussian Process runtimes and required computational resources are considerable as compared to other methods.
+The advantage of Gaussian Process models is that R(t) is enforced to change smoothly in time . Limitations include complexity and computational time (@riutort2020practical), which in general means Gaussian Process runtimes and required computational resources are considerable as compared to other methods.
 
 
 
