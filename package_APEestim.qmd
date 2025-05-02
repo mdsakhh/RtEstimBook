@@ -18,7 +18,7 @@ The quality of this estimate is highly dependent on the size of a smoothing wind
 
 ### Methods
 
-This package aims to improve upon the limitation of [fixed sliding windows](methods_time.qmd#sec-fixedwindow), specifically by optimizing the choice of the window size in an [APE Framework](methods_time.qmd#sec-ape).
+This package aims to improve upon the limitation of [fixed sliding windows](methods_time.qmd#sec-fixedwindow), specifically by optimizing the choice of the window size.
 
 ### Assessment
 

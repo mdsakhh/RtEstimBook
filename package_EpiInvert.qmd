@@ -14,15 +14,11 @@
 ::: {style="font-size:0.8em"}
 Brief summary of the method from the paper <br><br>
 :::
-EpiInvert is an epidemiological method that estimates the time-varying reproductive number and restores incidence curves by inverting the renewal equation using variational techniques. The approach corrects biases introduced by reporting inconsistencies, including weekly and festive biases, ensuring robust epidemic trend estimation. EpiInvert estimates Rt by inverting the renewal equation using signal processing techniques, providing a reliable measure of epidemic dynamics. It corrects systematic underreporting due to weekends and holidays by detecting anomalies based on historical trends, redistributing cases across affected days to reduce artificial fluctuations, and adjusting Rt estimates to reflect true transmission patterns. It also includes a forecasting model that predicts epidemic trends using historical trends.
+EpiInvert is an epidemiological method that estimates the time-varying reproductive number and restores incidence curves by inverting the renewal equation using variational techniques. The approach corrects biases introduced by reporting inconsistencies, including weekly and festive biases, ensuring robust epidemic trend estimation. EpiInvert estimates R(t) by inverting the renewal equation using signal processing techniques, providing a reliable measure of epidemic dynamics. It corrects systematic underreporting due to weekends and holidays by detecting anomalies based on historical trends, redistributing cases across affected days to reduce artificial fluctuations, and adjusting Rt estimates to reflect true transmission patterns. It also includes a forecasting model that predicts epidemic trends using historical trends.
 
 ### Methods
 
-This package combines the following methods:
-
-- [fixed sliding windows](methods_time.qmd#sec-fixedwindow)
-
-modified by a [variational method](methods_time.qmd#sec-var)
+This package modifies [fixed sliding windows](methods_time.qmd#sec-fixedwindow), using a variational method that includes solving R(t) using the classic Wallinga Teunis method (@wallinga2004different).
 
 ### Assessment
 

@@ -4,18 +4,16 @@
 
 A primary component of constraining $R(t)$ is how distributions are used to constrain key variables in $R(t)$ estimation: for $I(t)$, $ω$, and for $R(t)$ itself. 
 
-Assuming some prior distributions for $R(t)$ and the generation interval permit an analytical solution for the posterior distribution of $R(t)$, as in [EpiEstim](package_EpiEstim.qmd). These simplifying assumptions greatly constrain the space of potential $R(t)$ and thus calculation times are relatively fast. 
+Assuming some prior distributions for $R(t)$ and the generation interval permit an analytical solution for the posterior distribution of $R(t)$, as in [EpiEstim](package_EpiEstim.qmd). These simplifying assumptions greatly constrain the space of possible $R(t)$ values and thus calculation times are relatively fast. 
 
 Other software packages, such as [EpiNow2](package_EpiNow2.qmd), have more flexibility at the cost of somewhat higher computational runtime and resources.
 
 ## Distributions used to define new offspring from cases
 
-Another primary component of constraining $R(t)$ is how distributions are used to define the next generation of infections, or $I(t)$ from $I(t-1)$. 
+Another primary component of constraining $R(t)$ is how distributions are used to define the next generation of infections, or $I(t)$ as a function $I(t-i)$, for $0{\leq}i<t$. 
 
-The renewal equation provides a mechanism for estimating the next batch of infectees that occur due to transmission from the current round of infectors, a branching process. For $time = t-1$ the $I(t)$ calculated in the renewal equation provides the expected value for a draw from a discrete distribution, the value of which represents the next generation of infectees. 
+The renewal equation provides a mechanism for estimating the next batch of infectees that occur due to transmission from the current round of infectors, a branching process. The $I(t)$ calculated in the renewal equation represents the expected value of a discrete distribution. To account for stochasticity in estimating $R(t)$, we must specify this distribution.
 
-The discrete distribution chosen is commonly a **Poisson distribution** (in which the mean and variance parameter $λ(t)=I(t)$). Thus, using this constraint, the time-series of $I(t)$ represents draws from a series of Poisson distributions with means of $λ(t)$.
+The **Poisson distribution**, in which the mean and variance parameter $λ(t)=I(t)$, is used to represent the probability that a given number of events (i.e. infections) occur within a given time interval (i.e. one day), assuming that these events are independent. This is the simplest option to represent variation in infections. However, infections are often not independent, but can occur in clusters, e.g. in supersreading events. If this is an important factor in the spread of the infection, it is better to use a **Negative Binomial distribution**, with a mean parameter equal to $I(t)$ and a fitted size paramter to account for the "over-dispersion" of infections.
 
-Alternatively, a **Negative Binomial distribution** can be used (with a mean parameter again equal to $I(t)$), although this requires additionally fitting the size parameter (roughly, the spread of the distribution) to account the infectee distribution being “over-dispersed”. 
 
-Importantly, if additional delay distributions are included in the process of estimating $R(t)$, the parameter that distributions are being used to estimate for the next generation may change, see reference for [EpiNow2](package_EpiNow2.qmd) for more details.

@@ -135,7 +135,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Disease outbreaks and metrics</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/cmilando/RtEstimBook" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://sites.bu.edu/disease-rt/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-git"></i></a>
 </div>
     </div>
       </div>
@@ -346,7 +346,7 @@ window.Quarto = {
   </ul></li>
   <li><a href="#funding-authors-and-acknowledgements" id="toc-funding-authors-and-acknowledgements" class="nav-link" data-scroll-target="#funding-authors-and-acknowledgements">Funding, authors, and acknowledgements</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://sites.bu.edu/disease-rt/edit/main/index.qmd" class="toc-action"><i class="bi bi-git"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -372,7 +372,8 @@ window.Quarto = {
 
 <section id="overview" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="overview">Overview</h2>
-<p>When an infectious disease outbreak begins, a time-sensitive question arises: “are things getting better or worse?” A great deal of research has gone into how to answer this question, including the development of forecasting tools to attempt to predict what might be coming, as well as data streams and metrics to summarize and understand that data. Here we focus more on the latter approach.</p>
+<p>When an infectious disease outbreak begins, a time-sensitive question arises: “tomorrow, are things getting better or worse?”</p>
+<p>A great deal of research has gone into how to answer this question, including the development of forecasting tools to attempt to predict what might be coming, as well as data streams and metrics to summarize and understand that data. Here we focus more on the latter approach.</p>
 <p>Suppose you work at a public health agency, and you have the following reported case data in blue:</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -421,7 +422,8 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="how-to-choose-a-tool-to-estimate-rt">How to choose a tool to estimate <span class="math inline">\(R(t)\)</span></h3>
 <p>There has been a proliferation of software tools that make inference about the current state of an infectious disease outbreak.</p>
 <p>Important to keep in mind when choosing a tool to estimate <span class="math inline">\(R(t)\)</span> is this fact: <span class="math inline">\(R(t)\)</span> is a <em>latent</em> variable, which means <em>cannot be measured directly</em>. Instead, it can only be estimated from observable variables (like reported case counts).</p>
-<p>The ideal estimator of <span class="math inline">\(R(t)\)</span> requires a list of the number of newly <em>infected</em> cases by infection date and the <a class="definition" href="./glossary.html#getInt">generation interval</a>. This is because we want to know about the state of disease based on when people are infected, not when they report having symptoms. In reality we usually only observe the new number of newly <em>reported</em> cases and can only estimate the <a class="definition" href="./glossary.html#serialInt">serial interval</a>, which is the time between symptom onset of an infector-infectee pair. In this case the estimate of <span class="math inline">\(R(t)\)</span> will lag reality without some adjustments.</p>
+<p>The ideal estimator of <span class="math inline">\(R(t)\)</span> requires a list of the number of newly <em>infected</em> cases by infection date and the <a class="definition" href="./glossary.html#getInt">generation interval</a>. This is because we want to know about the state of disease based on when people are infected, not when they report having symptoms.</p>
+<p>In reality we usually only observe the new number of newly <em>reported</em> cases and can only estimate the <a class="definition" href="./glossary.html#serialInt">serial interval</a>, which is the time between symptom onset of an infector-infectee pair. In this case the estimate of <span class="math inline">\(R(t)\)</span> will lag reality without some adjustments.</p>
 <p>Each software package that estimates <span class="math inline">\(R(t)\)</span> makes different adjustments and assumptions about how these parameters relate, which leads to variations in estimated <span class="math inline">\(R(t)\)</span> <em>even if the same input data are used</em>. In addition, different packages require different levels on input data to provide additional robustness in estimated outputs.</p>
 <div style="border: 2px dotted black; border-radius: 15px;padding: 5px; background-color: lightyellow;">
 <h3 style="margin-top: 5px; font-size: 1.25em;" class="anchored">
@@ -537,7 +539,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/chadmilando\.com\/RtEstimBook\/");
+      var filterRegex = new RegExp("https:\/\/sites\.bu\.edu\/disease-rt\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -880,8 +882,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Reproductive Number R(t) - <a href="https://chadmilando.com/RtEstimBook/" target="_blank">https://chadmilando.com/RtEstimBook/</a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<p>Disease outbreak and metrics - <a href="https://sites.bu.edu/disease-rt/" target="_blank">https://sites.bu.edu/disease-rt/</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://sites.bu.edu/disease-rt/edit/main/index.qmd" class="toc-action"><i class="bi bi-git"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

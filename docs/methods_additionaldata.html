@@ -136,7 +136,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Disease outbreaks and metrics</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/cmilando/RtEstimBook" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://sites.bu.edu/disease-rt/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-git"></i></a>
 </div>
     </div>
       </div>
@@ -343,10 +343,9 @@ window.Quarto = {
   <ul>
   <li><a href="#reconstruction-of-missing-data" id="toc-reconstruction-of-missing-data" class="nav-link active" data-scroll-target="#reconstruction-of-missing-data">Reconstruction of missing data</a></li>
   <li><a href="#delay-distributions" id="toc-delay-distributions" class="nav-link" data-scroll-target="#delay-distributions">Delay distributions</a></li>
-  <li><a href="#clinical-data-distributions" id="toc-clinical-data-distributions" class="nav-link" data-scroll-target="#clinical-data-distributions">Clinical data distributions</a></li>
-  <li><a href="#linear-predictor-model-components" id="toc-linear-predictor-model-components" class="nav-link" data-scroll-target="#linear-predictor-model-components">Linear predictor model components</a></li>
+  <li><a href="#additional-data-streams" id="toc-additional-data-streams" class="nav-link" data-scroll-target="#additional-data-streams">Additional data streams</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/methods_additionaldata.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://sites.bu.edu/disease-rt/edit/main/methods_additionaldata.qmd" class="toc-action"><i class="bi bi-git"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -373,19 +372,12 @@ window.Quarto = {
 <p>Estimates of R(t) can also be improved using additional data. , you can beef up the calculation by including other pieces of information about counts.</p>
 <section id="reconstruction-of-missing-data" class="level2">
 <h2 class="anchored" data-anchor-id="reconstruction-of-missing-data">Reconstruction of missing data</h2>
-<p>Extending EpiEstim • The package bayEStim30 also extends EpiEstim o Our method extends that of Cori et al (2013), adding Bayesian imputation of missing symptom onset dates, imputation of infection times using an external estimate of the incubation period, and an adjustment for reporting delay. • Tenglong’s work31 and the accompanying package WhiteLabRt32 use the sliding window approach to estimating missing reporting delay information from line-list data (originally implemented as a Gibbs sampler, later updater to STAN). • The package estimateR involves estimating missing count data using smoothing [confirm].33</p>
-<p>• Does EpiNow2 do this?</p>
-<p><a href="./package_Epidemia.html">Epidemia</a>: 23 . We introduce a Bayesian mechanistic model linking the infection cycle to observed deaths, inferring the total population infected (attack rates) as well as Rt.</p>
+<p><em>Section in progress</em></p>
 </section>
 <section id="delay-distributions" class="level2">
 <h2 class="anchored" data-anchor-id="delay-distributions">Delay distributions</h2>
-<p>Importantly, the definition of R(t) is linked to the data that are being used, so models that calculate a similar quantity as R(t) but instead from infections, symptom onset, or reports are important quantities but differ in definition from the instantaneous reproduction number R(t) as defined throughout the literature. sometimes R(t) is calculated directly from reported case data and then shifted backwards by a delay distribution, whereas other times R(t) is calculated from inferred dates of infection using reported case data.</p>
-<p>Reporting delay, Onset delays etc Delay PMFs that you can pass in series which have cascading impacts.</p>
-<pre><code>EpiNow2 has this:
-Our estimates overcome some of the limitations of naive implementations that derive estimates for the reproduction number directly from numbers of reported cases without adjusting (or with only partial adjustments) for the delay from infection to symptom onset or from onset to notification. 
-Our approach also incorporates multiple sources of uncertainty that if excluded can bias estimates.
-
-EpiFilter was also recently generalized to incorporate hetereogeonous transmission rates and reporting delays.34</code></pre>
+<p><em>Section in progress</em></p>
+<p>Importantly, the definition of R(t) is linked to the data that are being used, so models that calculate a similar quantity as R(t) but instead from infections, symptom onset, or reports are important quantities but differ in definition from the instantaneous reproduction number R(t) as defined throughout the literature.</p>
 <p>Several packages have been created to extend <a href="./package_EpiEstim.html">EpiEstim</a> to use delay distributions:</p>
 <ul>
 <li><a href="./package_bayEStim.html">bayEStim</a>: Our method extends that of Cori et al (2013), adding Bayesian imputation of missing symptom onset dates, imputation of infection times using an external estimate of the incubation period, and an adjustment for reporting delay.</li>
@@ -393,18 +385,10 @@ EpiFilter was also recently generalized to incorporate hetereogeonous transmissi
 <li><a href="./package_EpiInvert.html">EpiInvert</a> also has methods for including delay disributions with <a href="./package_EpiEstim.html">EpiEstim</a></li>
 </ul>
 </section>
-<section id="clinical-data-distributions" class="level2">
-<h2 class="anchored" data-anchor-id="clinical-data-distributions">Clinical data distributions</h2>
-<p>Again, some packages just modify EpiEstim:</p>
-<ul>
-<li>The <a href="./package_ern.html">ern</a> package ultimately uses the <a href="./package_EpiEstim.html">EpiEstim</a> package for the core of the computation as <a href="./package_EpiEstim.html">EpiEstim</a> already provides a robust and one of the fastest implementations of well-tested estimation algorithms. However, <a href="./package_ern.html">ern</a> wraps complex and critical features for estimating from real-world clinical and wastewater data that have not all been implemented in any one existing package for estimation</li>
-</ul>
-<p>Here, we present the library <a href="./package_ern.html">ern</a> to address the gaps identified above, specifically: o to disaggregate the clinical reports into a shorter time unit to enable estimation of using an intrinsic generation interval on a useful timescale; o to provide a framework to estimate from wastewater data, consistent with an estimation based on clinical data; o to provide a user-friendly interface geared at public-health practitioners that may have limited proficiency in the programming language; o to perform an efficient and rapid estimation.</p>
-</section>
-<section id="linear-predictor-model-components" class="level2">
-<h2 class="anchored" data-anchor-id="linear-predictor-model-components">Linear predictor model components</h2>
-<p>ViaEpidemia School closures etc</p>
-<p>EpiFusion:37 We propose a model of Rt that estimates outbreak trajectories conditional upon both phylodynamic (time-scaled trees estimated from genetic sequences) and epidemiological (case incidence) data.</p>
+<section id="additional-data-streams" class="level2">
+<h2 class="anchored" data-anchor-id="additional-data-streams">Additional data streams</h2>
+<p><em>Section in progress</em></p>
+<p>Additional data include: clinical data, wastewater</p>
 
 
 </section>
@@ -500,7 +484,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/chadmilando\.com\/RtEstimBook\/");
+      var filterRegex = new RegExp("https:\/\/sites\.bu\.edu\/disease-rt\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -846,8 +830,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Reproductive Number R(t) - <a href="https://chadmilando.com/RtEstimBook/" target="_blank">https://chadmilando.com/RtEstimBook/</a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cmilando/RtEstimBook/edit/main/methods_additionaldata.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<p>Disease outbreak and metrics - <a href="https://sites.bu.edu/disease-rt/" target="_blank">https://sites.bu.edu/disease-rt/</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://sites.bu.edu/disease-rt/edit/main/methods_additionaldata.qmd" class="toc-action"><i class="bi bi-git"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
