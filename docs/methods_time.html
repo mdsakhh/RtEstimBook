@@ -414,7 +414,7 @@ E[R(t)]= \frac{a + \sum_{i = \max(1, t - τ)}^{t} I(t)}  { 1/b + \sum_{i = \max(
 <p><span class="math display">\[
 C.V. [R(t)]=\frac{1}{a + \sum_{i = \max(1, t - τ)}^{t} I(t)}
 \]</span></p>
-<p>Thus, sliding windows with larger <span class="math inline">\(τ\)</span> improve the stability of the estimate of <span class="math inline">\(R(t)\)</span> (as compared to smaller <span class="math inline">\(τ\)</span> because the coefficient of variation of <span class="math inline">\(R(t)\)</span> decreases as number of infections increases (see Web Appendix 1 of <span class="citation" data-cites="Cori2013New">Cori et al. (<a href="references.html#ref-Cori2013New" role="doc-biblioref">2013</a>)</span>). Fixed sliding windows are a key feature of the <a href="./package_EpiEstim.html">EpiEstim</a> package.</p>
+<p>Thus, sliding windows with larger <span class="math inline">\(τ\)</span> improve the stability of the estimate of <span class="math inline">\(R(t)\)</span> (as compared to smaller <span class="math inline">\(τ\)</span>) because the coefficient of variation of <span class="math inline">\(R(t)\)</span> decreases as number of infections increases (see Web Appendix 1 of <span class="citation" data-cites="Cori2013New">Cori et al. (<a href="references.html#ref-Cori2013New" role="doc-biblioref">2013</a>)</span>). Fixed sliding windows are a key feature of the <a href="./package_EpiEstim.html">EpiEstim</a> package.</p>
 <section id="drawbacks-of-fixed-sliding-windows" class="level3">
 <h3 class="anchored" data-anchor-id="drawbacks-of-fixed-sliding-windows">Drawbacks of fixed sliding windows</h3>
 <p>There are limitations of the fixed sliding window approach, articulated well in <span class="citation" data-cites="Gostic2020Practical">Gostic et al. (<a href="references.html#ref-Gostic2020Practical" role="doc-biblioref">2020</a>)</span> and summarized here:</p>
@@ -424,9 +424,8 @@ C.V. [R(t)]=\frac{1}{a + \sum_{i = \max(1, t - τ)}^{t} I(t)}
 <li><p>In addition, there is debate in the literature about where in time the estimate of <span class="math inline">\(R(t)\)</span> for each window should go: <span class="citation" data-cites="Gostic2020Practical">Gostic et al. (<a href="references.html#ref-Gostic2020Practical" role="doc-biblioref">2020</a>)</span> recommends using the midpoint of each sliding window rather than time <span class="math inline">\(t\)</span>.</p></li>
 <li><p>The choice of both <span class="math inline">\(τ\)</span> and the location of the estimate of <span class="math inline">\(R(t)\)</span> within each window results in gaps in predictions for <span class="math inline">\(R(t)\)</span>, barring other modifications:</p>
 <ul>
-<li>at the beginning of the modeling period, if not enough cases have occurred (Web Index 4 of <span class="citation" data-cites="Cori2013New">Cori et al. (<a href="references.html#ref-Cori2013New" role="doc-biblioref">2013</a>)</span> suggests a minimum of 12 cases need to be recorded before calculation of <span class="math inline">\(R(t)\)</span>, and waiting at least 1 serial interval)</li>
-<li>at the end of the modeling period to account for reporting delays or time between the midpoint of τ and the end of τ, and</li>
-<li>at the beginning of the time period to allow for enough cases to materialize.</li>
+<li>at the beginning of the modeling period, if not enough cases have occurred (Web Index 4 of <span class="citation" data-cites="Cori2013New">Cori et al. (<a href="references.html#ref-Cori2013New" role="doc-biblioref">2013</a>)</span> suggests that calculation of R(t) should start at least one serial interval’s worth of time after the 12th case is recorded)</li>
+<li>at the end of the modeling period to account for reporting delays or time between the midpoint of τ and the end of τ.</li>
 </ul></li>
 </ul>
 </section>
@@ -457,7 +456,7 @@ f(R(t))=f(R(t-1))+N(0,σ_R)
 </section>
 <section id="sec-filtering" class="level2">
 <h2 class="anchored" data-anchor-id="sec-filtering">Filtering</h2>
-<p>Filtering is another way that <span class="math inline">\(R(t)\)</span> is constrained in time: a factor controls the amount of difference between <span class="math inline">\(R(t)\)</span> in adjacent time-steps.</p>
+<p>Filtering is another way that <span class="math inline">\(R(t)\)</span> is constrained in time. Filtering is similar to a random walk constraint, in that a hyperparameter controls the amount of difference between <span class="math inline">\(R(t)\)</span> in adjacent time-steps, but with a different functional form to a random walk.</p>
 <p>One way that a filter could be implemented is in a Hidden Markov Model (<span class="citation" data-cites="rabiner1986introduction">Rabiner and Juang (<a href="references.html#ref-rabiner1986introduction" role="doc-biblioref">1986</a>)</span>). A simple forward-looking linear filter for <span class="math inline">\(R(t)\)</span> in an Hidden Markov Model might look as follows, with a tuning parameter (<span class="math inline">\(η\)</span>) to influence the amount that <span class="math inline">\(R(t)\)</span> can vary between time-steps and a standard white noise component (<span class="math inline">\(ϵ\)</span>):</p>
 <p><span class="math display">\[
 R(t)=R(t-1)+(η√(R(t-1))) * ϵ(t-1)   
@@ -480,7 +479,7 @@ k(x,x') = α^2 \exp ( \frac {-(x -x')^2} {2l^2} )
 <p><span class="math display">\[
 \log R(t) = \log R(t-1) + GP(0, k(R(t), R(t')) )
 \]</span></p>
-<p>The advantage of Gaussian Process models is that R(t) is enforced to change smoothly in time . Limitations include complexity and computational time: Gaussian Process models have a computational complexity of <span class="math inline">\(O(n^3)\)</span> for n observations (<span class="citation" data-cites="riutort2020practical">Riutort-Mayol et al. (<a href="references.html#ref-riutort2020practical" role="doc-biblioref">2020</a>)</span>), which in general means Gaussian Process runtimes and required computational resources are considerable as compared to other methods.</p>
+<p>The advantage of Gaussian Process models is that R(t) is enforced to change smoothly in time . Limitations include complexity and computational time (<span class="citation" data-cites="riutort2020practical">Riutort-Mayol et al. (<a href="references.html#ref-riutort2020practical" role="doc-biblioref">2020</a>)</span>), which in general means Gaussian Process runtimes and required computational resources are considerable as compared to other methods.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
