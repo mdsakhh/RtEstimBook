@@ -16,23 +16,27 @@ The generation interval, $ω$, is the time between infection in the infector and
 
 In this document we use the generation interval $ω$ described by a probability mass function with non-zero values from day 1 (assuming that disease incubation takes at least 1 day) to a maximum day $s$, i.e., the longest interval between infections in infector and infectee. 
 
-Taking care to note that $R(t)$ is undefined on day 0 since there has been no transmission yet (and assuming the initial infections are $I(0)$), the formulation of the renewal equation is:
+Taking care to note that $R(t)$ is undefined on day 0 since there has been no transmission yet (and assuming the initial infections are $I(0)$), we sum over days to acquire the renewal equation:
 
 $$
-I(t) = R(t) \sum_{i = \max(1, t - s + 1)}^{t} \omega(i) \, I(t - i)
+I(t) = R(t) \sum_{i = \max(1, t - s + 1)}^{t} \omega(i) \, I(t - i).
 $$
 
 For brevity, we write the inner sum of (Eq.1) as:
 
 $$
-Λ(t) =  \sum_{i = \max(1, t - s + 1)}^{t} \omega(i) \, I(t - i)
+Λ(t) =  \sum_{i = \max(1, t - s + 1)}^{t} \omega(i) \, I(t - i).
 $$
 
 The assumptions of this formulation, as per @Green2022Inferring, are that incident infections can be described deterministically within each window of $[t-s+1,t]$ and that the generation interval distribution does not change over the modeling time. 
 
+### Serial interval
+
+A similar parameter to the generation interval is the <a class="definition" href="glossary.qmd#serialInt">serial interval</a>, which is the time between symptom onset in the infector and symptom onset in the infectee. The serial interval and generation interval are interchangeable if the incubation time is independent from the transmission time, and some formulations of the renewal equation use serial interval. 
+
 ### Exponential growth rate
 
-A common reframing of the renewal equation is to equate $R(t)$ with an exponential growth rate, $r$. Under specific conditions and within a small time window ($[t-s+1,t]$), infections can be assumed to grow exponentially at a constant rate $r$ [@Green2022Inferring, @Ma2020Estimating, @Wallinga2006How]. Using the time window $[t- s+1,t]$ and assuming some initial infections $k$, $R(t)$ for $[t- s+1,t]$ can be inferred from only $r$ and $ω$:
+A common reframing of the renewal equation is to equate $R(t)$ with an exponential growth rate, $r$. Under specific conditions and within a small time window ($[t-s+1,t]$), infections in the early stage of an outbreak can be assumed to grow exponentially at a constant rate $r$ ([@Green2022Inferring, @Ma2020Estimating, @Wallinga2006How]). Using the time window $[t- s+1,t]$ and assuming some initial infections $k$, $R(t)$ for $[t- s+1,t]$ can be defined using $r$ and $ω$:
 
 $$
 I(t)=ke^rt
@@ -41,7 +45,7 @@ $$
 R(t)= [\sum_{i = \max(1, t - s + 1)}^{t} \omega(i) \, e^{-ri}]^{-1}	       
 $$
 
-Again, we will omit the writing the bounds for time in remaining formulae. A single $R(t)$ value, say $R_0$, can also be put in the form of an infection attack rate, $z$ @Musa2020Estimation, or in the final size equation @Ma2006Generality, to estimate the proportion of all individuals that were affected by a disease with this $R_0$:  
+Again, we will omit the writing the bounds for time in remaining formulae. A single $R(t)$ value, say $R_0$, can be substituted into an expression for the infection attack rate, $z$ (@Musa2020Estimation), or in the final size equation (@Ma2006Generality), to estimate the proportion of all individuals that were affected by a disease with this $R_0$:  
 
 The major difference between calculating $R(t)$ from a renewal equation or an exponential growth rate equation is whether $I(t)$ is used. If for a given time window both r and ω can be estimated independently, then $R(t)$ can be inferred without infection data. Otherwise, infection data are needed to estimate $R(t)$. 
 
@@ -53,13 +57,13 @@ Using the renewal equation and given that $I(t)$ and $ω$ are known, $R(t)$ can 
 
 Solving directly for $R(t)$ at every timestep is undesirable for several reasons: 
 
-- real-world infectivity likely does not vary dramatically from day to day
-- and real-world infection data are rarely complete, especially in an emerging epidemic, meaning that a certain amount of uncertainty must be incorporated into any estimation framework. 
-- In addition, infection incidence, $I(t)$, are the data of interest but it is impossible to observe, so many calculations instead may use the observed reported cases, $C(t)$, which requires some additional processing to incorporate into calculations of $R(t)$. 
+- observed infections are the result of a noisy process with random day-to-day variations, which do not reflect an underlying change in infectivity;
+- real-world infection data are rarely complete, especially in an emerging epidemic, meaning that a certain amount of uncertainty must be incorporated into any estimation framework;
+- infection incidences, $I(t)$, are the data of interest but are cannot be observed directly, so many calculations instead use the observed reported cases, $C(t)$, which requires some additional processing to incorporate into calculations of $R(t)$. 
 
 Therefore, a variety of constraints on $R(t)$ are added in the inferential process: using distributions on key variables, placing restrictions on how  $R(t)$ varies through time, and with additional data sources and delay distributions. These choices dictate which estimation framework is used, which can add additional constraints. 
 
 ## Empirical estimates of $R(t)$
 
-In contrast to models that assume that renewal equation defines the relationship between infections and $R(t)$, smoothing or regression models calculate time-varying $R(t)$ directly from slope of the log of the infections time-series.  Using this method, the relationship between $R(t)$ and infections is empirically defined, being only constrained by the smoothing parameters of curve fit to infections data. Several R packages contain methods for this type of smoothing, e.g., [EpiLPS](package_EpiLPS.qmd), [EpiNow2](package_EpiNow2.qmd)
+In contrast to models that assume that the renewal equation defines the relationship between infections and $R(t)$, smoothing or regression models calculate time-varying $R(t)$ directly from the slope of the log of the infections time-series.  Using this method, the relationship between $R(t)$ and infections is empirically defined, being only constrained by the smoothing parameters of curve fit to infections data. Several R packages contain methods for this type of smoothing, e.g., [EpiLPS](package_EpiLPS.qmd), [EpiNow2](package_EpiNow2.qmd)
 
