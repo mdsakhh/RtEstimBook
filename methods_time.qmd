@@ -28,7 +28,7 @@ $$
 C.V. [R(t)]=\frac{1}{a + \sum_{i = \max(1, t - τ)}^{t} I(t)}
 $$
 
-Thus, sliding windows with larger $τ$ improve the stability of the estimate of $R(t)$ (as compared to smaller $τ$ because the coefficient of variation of $R(t)$ decreases as number of infections increases (see Web Appendix 1 of @Cori2013New). Fixed sliding windows are a key feature of the [EpiEstim](package_EpiEstim.qmd) package. 
+Thus, sliding windows with larger $τ$ improve the stability of the estimate of $R(t)$ (as compared to smaller $τ$) because the coefficient of variation of $R(t)$ decreases as number of infections increases (see Web Appendix 1 of @Cori2013New). Fixed sliding windows are a key feature of the [EpiEstim](package_EpiEstim.qmd) package. 
 
 ### Drawbacks of fixed sliding windows
 
@@ -41,9 +41,8 @@ There are limitations of the fixed sliding window approach, articulated well in 
 * In addition, there is debate in the literature about where in time the estimate of $R(t)$ for each window should go: @Gostic2020Practical recommends using the midpoint of each sliding window rather than time $t$. 
 
 * The choice of both $τ$ and the location of the estimate of $R(t)$ within each window results in gaps in predictions for $R(t)$, barring other modifications: 
-  * at the beginning of the modeling period, if not enough cases have occurred (Web Index 4 of @Cori2013New suggests a minimum of 12 cases need to be recorded before calculation of $R(t)$, and waiting at least 1 serial interval)
-  * at the end of the modeling period to account for reporting delays or time between the midpoint of τ and the end of τ, and
-  * at the beginning of the time period to allow for enough cases to materialize. 
+  * at the beginning of the modeling period, if not enough cases have occurred (Web Index 4 of @Cori2013New suggests that calculation of R(t) should start at least one serial interval's worth of time after the 12th case is recorded)
+  * at the end of the modeling period to account for reporting delays or time between the midpoint of τ and the end of τ.
   
 ### Modifications of EpiEstim {#sec-modifications}
 
@@ -81,7 +80,8 @@ The function $f$ can be a transformation of $R(t)$, e.g. in log space to correct
 
 ## Filtering {#sec-filtering}
 
-Filtering is another way that $R(t)$ is constrained in time: a factor controls the amount of difference between $R(t)$ in adjacent time-steps. 
+
+Filtering is another way that $R(t)$ is constrained in time. Filtering is similar to a random walk constraint, in that a hyperparameter controls the amount of difference between $R(t)$ in adjacent time-steps, but with a different functional form to a random walk.
 
 One way that a filter could be implemented is in a Hidden Markov Model (@rabiner1986introduction). A simple forward-looking linear filter for $R(t)$ in an Hidden Markov Model might look as follows, with a tuning parameter ($η$) to influence the amount that $R(t)$ can vary between time-steps and a standard white noise component ($ϵ$): 
 
@@ -119,6 +119,7 @@ $$
 $$
 
 The advantage of Gaussian Process models is that R(t) is enforced to change smoothly in time . Limitations include complexity and computational time: Gaussian Process models have a computational complexity of $O(n^3)$ for n observations (@riutort2020practical), which in general means Gaussian Process runtimes and required computational resources are considerable as compared to other methods.
+
 
 
 
